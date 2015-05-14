@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget xmlns     = "http://www.w3.org/ns/widgets"
-        xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "com.phonegap.helloworld"
+		xmlns:gap = "http://phonegap.com/ns/1.0"
+        id        = "com.pushapp"
         version   = "1.0.1">
 
     <name>PupilPod</name>
@@ -50,6 +50,7 @@
     <gap:plugin name="org.apache.cordova.network-information" />
     <gap:plugin name="org.apache.cordova.splashscreen" />
     <gap:plugin name="org.apache.cordova.vibration" />
+	
 	<gap:plugin name="org.apache.cordova.device" version="0.2.12" />
 	<gap:plugin name="com.phonegap.plugins.pushplugin" version="2.4.0" />
     
