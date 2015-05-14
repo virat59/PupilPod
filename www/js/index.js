@@ -19,7 +19,6 @@
 var app = {
     // Application Constructor
     initialize: function() {
-		alert('Initilized');
         this.bindEvents();
     },
     // Bind Event Listeners
@@ -31,13 +30,12 @@ var app = {
     },
     // deviceready Event Handler
     //
-    // The scope of 'this' is the event. In order to call the 'receivedEvent' 74320630987
-    // function, we must explicity call 'app.receivedEvent(...);' 
+    // The scope of 'this' is the event. In order to call the 'receivedEvent'
+    // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-		alert('Inside onDeviceReady');
         app.receivedEvent('deviceready');
         var pushNotification = window.plugins.pushNotification;
-        pushNotification.register(app.successHandler, app.errorHandler,{"senderID":"74320630987","ecb":"app.onNotificationGCM"});
+        pushNotification.register(app.successHandler, app.errorHandler,{"senderID":"824841663931","ecb":"app.onNotificationGCM"});
 
     },
     // Update DOM on a Received Event
