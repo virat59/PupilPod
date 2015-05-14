@@ -7,7 +7,7 @@
     <author email="support@phonegap.com" href="http://phonegap.com">
         PhoneGap Team
     </author>
-    <feature name="http://api.phonegap.com/1.0/device" />
+    <gap:plugin name="org.apache.cordova.device" />
 	<gap:plugin name="com.phonegap.plugins.pushplugin" version="2.4.0" />
     <preference name="permissions" value="none" />
     <preference name="orientation" value="default" />
