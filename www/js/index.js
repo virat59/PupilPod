@@ -172,15 +172,16 @@ var app = {
 			{
 				$('#lbUsers').html('');
 				if (result != null && result.rows != null) {
-					alert('Found');
-					alert('Found Value Last 11111111111111');
-					//for (var i = 0; i < result.rows.length; i++) {
-						//var row = result.rows.item(i);
-						//$('#lbUsers').append('<br>' + row.Id + '. ' +row.field_key+ ' ' + row.field_value);
-					//}
-					//var row = result.rows.item(0);
-					alert('Found Value '+result.rows.length);
-					alert('Found Value Last');
+					if(result.rows.length == 0){
+						var pushNotification = window.plugins.pushNotification;
+						pushNotification.register(app.successHandler, app.errorHandler,{"senderID":"74320630987","ecb":"app.onNotificationGCM"});
+					}
+					else{
+						for (var i = 0; i < result.rows.length; i++) {
+							var row = result.rows.item(i);
+							$('#lbUsers').append('<br>' + row.Id + '. ' +row.field_key+ ' ' + row.field_value);
+						}
+					}
 				}
 				else{
 					alert('Result Null , Not Found');
