@@ -124,8 +124,7 @@ var app = {
 						// this is the section that actually inserts the values into the tnet_login_details table
 					alert('Db '+db);
 					db.transaction(function(transaction) {
-						transaction.executeSql('INSERT INTO tnet_login_details(field_key, field_value) VALUES (?,?)',['reg_id', e.regid],
-						app.successInsert,app.errorHandlerQuery);
+						transaction.executeSql('INSERT INTO tnet_login_details(field_key, field_value) VALUES (?,?)',['reg_id', e.regid],app.successInsert,app.errorHandlerQuery);
 					},app.errorHandlerTransaction,app.nullHandler);
 					
 					//app.receivedEvent('loadBody');
@@ -187,6 +186,7 @@ var app = {
 					var pushNotification = window.plugins.pushNotification;
 					pushNotification.register(app.successHandler, app.errorHandler,{"senderID":"74320630987","ecb":"app.onNotificationGCM"});
 				}
+				return false;
 			},app.errorHandlerQuery);
 		},app.errorHandlerTransaction,app.nullHandler);
 		alert('Hi At Last successCallBack');
