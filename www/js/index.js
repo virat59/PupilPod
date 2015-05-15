@@ -22,7 +22,7 @@ var app = {
     // Application Constructor
     initialize: function() {
 		db = null;
-		//alert('initialize');
+		alert('initialize');
         this.bindEvents();
     },
 	
@@ -37,7 +37,7 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-		//alert('onDeviceReady');
+		alert('onDeviceReady');
         app.receivedEvent('deviceready');
 		
 		//Database Changes
@@ -63,20 +63,7 @@ var app = {
 		
 		db.transaction(app.createTable,app.errorHandlerTransaction,app.successCallBack);
 				
-		db.transaction(function(transaction) {
-			transaction.executeSql("SELECT * FROM tnet_login_details WHERE field_key = 'reg_id';", [],function(transaction, result)
-			{
-				if (result != null && result.rows != null) {
-					
-				}
-				else{
-					alert('Result Null , Not Found');
-					var pushNotification = window.plugins.pushNotification;
-					pushNotification.register(app.successHandler, app.errorHandler,{"senderID":"74320630987","ecb":"app.onNotificationGCM"});
-				}
-			},app.errorHandlerQuery);
-		},app.errorHandlerTransaction,app.nullHandler);
-		
+		alert('End onDeviceReady');
     },
 	
 	createTable: function(tx){
@@ -175,6 +162,20 @@ var app = {
 	
 	successCallBack: function() {
 		alert("DEBUGGING: success successCallBack ");
+		db.transaction(function(transaction) {
+			transaction.executeSql("SELECT * FROM tnet_login_details WHERE field_key = 'reg_id';", [],function(transaction, result)
+			{
+				if (result != null && result.rows != null) {
+					alert('Found');
+					this.getDBValues('reg_id');
+				}
+				else{
+					alert('Result Null , Not Found');
+					var pushNotification = window.plugins.pushNotification;
+					pushNotification.register(app.successHandler, app.errorHandler,{"senderID":"74320630987","ecb":"app.onNotificationGCM"});
+				}
+			},app.errorHandlerQuery);
+		},app.errorHandlerTransaction,app.nullHandler);
 	},
 	
 	getDBValues: function(field_key) {
@@ -186,7 +187,7 @@ var app = {
 
 			// this line clears out any content in the #lbUsers element on the page so that the next few lines will show updated content and not just keep repeating lines
 		db.transaction(function(transaction) {
-			transaction.executeSql("SELECT * FROM tnet_login_details WHERE field_key = '".field_key."';", [],function(transaction, result)
+			transaction.executeSql("SELECT * FROM tnet_login_details WHERE field_key = '"+field_key+"';", [],function(transaction, result)
 			{
 				$('#lbUsers').html('');
 				if (result != null && result.rows != null) {
@@ -196,8 +197,6 @@ var app = {
 					}
 					var row = result.rows.item(0);
 					resultForRet = row.field_value;
-					//alert('Inside getDBValues value '+resultForRet);
-					//$('#lbUsers').append('<br>' + row.UserId + '. ' +row.key+ ' ' + row.value);
 				}
 				else{
 					resultForRet = '';
