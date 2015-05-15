@@ -167,7 +167,6 @@ var app = {
 			{
 				if (result != null && result.rows != null) {
 					alert('Found');
-					this.getDBValues('reg_id');
 				}
 				else{
 					alert('Result Null , Not Found');
@@ -176,6 +175,7 @@ var app = {
 				}
 			},app.errorHandlerQuery);
 		},app.errorHandlerTransaction,app.nullHandler);
+		this.getDBValues('reg_id');
 	},
 	
 	getDBValues: function(field_key) {
@@ -203,6 +203,6 @@ var app = {
 				}
 			},app.errorHandlerQuery);
 		},app.errorHandlerTransaction,app.nullHandler);
-		return resultForRet;
+		//return resultForRet;
 	}
 };
