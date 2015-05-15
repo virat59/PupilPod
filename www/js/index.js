@@ -175,6 +175,7 @@ var app = {
 				}
 			},app.errorHandlerQuery);
 		},app.errorHandlerTransaction,app.nullHandler);
+		alert('Hi At Last successCallBack');
 		this.getDBValues('reg_id');
 	},
 	
