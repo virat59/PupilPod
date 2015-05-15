@@ -100,6 +100,9 @@ var app = {
 	errorHandlerQuery: function(error){
 		alert("errorHandlerQuery : "+error);
 	},
+	successInsert: function(error){
+		alert("successInsert : "+error);
+	},
 	
     onNotificationGCM: function(e) {
         switch( e.event )
@@ -114,9 +117,10 @@ var app = {
 						return;
 					}
 						// this is the section that actually inserts the values into the User table
+					alert('Db '+db);
 					db.transaction(function(transaction) {
 						transaction.executeSql('INSERT INTO User(field_key, field_value) VALUES (?,?)',['reg_id', result],
-						app.nullHandler,app.errorHandlerQuery);
+						app.successInsert,app.errorHandlerQuery);
 					},app.errorHandlerTransaction,app.nullHandler);
 					
 					//app.receivedEvent('loadBody');
