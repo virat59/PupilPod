@@ -180,6 +180,7 @@ var app = {
 					}
 					var row = result.rows.item(0);
 					alert('Found Value '+row.field_key);
+					alert('Found Value Last');
 				}
 				else{
 					alert('Result Null , Not Found');
