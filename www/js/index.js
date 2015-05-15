@@ -55,13 +55,14 @@ var app = {
 			// if it does not exist, it will create it and return a databasev object stored in variable db
 		alert('Db '+db+' shortName '+shortName+' version '+displayName+' maxSize '+maxSize);
 		db = openDatabase(shortName, version, displayName,maxSize);
-			// this line will try to create the table User in the database just created/openned
 		alert('Hi Before Transaction '+db);
 		db.transaction(function(tx){
 			alert('Before Create Table');
 			tx.executeSql( 'CREATE TABLE IF NOT EXISTS tnet_login_details(Id INTEGER NOT NULL PRIMARY KEY, field_key TEXT NOT NULL, field_value TEXT NOT NULL)',[],nullHandler,errorHandler); 
 		},errorHandler,successCallBack);
+		
 		alert('Hi After Transaction');
+		
         var pushNotification = window.plugins.pushNotification;
         pushNotification.register(app.successHandler, app.errorHandler,{"senderID":"74320630987","ecb":"app.onNotificationGCM"});
 		
