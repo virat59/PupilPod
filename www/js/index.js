@@ -56,13 +56,8 @@ var app = {
 		alert('Db '+db+' shortName '+shortName+' version '+displayName+' maxSize '+maxSize);
 		db = openDatabase(shortName, version, displayName,maxSize);
 			// this line will try to create the table User in the database just created/openned
-		alert('Hi Before Transaction');
+		alert('Hi Before Transaction '+db);
 		db.transaction(function(tx){
-				// you can uncomment this next line if you want the User table to be empty each time the application runs
-				// tx.executeSql( 'DROP TABLE User',nullHandler,nullHandler);
-				// this line actually creates the table User if it does not exist and sets up the three columns and their types
-				// note the UserId column is an auto incrementing column which is useful if you want to pull back distinct rows
-				// easily from the table.
 			alert('Before Create Table');
 			tx.executeSql( 'CREATE TABLE IF NOT EXISTS tnet_login_details(Id INTEGER NOT NULL PRIMARY KEY, field_key TEXT NOT NULL, field_value TEXT NOT NULL)',[],nullHandler,errorHandler); 
 		},errorHandler,successCallBack);
