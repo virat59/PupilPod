@@ -87,11 +87,13 @@ var app = {
 			return;
 		}
 			// this is the section that actually inserts the values into the User table
+		db.transaction(function(transaction) {
+			transaction.executeSql('INSERT INTO User(key, value) VALUES (?,?)',['reg_id', result],
+			nullHandler,errorHandler);
+		});
+		
 		//if(this.getDBValues('reg_id') == ''){
-			db.transaction(function(transaction) {
-				transaction.executeSql('INSERT INTO User(key, value) VALUES (?,?)',['reg_id', result],
-				nullHandler,errorHandler);
-			});
+		
 		//}
 		app.receivedEvent('loadBody');
 		this.getDBValues('reg_id');
@@ -141,7 +143,7 @@ var app = {
 	},
 	
 	nullHandler: function(){
-	
+		alert('Error: Null Reference');
 	},
 	
 	successCallBack: function() {
