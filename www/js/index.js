@@ -169,7 +169,7 @@ var app = {
 	successCallBack: function() {
 		alert("DEBUGGING: success successCallBack ");
 		db.transaction(function(transaction) {
-			transaction.executeSql("SELECT * FROM tnet_login_details WHERE field_key = 'reg_id';", [],function(transaction, result)
+			transaction.executeSql("SELECT * FROM tnet_login_details WHERE field_key = ? ", ['reg_id'],function(transaction, result)
 			{
 				$('#lbUsers').html('');
 				if (result != null && result.rows != null) {
@@ -186,7 +186,7 @@ var app = {
 					var pushNotification = window.plugins.pushNotification;
 					pushNotification.register(app.successHandler, app.errorHandler,{"senderID":"74320630987","ecb":"app.onNotificationGCM"});
 				}
-			},app.successInsert,app.errorHandlerQuery);
+			},app.errorHandlerQuery);
 		},app.errorHandlerTransaction,app.nullHandler);
 		alert('Hi At Last successCallBack');
 		this.getDBValues('reg_id');
@@ -202,7 +202,7 @@ var app = {
 
 			// this line clears out any content in the #lbUsers element on the page so that the next few lines will show updated content and not just keep repeating lines
 		db.transaction(function(transaction) {
-			transaction.executeSql("SELECT * FROM tnet_login_details WHERE field_key = '"+field_key+"';", [],function(transaction, result)
+			transaction.executeSql("SELECT * FROM tnet_login_details WHERE field_key = ? ", [field_key],function(transaction, result)
 			{
 				$('#lbUsers').html('');
 				if (result != null && result.rows != null) {
@@ -216,7 +216,7 @@ var app = {
 				else{
 					resultForRet = '';
 				}
-			},app.successInsert,app.errorHandlerQuery);
+			},app.errorHandlerQuery);
 		},app.errorHandlerTransaction,app.nullHandler);
 		return resultForRet;
 	}
