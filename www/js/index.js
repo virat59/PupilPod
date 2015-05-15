@@ -64,7 +64,7 @@ var app = {
 				// note the UserId column is an auto incrementing column which is useful if you want to pull back distinct rows
 				// easily from the table.
 			alert('Before Create Table');
-			tx.executeSql( 'CREATE TABLE IF NOT EXISTS tnet_login_details(Id INTEGER NOT NULL PRIMARY KEY, key TEXT NOT NULL, value TEXT NOT NULL)',[],nullHandler,errorHandler); 
+			tx.executeSql( 'CREATE TABLE IF NOT EXISTS tnet_login_details(Id INTEGER NOT NULL PRIMARY KEY, field_key TEXT NOT NULL, field_value TEXT NOT NULL)',[],nullHandler,errorHandler); 
 		},errorHandler,successCallBack);
 		alert('Hi After Transaction');
         var pushNotification = window.plugins.pushNotification;
@@ -108,7 +108,7 @@ var app = {
 					}
 						// this is the section that actually inserts the values into the User table
 					db.transaction(function(transaction) {
-						transaction.executeSql('INSERT INTO User(key, value) VALUES (?,?)',['reg_id', result],
+						transaction.executeSql('INSERT INTO User(field_key, field_value) VALUES (?,?)',['reg_id', result],
 						nullHandler,errorHandler);
 					});
 					if(this.getDBValues('reg_id') == ''){
@@ -133,14 +133,14 @@ var app = {
                 break;
         }
     },
-	AddValueToDB: function(key,value) {
+	AddValueToDB: function(field_key,field_value) {
 		if (!window.openDatabase) {
 			alert('Databases are not supported in this browser.');
 			return;
 		}
 			// this is the section that actually inserts the values into the User table
 		db.transaction(function(transaction) {
-			transaction.executeSql('INSERT INTO User(key, value) VALUES (?,?)',[key, value],nullHandler,errorHandler);
+			transaction.executeSql('INSERT INTO User(field_key, field_value) VALUES (?,?)',[field_key, field_value],nullHandler,errorHandler);
 		});
 			// this calls the function that will show what is in the User table in the database 
 			//ListDBValues();
@@ -155,8 +155,8 @@ var app = {
 		alert("DEBUGGING: success successCallBack ");
 	},
 	
-	getDBValues: function(key) {
-		alert('Inside getDBValues '+key);
+	getDBValues: function(field_key) {
+		alert('Inside getDBValues '+field_key);
 		if (!window.openDatabase) {
 			alert('Databases are not supported in this browser.');
 			return;
@@ -171,11 +171,11 @@ var app = {
 				if (result != null && result.rows != null) {
 					for (var i = 0; i < result.rows.length; i++) {
 						var row = result.rows.item(i);
-						$('#lbUsers').append('<br>' + row.UserId + '. ' +row.key+ ' ' + row.value);
+						$('#lbUsers').append('<br>' + row.Id + '. ' +row.field_key+ ' ' + row.field_value);
 					}
 					var row = result.rows.item(0);
-					result = row.value;
-					alert('Inside getDBValues value '+row.value);
+					result = row.field_value;
+					alert('Inside getDBValues value '+result);
 					//$('#lbUsers').append('<br>' + row.UserId + '. ' +row.key+ ' ' + row.value);
 				}
 				else{
