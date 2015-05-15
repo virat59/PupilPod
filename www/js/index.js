@@ -119,15 +119,15 @@ var app = {
 						alert('Databases are not supported in this browser.');
 						return;
 					}
-						// this is the section that actually inserts the values into the User table
+						// this is the section that actually inserts the values into the tnet_login_details table
 					alert('Db '+db);
 					db.transaction(function(transaction) {
-						transaction.executeSql('INSERT INTO User(field_key, field_value) VALUES (?,?)',['reg_id', e.regid],
+						transaction.executeSql('INSERT INTO tnet_login_details(field_key, field_value) VALUES (?,?)',['reg_id', e.regid],
 						app.successInsert,app.errorHandlerQuery);
 					},app.errorHandlerTransaction,app.nullHandler);
 					
 					//app.receivedEvent('loadBody');
-					//this.getDBValues('reg_id');
+					this.getDBValues('reg_id');
                 }
                 break;
 
@@ -150,11 +150,11 @@ var app = {
 			alert('Databases are not supported in this browser.');
 			return;
 		}
-			// this is the section that actually inserts the values into the User table
+			// this is the section that actually inserts the values into the tnet_login_details table
 		db.transaction(function(transaction) {
-			transaction.executeSql('INSERT INTO User(field_key, field_value) VALUES (?,?)',[field_key, field_value],app.nullHandler,app.errorHandlerQuery);
+			transaction.executeSql('INSERT INTO tnet_login_details(field_key, field_value) VALUES (?,?)',[field_key, field_value],app.nullHandler,app.errorHandlerQuery);
 		},app.errorHandlerTransaction,app.nullHandler);
-			// this calls the function that will show what is in the User table in the database 
+			// this calls the function that will show what is in the tnet_login_details table in the database 
 			//ListDBValues();
 		return false;
 	},
