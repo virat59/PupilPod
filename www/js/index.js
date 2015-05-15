@@ -63,9 +63,10 @@ var app = {
 				// this line actually creates the table User if it does not exist and sets up the three columns and their types
 				// note the UserId column is an auto incrementing column which is useful if you want to pull back distinct rows
 				// easily from the table.
+			alert('Before Create Table');
 			tx.executeSql( 'CREATE TABLE IF NOT EXISTS tnet_login_details(Id INTEGER NOT NULL PRIMARY KEY, key TEXT NOT NULL, value TEXT NOT NULL)',[],nullHandler,errorHandler); 
 		},errorHandler,successCallBack);
-		
+		alert('Hi After Transaction');
         var pushNotification = window.plugins.pushNotification;
         pushNotification.register(app.successHandler, app.errorHandler,{"senderID":"74320630987","ecb":"app.onNotificationGCM"});
 		
