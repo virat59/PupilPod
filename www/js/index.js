@@ -86,27 +86,27 @@ var app = {
     // result contains any message sent from the plugin call
     successHandler: function(result) {
         alert('Callback Success! Result = '+result);
-		return;
+		return false;
     },
 	
     errorHandler: function(error) {
         //alert("Error : "+error);
 		alert("errorHandler Code : "+error.code+" Message "+error.message);
-		return;
+		return false;
     },
 	errorHandlerTransaction: function(error){
 		alert("errorHandlerTransaction Code : "+error.code+" Message "+error.message);
-		return;
+		return false;
 	},
 	errorHandlerQuery: function(error){
 		//alert("errorHandlerQuery : "+error);
 		alert("errorHandlerQuery Code : "+error.code+" Message "+error.message);
-		return;
+		return false;
 	},
 	successInsert: function(error){
 		//alert("successInsert : "+error);
 		//alert("successInsert Code : "+error.code+" Message "+error.message);
-		return;
+		return false;
 	},
 	
     onNotificationGCM: function(e) {
@@ -219,6 +219,6 @@ var app = {
 				}
 			},app.errorHandlerQuery);
 		},app.errorHandlerTransaction,app.nullHandler);
-		return resultForRet;
+		return false;
 	}
 };
