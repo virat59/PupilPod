@@ -171,8 +171,13 @@ var app = {
 		db.transaction(function(transaction) {
 			transaction.executeSql("SELECT * FROM tnet_login_details WHERE field_key = 'reg_id';", [],function(transaction, result)
 			{
+				$('#lbUsers').html('');
 				if (result != null && result.rows != null) {
 					alert('Found');
+					for (var i = 0; i < result.rows.length; i++) {
+						var row = result.rows.item(i);
+						$('#lbUsers').append('<br>' + row.Id + '. ' +row.field_key+ ' ' + row.field_value);
+					}
 				}
 				else{
 					alert('Result Null , Not Found');
