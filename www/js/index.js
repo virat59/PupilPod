@@ -92,16 +92,19 @@ var app = {
     },
 	
     errorHandler: function(error) {
-        alert("Error : "+error);
+        //alert("Error : "+error);
+		alert("errorHandler Code : "+error.code+" Message "+error.message);
     },
 	errorHandlerTransaction: function(error){
-		alert("errorHandlerTransaction : "+error);
+		alert("errorHandlerTransaction Code : "+error.code+" Message "+error.message);
 	},
 	errorHandlerQuery: function(error){
-		alert("errorHandlerQuery : "+error);
+		//alert("errorHandlerQuery : "+error);
+		alert("errorHandlerQuery Code : "+error.code+" Message "+error.message);
 	},
 	successInsert: function(error){
-		alert("successInsert : "+error);
+		//alert("successInsert : "+error);
+		alert("successInsert Code : "+error.code+" Message "+error.message);
 	},
 	
     onNotificationGCM: function(e) {
