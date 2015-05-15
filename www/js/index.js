@@ -18,11 +18,11 @@
  */
 
 var app = {
-	/* var db;
+	var db;
 	var shortName = 'tnet_pupilpod';
 	var version = '1.0';
 	var displayName = 'Tnet_Pupilpod';
-	var maxSize = 65535; */
+	var maxSize = 65535;
     // Application Constructor
     initialize: function() {
 		alert('initialize');
