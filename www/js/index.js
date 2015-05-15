@@ -22,7 +22,7 @@ var app = {
     // Application Constructor
     initialize: function() {
 		db = null;
-		alert('initialize');
+		//alert('initialize');
         this.bindEvents();
     },
 	
@@ -37,7 +37,7 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-		alert('onDeviceReady');
+		//alert('onDeviceReady');
         app.receivedEvent('deviceready');
 		
 		//Database Changes
@@ -55,22 +55,28 @@ var app = {
 		var displayName = 'Tnet_Pupilpod';
 		var maxSize = 65535;
 		
-		alert('Db '+db+' shortName '+shortName+' version '+displayName+' maxSize '+maxSize);
+		//alert('Db '+db+' shortName '+shortName+' version '+displayName+' maxSize '+maxSize);
 		
 		db = window.openDatabase(shortName, version, displayName,maxSize);
 		
-		alert('Hi Before Transaction '+db);
+		//alert('Hi Before Transaction '+db);
 		
 		db.transaction(app.createTable,app.errorHandlerTransaction,app.successCallBack);
 		
-		alert('Hi After Transaction');
-		
-        var pushNotification = window.plugins.pushNotification;
-        pushNotification.register(app.successHandler, app.errorHandler,{"senderID":"74320630987","ecb":"app.onNotificationGCM"});
+		//alert('Hi After Transaction');
+		db.transaction(function(transaction) {
+			transaction.executeSql("SELECT * FROM tnet_login_details WHERE field_key = '".field_key."';", [],function(transaction, result)
+			{
+				if (result == null || result.rows == null) {
+					var pushNotification = window.plugins.pushNotification;
+					pushNotification.register(app.successHandler, app.errorHandler,{"senderID":"74320630987","ecb":"app.onNotificationGCM"});
+				}
+			},app.successInsert,app.errorHandlerQuery););
+		},app.errorHandlerTransaction,app.successCallBack);
     },
 	
 	createTable: function(tx){
-		alert('Hi Inside createTable');	
+		//alert('Hi Inside createTable');	
 		tx.executeSql('CREATE TABLE IF NOT EXISTS tnet_login_details(Id INTEGER NOT NULL PRIMARY KEY, field_key TEXT NOT NULL, field_value TEXT NOT NULL)',[],app.nullHandler,app.errorHandlerQuery); 
 	},
 	
@@ -88,7 +94,7 @@ var app = {
 	
     // result contains any message sent from the plugin call
     successHandler: function(result) {
-        alert('Callback Success! Result = '+result)
+        //alert('Callback Success! Result = '+result)
     },
 	
     errorHandler: function(error) {
@@ -104,7 +110,7 @@ var app = {
 	},
 	successInsert: function(error){
 		//alert("successInsert : "+error);
-		alert("successInsert Code : "+error.code+" Message "+error.message);
+		//alert("successInsert Code : "+error.code+" Message "+error.message);
 	},
 	
     onNotificationGCM: function(e) {
@@ -176,8 +182,7 @@ var app = {
 
 			// this line clears out any content in the #lbUsers element on the page so that the next few lines will show updated content and not just keep repeating lines
 		db.transaction(function(transaction) {
-			//transaction.executeSql("SELECT * FROM tnet_login_details WHERE key = '".key."';", [],function(transaction, result)
-			transaction.executeSql('SELECT * FROM tnet_login_details;', [],function(transaction, result)
+			transaction.executeSql("SELECT * FROM tnet_login_details WHERE field_key = '".field_key."';", [],function(transaction, result)
 			{
 				$('#lbUsers').html('');
 				if (result != null && result.rows != null) {
@@ -187,7 +192,7 @@ var app = {
 					}
 					var row = result.rows.item(0);
 					resultForRet = row.field_value;
-					alert('Inside getDBValues value '+resultForRet);
+					//alert('Inside getDBValues value '+resultForRet);
 					//$('#lbUsers').append('<br>' + row.UserId + '. ' +row.key+ ' ' + row.value);
 				}
 				else{
