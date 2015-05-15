@@ -82,7 +82,7 @@ var app = {
     // result contains any message sent from the plugin call
     successHandler: function(result) {
         alert('Callback Success! Result = '+result)
-		/*if (!window.openDatabase) {
+		if (!window.openDatabase) {
 			alert('Databases are not supported in this browser.');
 			return;
 		}
@@ -92,7 +92,7 @@ var app = {
 				transaction.executeSql('INSERT INTO User(key, value) VALUES (?,?)',['reg_id', result],
 				nullHandler,errorHandler);
 			});
-		}*/
+		}
     },
 	
     errorHandler: function(error) {
@@ -125,7 +125,7 @@ var app = {
         }
     },
 	AddValueToDB: function(key,value) {
-		/* if (!window.openDatabase) {
+		if (!window.openDatabase) {
 			alert('Databases are not supported in this browser.');
 			return;
 		}
@@ -135,7 +135,7 @@ var app = {
 		});
 			// this calls the function that will show what is in the User table in the database 
 			//ListDBValues();
-		return false; */
+		return false;
 	},
 	
 	nullHandler: function(){
@@ -147,7 +147,7 @@ var app = {
 	},
 	
 	getDBValues: function(key) {
-		/* if (!window.openDatabase) {
+		if (!window.openDatabase) {
 			alert('Databases are not supported in this browser.');
 			return;
 		}
@@ -162,7 +162,7 @@ var app = {
 						var row = result.rows.item(i);
 						$('#lbUsers').append('<br>' + row.UserId + '. ' +row.FirstName+ ' ' + row.LastName);
 					} */
-					/*var row = result.rows.item(0);
+					var row = result.rows.item(0);
 					result = row.value;
 					$('#lbUsers').append('<br>' + row.UserId + '. ' +row.key+ ' ' + row.value);
 				}
@@ -171,6 +171,6 @@ var app = {
 				}
 			},errorHandler);
 		},errorHandler,nullHandler);
-		return result; */
+		return result;
 	}
 };
