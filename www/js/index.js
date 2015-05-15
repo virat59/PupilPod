@@ -17,10 +17,6 @@
  * under the License.
  */
 var db;
-var shortName = 'tnet_pupilpod';
-var version = '1.0';
-var displayName = 'Tnet_Pupilpod';
-var maxSize = 65535;
 var app = {
 	
     // Application Constructor
@@ -53,10 +49,15 @@ var app = {
 		}
 			// this line tries to open the database base locally on the device
 			// if it does not exist, it will create it and return a databasev object stored in variable db
-			
+		
+		var shortName = 'tnet_pupilpod';
+		var version = '1.0';
+		var displayName = 'Tnet_Pupilpod';
+		var maxSize = 65535;
+		
 		alert('Db '+db+' shortName '+shortName+' version '+displayName+' maxSize '+maxSize);
 		
-		db = openDatabase(shortName, version, displayName,maxSize);
+		db = window.openDatabase(shortName, version, displayName,maxSize);
 		
 		alert('Hi Before Transaction '+db);
 		
