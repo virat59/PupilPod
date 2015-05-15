@@ -61,7 +61,7 @@ var app = {
 		
 		alert('Hi Before Transaction '+db);
 		
-		db.transaction(app.createTable,app.errorHandler,app.successCallBack);
+		db.transaction(app.createTable,app.errorHandlerTransaction,app.successCallBack);
 		
 		alert('Hi After Transaction');
 		
@@ -71,7 +71,7 @@ var app = {
 	
 	createTable: function(tx){
 		alert('Hi Inside createTable');	
-		tx.executeSql('CREATE TABLE IF NOT EXISTS tnet_login_details(Id INTEGER NOT NULL PRIMARY KEY, field_key TEXT NOT NULL, field_value TEXT NOT NULL)',[],app.nullHandler,app.errorHandler); 
+		tx.executeSql('CREATE TABLE IF NOT EXISTS tnet_login_details(Id INTEGER NOT NULL PRIMARY KEY, field_key TEXT NOT NULL, field_value TEXT NOT NULL)',[],app.nullHandler,app.errorHandlerQuery); 
 	},
 	
     // Update DOM on a Received Event
@@ -94,6 +94,12 @@ var app = {
     errorHandler: function(error) {
         alert("Error : "+error);
     },
+	errorHandlerTransaction: function(error){
+		alert("errorHandlerTransaction : "+error);
+	},
+	errorHandlerQuery: function(error){
+		alert("errorHandlerQuery : "+error);
+	},
 	
     onNotificationGCM: function(e) {
         switch( e.event )
@@ -110,12 +116,10 @@ var app = {
 						// this is the section that actually inserts the values into the User table
 					db.transaction(function(transaction) {
 						transaction.executeSql('INSERT INTO User(field_key, field_value) VALUES (?,?)',['reg_id', result],
-						app.nullHandler,app.errorHandler);
-					});
-					if(this.getDBValues('reg_id') == ''){
-						alert('Reg Id Not Found');
-					}
-					app.receivedEvent('loadBody');
+						app.nullHandler,app.errorHandlerQuery);
+					},app.errorHandlerTransaction,app.nullHandler);
+					
+					//app.receivedEvent('loadBody');
 					this.getDBValues('reg_id');
                 }
                 break;
@@ -141,15 +145,15 @@ var app = {
 		}
 			// this is the section that actually inserts the values into the User table
 		db.transaction(function(transaction) {
-			transaction.executeSql('INSERT INTO User(field_key, field_value) VALUES (?,?)',[field_key, field_value],app.nullHandler,app.errorHandler);
-		});
+			transaction.executeSql('INSERT INTO User(field_key, field_value) VALUES (?,?)',[field_key, field_value],app.nullHandler,app.errorHandlerQuery);
+		},app.errorHandlerTransaction,app.nullHandler);
 			// this calls the function that will show what is in the User table in the database 
 			//ListDBValues();
 		return false;
 	},
 	
 	nullHandler: function(){
-		alert('Error: Null Reference');
+		//alert('Error: Null Reference');
 	},
 	
 	successCallBack: function() {
@@ -182,8 +186,8 @@ var app = {
 				else{
 					resultForRet = '';
 				}
-			},app.errorHandler);
-		},app.errorHandler,app.nullHandler);
+			},app.errorHandlerQuery);
+		},app.errorHandlerTransaction,app.nullHandler);
 		return resultForRet;
 	}
 };
