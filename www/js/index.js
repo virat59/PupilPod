@@ -43,8 +43,6 @@ var app = {
     onDeviceReady: function() {
 		alert('onDeviceReady');
         app.receivedEvent('deviceready');
-        var pushNotification = window.plugins.pushNotification;
-        pushNotification.register(app.successHandler, app.errorHandler,{"senderID":"74320630987","ecb":"app.onNotificationGCM"});
 		
 		//Database Changes
 		if (!window.openDatabase) {
@@ -65,6 +63,11 @@ var app = {
 				// easily from the table.
 			tx.executeSql( 'CREATE TABLE IF NOT EXISTS tnet_login_details(Id INTEGER NOT NULL PRIMARY KEY, key TEXT NOT NULL, value TEXT NOT NULL)',[],nullHandler,errorHandler); 
 		},errorHandler,successCallBack);
+		
+        var pushNotification = window.plugins.pushNotification;
+        pushNotification.register(app.successHandler, app.errorHandler,{"senderID":"74320630987","ecb":"app.onNotificationGCM"});
+		
+		
     },
 	
     // Update DOM on a Received Event
@@ -146,7 +149,7 @@ var app = {
 	},
 	
 	successCallBack: function() {
-		//alert("DEBUGGING: success");
+		alert("DEBUGGING: success successCallBack ");
 	},
 	
 	getDBValues: function(key) {
