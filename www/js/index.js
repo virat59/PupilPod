@@ -16,24 +16,26 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-var db;
-var shortName = 'tnet_pupilpod';
-var version = '1.0';
-var displayName = 'Tnet_Pupilpod';
-var maxSize = 65535;
+
 var app = {
+	var db;
+	var shortName = 'tnet_pupilpod';
+	var version = '1.0';
+	var displayName = 'Tnet_Pupilpod';
+	var maxSize = 65535;
     // Application Constructor
     initialize: function() {
 		alert('initialize');
         this.bindEvents();
     },
+	
     // Bind Event Listeners
-    //
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
     },
+	
     // deviceready Event Handler
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicity call 'app.receivedEvent(...);'
@@ -63,6 +65,7 @@ var app = {
 			tx.executeSql( 'CREATE TABLE IF NOT EXISTS tnet_login_details(Id INTEGER NOT NULL PRIMARY KEY, key TEXT NOT NULL, value TEXT NOT NULL)',[],nullHandler,errorHandler); 
 		},errorHandler,successCallBack);
     },
+	
     // Update DOM on a Received Event
     receivedEvent: function(id) {
         var parentElement = document.getElementById(id);
@@ -74,6 +77,7 @@ var app = {
 
         console.log('Received Event: ' + id);
     },
+	
     // result contains any message sent from the plugin call
     successHandler: function(result) {
         //alert('Callback Success! Result = '+result)
@@ -82,16 +86,18 @@ var app = {
 			return;
 		}
 			// this is the section that actually inserts the values into the User table
-		if(getDBValues('reg_id') == ''){
+		if(this.getDBValues('reg_id') == ''){
 			db.transaction(function(transaction) {
 				transaction.executeSql('INSERT INTO User(key, value) VALUES (?,?)',['reg_id', result],
 				nullHandler,errorHandler);
 			});
 		}
     },
-    errorHandler:function(error) {
+	
+    errorHandler: function(error) {
         alert(error);
     },
+	
     onNotificationGCM: function(e) {
         switch( e.event )
         {
@@ -117,7 +123,7 @@ var app = {
                 break;
         }
     },
-	AddValueToDB:function(key,value) {
+	AddValueToDB: function(key,value) {
 		if (!window.openDatabase) {
 			alert('Databases are not supported in this browser.');
 			return;
@@ -130,11 +136,16 @@ var app = {
 			//ListDBValues();
 		return false;
 	},
-	nullHandler:function(){},
-	successCallBack:function() {
+	
+	nullHandler: function(){
+	
+	},
+	
+	successCallBack: function() {
 		//alert("DEBUGGING: success");
 	},
-	getDBValues:function(key) {
+	
+	getDBValues: function(key) {
 		if (!window.openDatabase) {
 			alert('Databases are not supported in this browser.');
 			return;
