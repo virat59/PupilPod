@@ -18,11 +18,11 @@
  */
 
 var app = {
-	var db;
+	/* var db;
 	var shortName = 'tnet_pupilpod';
 	var version = '1.0';
 	var displayName = 'Tnet_Pupilpod';
-	var maxSize = 65535;
+	var maxSize = 65535; */
     // Application Constructor
     initialize: function() {
 		alert('initialize');
@@ -124,7 +124,7 @@ var app = {
         }
     },
 	AddValueToDB: function(key,value) {
-		if (!window.openDatabase) {
+		/* if (!window.openDatabase) {
 			alert('Databases are not supported in this browser.');
 			return;
 		}
@@ -134,7 +134,7 @@ var app = {
 		});
 			// this calls the function that will show what is in the User table in the database 
 			//ListDBValues();
-		return false;
+		return false; */
 	},
 	
 	nullHandler: function(){
@@ -146,7 +146,7 @@ var app = {
 	},
 	
 	getDBValues: function(key) {
-		if (!window.openDatabase) {
+		/* if (!window.openDatabase) {
 			alert('Databases are not supported in this browser.');
 			return;
 		}
@@ -161,7 +161,7 @@ var app = {
 						var row = result.rows.item(i);
 						$('#lbUsers').append('<br>' + row.UserId + '. ' +row.FirstName+ ' ' + row.LastName);
 					} */
-					var row = result.rows.item(0);
+					/*var row = result.rows.item(0);
 					result = row.value;
 					$('#lbUsers').append('<br>' + row.UserId + '. ' +row.key+ ' ' + row.value);
 				}
@@ -170,6 +170,6 @@ var app = {
 				}
 			},errorHandler);
 		},errorHandler,nullHandler);
-		return result;
+		return result; */
 	}
 };
