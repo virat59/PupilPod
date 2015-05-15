@@ -71,7 +71,7 @@ var app = {
 	
 	createTable: function(tx){
 		alert('Hi Inside createTable');	
-		tx.executeSql('CREATE TABLE IF NOT EXISTS tnet_login_details(Id INTEGER NOT NULL PRIMARY KEY, field_key TEXT NOT NULL, field_value TEXT NOT NULL)',[],nullHandler,errorHandler); 
+		tx.executeSql('CREATE TABLE IF NOT EXISTS tnet_login_details(Id INTEGER NOT NULL PRIMARY KEY, field_key TEXT NOT NULL, field_value TEXT NOT NULL)',[],app.nullHandler,app.errorHandler); 
 	},
 	
     // Update DOM on a Received Event
@@ -92,7 +92,7 @@ var app = {
     },
 	
     errorHandler: function(error) {
-        alert(error);
+        alert("Error : "+error);
     },
 	
     onNotificationGCM: function(e) {
@@ -175,15 +175,15 @@ var app = {
 						$('#lbUsers').append('<br>' + row.Id + '. ' +row.field_key+ ' ' + row.field_value);
 					}
 					var row = result.rows.item(0);
-					result = row.field_value;
-					alert('Inside getDBValues value '+result);
+					resultForRet = row.field_value;
+					alert('Inside getDBValues value '+resultForRet);
 					//$('#lbUsers').append('<br>' + row.UserId + '. ' +row.key+ ' ' + row.value);
 				}
 				else{
-					result = '';
+					resultForRet = '';
 				}
 			},app.errorHandler);
 		},app.errorHandler,app.nullHandler);
-		return result;
+		return resultForRet;
 	}
 };
