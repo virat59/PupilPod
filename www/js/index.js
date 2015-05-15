@@ -62,17 +62,21 @@ var app = {
 		//alert('Hi Before Transaction '+db);
 		
 		db.transaction(app.createTable,app.errorHandlerTransaction,app.successCallBack);
-		
-		//alert('Hi After Transaction');
+				
 		db.transaction(function(transaction) {
-			transaction.executeSql("SELECT * FROM tnet_login_details WHERE field_key = '".field_key."';", [],function(transaction, result)
+			transaction.executeSql("SELECT * FROM tnet_login_details WHERE field_key = 'reg_id';", [],function(transaction, result)
 			{
-				if (result == null || result.rows == null) {
+				if (result != null && result.rows != null) {
+					
+				}
+				else{
+					alert('Result Null , Not Found');
 					var pushNotification = window.plugins.pushNotification;
 					pushNotification.register(app.successHandler, app.errorHandler,{"senderID":"74320630987","ecb":"app.onNotificationGCM"});
 				}
-			},app.successInsert,app.errorHandlerQuery););
-		},app.errorHandlerTransaction,app.successCallBack);
+			},app.errorHandlerQuery);
+		},app.errorHandlerTransaction,app.nullHandler);
+		
     },
 	
 	createTable: function(tx){
