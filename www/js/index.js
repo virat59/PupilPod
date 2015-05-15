@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-var db;
+db = null;
 var app = {
 	
     // Application Constructor
@@ -173,6 +173,7 @@ var app = {
 				$('#lbUsers').html('');
 				if (result != null && result.rows != null) {
 					alert('Found');
+					alert('Found Value Last 11111111111111');
 					for (var i = 0; i < result.rows.length; i++) {
 						var row = result.rows.item(i);
 						$('#lbUsers').append('<br>' + row.Id + '. ' +row.field_key+ ' ' + row.field_value);
