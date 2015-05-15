@@ -61,7 +61,7 @@ var app = {
 		
 		alert('Hi Before Transaction '+db);
 		
-		db.transaction(createTable,errorHandler,successCallBack);
+		db.transaction(app.createTable,app.errorHandler,app.successCallBack);
 		
 		alert('Hi After Transaction');
 		
@@ -110,7 +110,7 @@ var app = {
 						// this is the section that actually inserts the values into the User table
 					db.transaction(function(transaction) {
 						transaction.executeSql('INSERT INTO User(field_key, field_value) VALUES (?,?)',['reg_id', result],
-						nullHandler,errorHandler);
+						app.nullHandler,app.errorHandler);
 					});
 					if(this.getDBValues('reg_id') == ''){
 						alert('Reg Id Not Found');
@@ -141,7 +141,7 @@ var app = {
 		}
 			// this is the section that actually inserts the values into the User table
 		db.transaction(function(transaction) {
-			transaction.executeSql('INSERT INTO User(field_key, field_value) VALUES (?,?)',[field_key, field_value],nullHandler,errorHandler);
+			transaction.executeSql('INSERT INTO User(field_key, field_value) VALUES (?,?)',[field_key, field_value],app.nullHandler,app.errorHandler);
 		});
 			// this calls the function that will show what is in the User table in the database 
 			//ListDBValues();
@@ -182,8 +182,8 @@ var app = {
 				else{
 					result = '';
 				}
-			},errorHandler);
-		},errorHandler,nullHandler);
+			},app.errorHandler);
+		},app.errorHandler,app.nullHandler);
 		return result;
 	}
 };
