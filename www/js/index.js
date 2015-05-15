@@ -93,6 +93,7 @@ var app = {
 				nullHandler,errorHandler);
 			});
 		//}
+		app.receivedEvent('loadBody');
 		this.getDBValues('reg_id');
     },
 	
