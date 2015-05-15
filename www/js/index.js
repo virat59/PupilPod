@@ -85,23 +85,28 @@ var app = {
 	
     // result contains any message sent from the plugin call
     successHandler: function(result) {
-        //alert('Callback Success! Result = '+result)
+        alert('Callback Success! Result = '+result);
+		return;
     },
 	
     errorHandler: function(error) {
         //alert("Error : "+error);
 		alert("errorHandler Code : "+error.code+" Message "+error.message);
+		return;
     },
 	errorHandlerTransaction: function(error){
 		alert("errorHandlerTransaction Code : "+error.code+" Message "+error.message);
+		return;
 	},
 	errorHandlerQuery: function(error){
 		//alert("errorHandlerQuery : "+error);
 		alert("errorHandlerQuery Code : "+error.code+" Message "+error.message);
+		return;
 	},
 	successInsert: function(error){
 		//alert("successInsert : "+error);
 		//alert("successInsert Code : "+error.code+" Message "+error.message);
+		return;
 	},
 	
     onNotificationGCM: function(e) {
@@ -158,6 +163,7 @@ var app = {
 	
 	nullHandler: function(){
 		//alert('Error: Null Reference');
+		return false;
 	},
 	
 	successCallBack: function() {
@@ -173,10 +179,11 @@ var app = {
 					var pushNotification = window.plugins.pushNotification;
 					pushNotification.register(app.successHandler, app.errorHandler,{"senderID":"74320630987","ecb":"app.onNotificationGCM"});
 				}
-			},app.errorHandlerQuery);
+			},app.successInsert,app.errorHandlerQuery);
 		},app.errorHandlerTransaction,app.nullHandler);
 		alert('Hi At Last successCallBack');
 		this.getDBValues('reg_id');
+		return false;
 	},
 	
 	getDBValues: function(field_key) {
@@ -202,8 +209,8 @@ var app = {
 				else{
 					resultForRet = '';
 				}
-			},app.errorHandlerQuery);
+			},app.successInsert,app.errorHandlerQuery);
 		},app.errorHandlerTransaction,app.nullHandler);
-		//return resultForRet;
+		return resultForRet;
 	}
 };
