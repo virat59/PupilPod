@@ -22,7 +22,7 @@ var app = {
     // Application Constructor
     initialize: function() {
 		db = null;
-		alert('initialize');
+		//alert('initialize');
         this.bindEvents();
     },
 	
@@ -37,7 +37,7 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-		alert('onDeviceReady');
+		//alert('onDeviceReady');
         app.receivedEvent('deviceready');
 		
 		//Database Changes
@@ -63,7 +63,7 @@ var app = {
 		
 		db.transaction(app.createTable,app.errorHandlerTransaction,app.successCallBack);
 				
-		alert('End onDeviceReady');
+		//alert('End onDeviceReady');
     },
 	
 	createTable: function(tx){
@@ -85,7 +85,7 @@ var app = {
 	
     // result contains any message sent from the plugin call
     successHandler: function(result) {
-        alert('Callback Success! Result = '+result);
+        //alert('Callback Success! Result = '+result);
 		return false;
     },
 	
@@ -122,7 +122,7 @@ var app = {
 						return;
 					}
 						// this is the section that actually inserts the values into the tnet_login_details table
-					alert('Db '+db);
+					//alert('Db '+db);
 					db.transaction(function(transaction) {
 						transaction.executeSql('INSERT INTO tnet_login_details(field_key, field_value) VALUES (?,?)',['reg_id', e.regid],app.successInsert,app.errorHandlerQuery);
 					},app.errorHandlerTransaction,app.nullHandler);
@@ -134,7 +134,7 @@ var app = {
 
             case 'message':
                 // this is the actual push notification. its format depends on the data model from the push server
-                alert('message = '+e.message+' msgcnt = '+e.msgcnt);
+                alert('message = '+e.message);
                 break;
 
             case 'error':
@@ -166,7 +166,7 @@ var app = {
 	},
 	
 	successCallBack: function() {
-		alert("DEBUGGING: success successCallBack ");
+		//alert("DEBUGGING: success successCallBack ");
 		db.transaction(function(transaction) {
 			transaction.executeSql("SELECT * FROM tnet_login_details WHERE field_key = ? ", ['reg_id'],function(transaction, result)
 			{
@@ -184,20 +184,20 @@ var app = {
 					}
 				}
 				else{
-					alert('Result Null , Not Found');
+					//alert('Result Null , Not Found');
 					var pushNotification = window.plugins.pushNotification;
 					pushNotification.register(app.successHandler, app.errorHandler,{"senderID":"74320630987","ecb":"app.onNotificationGCM"});
 				}
 				return false;
 			},app.errorHandlerQuery);
 		},app.errorHandlerTransaction,app.nullHandler);
-		alert('Hi At Last successCallBack');
+		//alert('Hi At Last successCallBack');
 		//this.getDBValues('reg_id');
 		return false;
 	},
 	
 	getDBValues: function(field_key) {
-		alert('Inside getDBValues '+field_key);
+		//alert('Inside getDBValues '+field_key);
 		if (!window.openDatabase) {
 			alert('Databases are not supported in this browser.');
 			return;
