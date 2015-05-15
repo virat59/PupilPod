@@ -168,7 +168,7 @@ var app = {
 	successCallBack: function() {
 		alert("DEBUGGING: success successCallBack ");
 		db.transaction(function(transaction) {
-			transaction.executeSql("SELECT * FROM tnet_login_details ", [],function(transaction, result)
+			transaction.executeSql("SELECT * FROM tnet_login_details WHERE field_key = ? ", ['reg_id'],function(transaction, result)
 			{
 				$('#lbUsers').html('');
 				if (result != null && result.rows != null) {
