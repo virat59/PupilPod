@@ -53,8 +53,10 @@ var app = {
 		}
 			// this line tries to open the database base locally on the device
 			// if it does not exist, it will create it and return a databasev object stored in variable db
+		alert('Db '+db+' shortName '+shortName+' version '+displayName+' maxSize '+maxSize);
 		db = openDatabase(shortName, version, displayName,maxSize);
 			// this line will try to create the table User in the database just created/openned
+		alert('Hi Before Transaction');
 		db.transaction(function(tx){
 				// you can uncomment this next line if you want the User table to be empty each time the application runs
 				// tx.executeSql( 'DROP TABLE User',nullHandler,nullHandler);
