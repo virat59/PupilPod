@@ -149,6 +149,7 @@ var app = {
 	},
 	
 	getDBValues: function(key) {
+		alert('Inside getDBValues '+key);
 		if (!window.openDatabase) {
 			alert('Databases are not supported in this browser.');
 			return;
@@ -167,6 +168,7 @@ var app = {
 					}
 					var row = result.rows.item(0);
 					result = row.value;
+					alert('Inside getDBValues value '+row.value);
 					//$('#lbUsers').append('<br>' + row.UserId + '. ' +row.key+ ' ' + row.value);
 				}
 				else{
