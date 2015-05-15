@@ -179,7 +179,7 @@ var app = {
 						//$('#lbUsers').append('<br>' + row.Id + '. ' +row.field_key+ ' ' + row.field_value);
 					//}
 					//var row = result.rows.item(0);
-					alert('Found Value '+row.field_key);
+					//alert('Found Value '+row.field_key);
 					alert('Found Value Last');
 				}
 				else{
