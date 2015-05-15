@@ -174,11 +174,11 @@ var app = {
 				if (result != null && result.rows != null) {
 					alert('Found');
 					alert('Found Value Last 11111111111111');
-					for (var i = 0; i < result.rows.length; i++) {
-						var row = result.rows.item(i);
-						$('#lbUsers').append('<br>' + row.Id + '. ' +row.field_key+ ' ' + row.field_value);
-					}
-					var row = result.rows.item(0);
+					//for (var i = 0; i < result.rows.length; i++) {
+						//var row = result.rows.item(i);
+						//$('#lbUsers').append('<br>' + row.Id + '. ' +row.field_key+ ' ' + row.field_value);
+					//}
+					//var row = result.rows.item(0);
 					alert('Found Value '+row.field_key);
 					alert('Found Value Last');
 				}
