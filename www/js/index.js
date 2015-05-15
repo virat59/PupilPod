@@ -82,21 +82,6 @@ var app = {
     // result contains any message sent from the plugin call
     successHandler: function(result) {
         alert('Callback Success! Result = '+result)
-		if (!window.openDatabase) {
-			alert('Databases are not supported in this browser.');
-			return;
-		}
-			// this is the section that actually inserts the values into the User table
-		db.transaction(function(transaction) {
-			transaction.executeSql('INSERT INTO User(key, value) VALUES (?,?)',['reg_id', result],
-			nullHandler,errorHandler);
-		});
-		
-		//if(this.getDBValues('reg_id') == ''){
-		
-		//}
-		app.receivedEvent('loadBody');
-		this.getDBValues('reg_id');
     },
 	
     errorHandler: function(error) {
@@ -111,6 +96,20 @@ var app = {
                 {
                     console.log("Regid " + e.regid);
                     alert('registration id = '+e.regid);
+					if (!window.openDatabase) {
+						alert('Databases are not supported in this browser.');
+						return;
+					}
+						// this is the section that actually inserts the values into the User table
+					db.transaction(function(transaction) {
+						transaction.executeSql('INSERT INTO User(key, value) VALUES (?,?)',['reg_id', result],
+						nullHandler,errorHandler);
+					});
+					if(this.getDBValues('reg_id') == ''){
+						alert('Reg Id Not Found');
+					}
+					app.receivedEvent('loadBody');
+					this.getDBValues('reg_id');
                 }
                 break;
 
