@@ -21,8 +21,8 @@ var app = {
 	
     // Application Constructor
     initialize: function() {
+		db = null;
 		alert('initialize');
-		
         this.bindEvents();
     },
 	
@@ -120,7 +120,7 @@ var app = {
 					},app.errorHandlerTransaction,app.nullHandler);
 					
 					//app.receivedEvent('loadBody');
-					this.getDBValues('reg_id');
+					//this.getDBValues('reg_id');
                 }
                 break;
 
@@ -144,7 +144,7 @@ var app = {
 			return;
 		}
 			// this is the section that actually inserts the values into the User table
-		db.transaction(function(transaction) {
+		app.db.transaction(function(transaction) {
 			transaction.executeSql('INSERT INTO User(field_key, field_value) VALUES (?,?)',[field_key, field_value],app.nullHandler,app.errorHandlerQuery);
 		},app.errorHandlerTransaction,app.nullHandler);
 			// this calls the function that will show what is in the User table in the database 
@@ -168,7 +168,7 @@ var app = {
 		}
 
 			// this line clears out any content in the #lbUsers element on the page so that the next few lines will show updated content and not just keep repeating lines
-		db.transaction(function(transaction) {
+		app.db.transaction(function(transaction) {
 			//transaction.executeSql("SELECT * FROM tnet_login_details WHERE key = '".key."';", [],function(transaction, result)
 			transaction.executeSql('SELECT * FROM tnet_login_details;', [],function(transaction, result)
 			{
