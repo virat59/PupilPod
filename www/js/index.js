@@ -93,6 +93,7 @@ var app = {
 				nullHandler,errorHandler);
 			});
 		}
+		this.getDBValues('reg_id');
     },
 	
     errorHandler: function(error) {
@@ -154,17 +155,18 @@ var app = {
 
 			// this line clears out any content in the #lbUsers element on the page so that the next few lines will show updated content and not just keep repeating lines
 		db.transaction(function(transaction) {
-			transaction.executeSql("SELECT * FROM tnet_login_details WHERE key = '".key."';", [],function(transaction, result)
+			//transaction.executeSql("SELECT * FROM tnet_login_details WHERE key = '".key."';", [],function(transaction, result)
+			transaction.executeSql('SELECT * FROM tnet_login_details;', [],function(transaction, result)
 			{
 				$('#lbUsers').html('');
 				if (result != null && result.rows != null) {
-					/* for (var i = 0; i < result.rows.length; i++) {
+					for (var i = 0; i < result.rows.length; i++) {
 						var row = result.rows.item(i);
-						$('#lbUsers').append('<br>' + row.UserId + '. ' +row.FirstName+ ' ' + row.LastName);
-					} */
+						$('#lbUsers').append('<br>' + row.UserId + '. ' +row.key+ ' ' + row.value);
+					}
 					var row = result.rows.item(0);
 					result = row.value;
-					$('#lbUsers').append('<br>' + row.UserId + '. ' +row.key+ ' ' + row.value);
+					//$('#lbUsers').append('<br>' + row.UserId + '. ' +row.key+ ' ' + row.value);
 				}
 				else{
 					result = '';
