@@ -16,17 +16,17 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-
+var db;
+var shortName = 'tnet_pupilpod';
+var version = '1.0';
+var displayName = 'Tnet_Pupilpod';
+var maxSize = 65535;
 var app = {
 	
     // Application Constructor
     initialize: function() {
 		alert('initialize');
-		var db;
-		var shortName = 'tnet_pupilpod';
-		var version = '1.0';
-		var displayName = 'Tnet_Pupilpod';
-		var maxSize = 65535;
+		
         this.bindEvents();
     },
 	
