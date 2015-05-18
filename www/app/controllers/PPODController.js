@@ -9,11 +9,12 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	
 	function bindEvents() {
 		alert('Hi In BindEvents');
-        document.addEventListener('deviceready', this.onDeviceReady, false);
+        document.addEventListener('deviceready', onDeviceReady, false);
     };
 	
 	function onDeviceReady() {
-		this.receivedEvent('deviceready');
+		alert('Alert onDeviceReady');
+		receivedEvent('deviceready');
 		var shortName = 'tnet_pupilpod';
 		var version = '1.0';
 		var displayName = 'Tnet_Pupilpod';
@@ -23,6 +24,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
     };
 	
 	function receivedEvent(id) {
+		alert('Event Received '+id);
         var parentElement = document.getElementById(id);
         var listeningElement = parentElement.querySelector('.listening');
         var receivedElement = parentElement.querySelector('.received');
