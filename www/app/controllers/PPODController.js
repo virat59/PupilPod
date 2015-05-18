@@ -1,4 +1,4 @@
-app.controller('PPODController',function($scope,PPODService,$http,$window,$document,$rootScope){    //pushNotification
+app.controller('PPODController',function($scope,PPODService,$http,$window,$document){    //pushNotification
 	$scope.contactname = "ThoughtNet Technologies (India) Pvt. Ltd";
 	initialize();
 	function initialize() {
@@ -72,7 +72,6 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	
 	function successInsert(error){
 		//login
-		//$window.location.href = 'index.html#/login';
 		$window.location.href = '#/login';
 		return false;
 	};
@@ -141,7 +140,6 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 							$('#lbUsers').append('<br>' + row.Id + '. ' +row.field_key+ ' ' + row.field_value);
 						}
 						$window.location.href = '#/login';
-						//$window.location.href = 'index.html#/login';
 					}
 				}
 				else{
@@ -179,7 +177,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 		return false;
 	};
 	
-	$scope.userAgent = navigator.userAgent;
+	/* $scope.userAgent = navigator.userAgent;
   
 		// Needed for the loading screen
 	$rootScope.$on('$routeChangeStart', function(){
@@ -188,7 +186,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 
 	$rootScope.$on('$routeChangeSuccess', function(){
 		$rootScope.loading = false;
-	});
+	}); */
 });
 
 app.directive('dragToDismiss', function($drag, $parse, $timeout){
