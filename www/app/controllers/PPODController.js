@@ -72,6 +72,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	
 	function successInsert(error){
 		//login
+		//$window.location.href = 'index.html#/login';
 		$window.location.href = '#/login';
 		return false;
 	};
@@ -140,6 +141,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 							$('#lbUsers').append('<br>' + row.Id + '. ' +row.field_key+ ' ' + row.field_value);
 						}
 						$window.location.href = '#/login';
+						//$window.location.href = 'index.html#/login';
 					}
 				}
 				else{
