@@ -1,28 +1,28 @@
-app.controller('PPODController',function($scope,PPODService,$http,$window,pushNotification,$document){   
+app.controller('PPODController',function($scope,PPODService,$http,$window,$document){    //pushNotification
 	$scope.contactname = "ThoughtNet Technologies (India) Pvt. Ltd";
 	initialize();
-	$scope.initialize = function() {
+	function initialize() {
 		alert('Hi In initialize');
 		$scope.db = null;
-        this.bindEvents();
+        bindEvents();
     };
 	
-	$scope.bindEvents = function() {
+	function bindEvents() {
 		alert('Hi In BindEvents');
         document.addEventListener('deviceready', this.onDeviceReady, false);
     };
 	
-	$scope.onDeviceReady = function() {
+	function onDeviceReady() {
 		this.receivedEvent('deviceready');
-		//var shortName = 'tnet_pupilpod';
-		//var version = '1.0';
-		//var displayName = 'Tnet_Pupilpod';
-		//var maxSize = 65535;
-		//db = window.openDatabase(shortName, version, displayName,maxSize);
-		//db.transaction(app.createTable,app.errorHandlerTransaction,app.successCallBack);
+		var shortName = 'tnet_pupilpod';
+		var version = '1.0';
+		var displayName = 'Tnet_Pupilpod';
+		var maxSize = 65535;
+		db = window.openDatabase(shortName, version, displayName,maxSize);
+		db.transaction(createTable,errorHandlerTransaction,successCallBack);
     };
 	
-	$scope.receivedEvent = function(id) {
+	function receivedEvent(id) {
         var parentElement = document.getElementById(id);
         var listeningElement = parentElement.querySelector('.listening');
         var receivedElement = parentElement.querySelector('.received');
@@ -33,34 +33,143 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,pushNo
         console.log('Received Event: ' + id);
     };
 	
-	/*$scope.nextBtnFlag = false;
-	   
-		$scope.progress = promiseTracker();    
-    $scope.submit = function(form,nb,subject_guid) {
-		$scope.submitted = true;
-		if (form.$invalid) {
-			return;
-		}				
-	};
-	$scope.validate=function(value){
-		console.log(value);
-		if( typeof(value) ==='number'){
-			return value;
-		}
-		else 
-			return 1;
-	};
-	$scope.fnSave = function(form,nb,subject_guid) {
-		
-	}	
-	$scope.alerts = []; 
-	$scope.closeAlert = function(index) {
-		$scope.alerts.splice(index, 1);
+	function createTable(tx){
+		tx.executeSql('CREATE TABLE IF NOT EXISTS tnet_login_details(Id INTEGER NOT NULL PRIMARY KEY, field_key TEXT NOT NULL, field_value TEXT NOT NULL)',[],nullHandler,errorHandlerQuery); 
 	};
 	
-	$scope.fnNext = function(){
-		$window.location.href = '/index.html#/Home.html';
-	}*/	
+    function receivedEvent(id) {
+        var parentElement = document.getElementById(id);
+        var listeningElement = parentElement.querySelector('.listening');
+        var receivedElement = parentElement.querySelector('.received');
+
+        listeningElement.setAttribute('style', 'display:none;');
+        receivedElement.setAttribute('style', 'display:block;');
+
+        console.log('Received Event: ' + id);
+    };
+	
+    function successHandler(result) {
+		return false;
+    };
+	
+    function errorHandler(error) {
+		alert("errorHandler Code : "+error.code+" Message "+error.message);
+		return false;
+    };
+	
+	function errorHandlerTransaction(error){
+		alert("errorHandlerTransaction Code : "+error.code+" Message "+error.message);
+		return false;
+	};
+	
+	function errorHandlerQuery(error){
+		alert("errorHandlerQuery Code : "+error.code+" Message "+error.message);
+		return false;
+	};
+	
+	function successInsert(error){
+		return false;
+	};
+	
+    function onNotificationGCM(e) {
+        switch( e.event )
+        {
+            case 'registered':
+                if ( e.regid.length > 0 )
+                {
+                    console.log("Regid " + e.regid);
+                    alert('registration id = '+e.regid);
+					if (!window.openDatabase) {
+						alert('Databases are not supported in this browser.');
+						return;
+					}
+					db.transaction(function(transaction) {
+						transaction.executeSql('INSERT INTO tnet_login_details(field_key, field_value) VALUES (?,?)',['reg_id', e.regid],successInsert,errorHandlerQuery);
+					},errorHandlerTransaction,nullHandler);
+					this.getDBValues('reg_id');
+                }
+                break;
+
+            case 'message':
+                alert('message = '+e.message);
+                break;
+
+            case 'error':
+                alert('GCM error = '+e.msg);
+                break;
+
+            default:
+                alert('An unknown GCM event has occurred');
+                break;
+        }
+    };
+	
+	function AddValueToDB(field_key,field_value) {
+		if (!window.openDatabase) {
+			alert('Databases are not supported in this browser.');
+			return;
+		}
+		db.transaction(function(transaction) {
+			transaction.executeSql('INSERT INTO tnet_login_details(field_key, field_value) VALUES (?,?)',[field_key, field_value],nullHandler,errorHandlerQuery);
+		},errorHandlerTransaction,nullHandler);
+		return false;
+	};
+	
+	function nullHandler(){
+		return false;
+	};
+	
+	function successCallBack() {
+		db.transaction(function(transaction) {
+			transaction.executeSql("SELECT * FROM tnet_login_details WHERE field_key = ? ", ['reg_id'],function(transaction, result)
+			{
+				$('#lbUsers').html('');
+				if (result != null && result.rows != null) {
+					if(result.rows.length == 0){
+						var pushNotification = window.plugins.pushNotification;
+						pushNotification.register(successHandler, errorHandler,{"senderID":"74320630987","ecb":"onNotificationGCM"});
+					}
+					else{
+						for (var i = 0; i < result.rows.length; i++) {
+							var row = result.rows.item(i);
+							$('#lbUsers').append('<br>' + row.Id + '. ' +row.field_key+ ' ' + row.field_value);
+						}
+					}
+				}
+				else{
+					var pushNotification = window.plugins.pushNotification;
+					pushNotification.register(successHandler, errorHandler,{"senderID":"74320630987","ecb":"onNotificationGCM"});
+				}
+				return false;
+			},errorHandlerQuery);
+		},errorHandlerTransaction,nullHandler);
+		return false;
+	};
+	
+	function getDBValues(field_key) {
+		if (!window.openDatabase) {
+			alert('Databases are not supported in this browser.');
+			return;
+		}
+		db.transaction(function(transaction) {
+			transaction.executeSql("SELECT * FROM tnet_login_details WHERE field_key = ? ", [field_key],function(transaction, result)
+			{
+				$('#lbUsers').html('');
+				if (result != null && result.rows != null) {
+					for (var i = 0; i < result.rows.length; i++) {
+						var row = result.rows.item(i);
+						$('#lbUsers').append('<br>' + row.Id + '. ' +row.field_key+ ' ' + row.field_value);
+					}
+					var row = result.rows.item(0);
+					resultForRet = row.field_value;
+				}
+				else{
+					resultForRet = '';
+				}
+			},errorHandlerQuery);
+		},errorHandlerTransaction,nullHandler);
+		return false;
+	};
 });
 
 app.directive('dragToDismiss', function($drag, $parse, $timeout){

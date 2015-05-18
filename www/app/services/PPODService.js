@@ -5,6 +5,6 @@
  */
 
 
-app.service('PPODService',function($http,url,$window,$q,$timeout){    
-	
+app.service('PPODService',function($http,$window,$timeout){    
+
 });

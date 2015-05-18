@@ -5,11 +5,9 @@
  */
 
 
-var app = angular.module('PPOD',['ngRoute','ui.bootstrap','ui.router','mobile-angular-ui']);
+var app = angular.module('PPOD',['ngRoute','mobile-angular-ui','mobile-angular-ui.gestures']);
 
-//app.constant('url', '/NBA/amfphp-2.1/Amfphp/?contentType=application/json');
-
-app.config(function($stateProvider, $urlRouterProvider,url) {
+/*app.config(function($stateProvider, $urlRouterProvider,url) {
  $urlRouterProvider.otherwise('/index'); 
     $stateProvider
     .state('home', {
@@ -19,11 +17,17 @@ app.config(function($stateProvider, $urlRouterProvider,url) {
 	.state('main', {
         url: '/main',
         templateUrl: 'app/views/others/login.html',
-		controller:'DisplayController'
+		controller:'PPODController'
     })
 	.state('index', {
         url: '/index',
         templateUrl: 'index.html',
-		controller:'DisplayController'
-    })
+		controller:'PPODController'
+    });
+});*/
+
+app.config(function($routeProvider) {
+  $routeProvider.when('/',              {templateUrl: 'index.html', reloadOnSearch: false});
+  $routeProvider.when('/home',        {templateUrl: 'Home.html', reloadOnSearch: false}); 
+  $routeProvider.when('/login',        {templateUrl: 'login.html', reloadOnSearch: false}); 
 });
