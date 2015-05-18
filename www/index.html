@@ -1,21 +1,6 @@
 <!DOCTYPE html>
 <!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
+	/* PupilPod */
 -->
 <html>
     <head>
@@ -24,29 +9,47 @@
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
 		<script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
-        <script type="text/javascript" charset="utf-8" src="PushNotification.js"></script>
-        <script type="text/javascript" charset="utf-8" src="js/index.js"></script>
-		<script type="text/javascript" charset="utf-8" src="jquery.min.js"></script>
+        <script type="text/javascript" charset="utf-8" src="Scripts/PushNotification.js"></script>
+       <!-- <script type="text/javascript" charset="utf-8" src="js/index.js"></script> -->
+		<script type="text/javascript" charset="utf-8" src="Scripts/jquery.min.js"></script>
+		<script type="text/javascript" charset="utf-8" src="Scripts/angular_rootprovider.js"></script>
+		<script src="app/PPODMain.js"></script>
+		<script src="app/controllers/PPODController.js"></script>
+		<script src="app/services/PPODService.js"></script>
+		<link rel="stylesheet" href="css/mobile-angular-ui-hover.min.css" />
+		<link rel="stylesheet" href="css/mobile-angular-ui-base.min.css" />
+		<link rel="stylesheet" href="css/mobile-angular-ui-desktop.min.css" />
+		<link rel="stylesheet" href="demo.css" />
+		<script src="js/angular.min.js"></script>
+		<script src="js/angular-route.min.js"></script>
+		<script src="js/mobile-angular-ui.min.js"></script>
+		<!-- Required to use $swipe, $drag and Translate services -->
+		<script src="js/mobile-angular-ui.gestures.min.js"></script>
         <script type="text/javascript">
-            app.initialize();
+            //app.initialize();
         </script>
         <title>PupilPod</title>
     </head>
-    <body>
-        <div class="app">
-            <h1>PhoneGap</h1>
+    <body ng-app="PPOD" 
+    ng-controller="PPODController">
+        <div>
+            <h1>PupilPod</h1>
             <div id="deviceready" class="blink">
                 <p class="event listening">Connecting to Device</p>
                 <p class="event received">Device is Ready</p>
 				<p class="">PupilPod</p>
 				<p class="">Virat Joshi</p>
-				<!--<span id="lbUsers"></span> -->
-            </div>
-			<div id="loadBody">
-				<p>PupilPod</p>
-				<p>Virat Joshi</p>
 				<span id="lbUsers"></span>
-			</div>
+            </div>
         </div>
     </body>
+	<script>
+       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-48036416-1', 'mobileangularui.com');
+       ga('send', 'pageview');
+     </script>
 </html>
