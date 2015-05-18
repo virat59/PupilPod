@@ -34,6 +34,14 @@
 				<p class="">PupilPod</p>
 				<p class="">Virat Joshi</p>
 				<span id="lbUsers"></span>
+				<div class="app-body" ng-class="{loading: loading}">
+					<div ng-show="loading" class="app-content-loading">
+					  <i class="fa fa-spinner fa-spin loading-spinner"></i>
+					</div>
+					<div class="app-content">
+					  <ng-view></ng-view>
+					</div>
+				</div>
             </div>
 			<!--<div class="app-content">
 				<ng-view></ng-view>
