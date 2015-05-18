@@ -12,6 +12,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
         document.addEventListener('deviceready', onDeviceReady, false);
     };
 	
+	
 	function onDeviceReady() {
 		alert('Alert onDeviceReady');
 		receivedEvent('deviceready');
