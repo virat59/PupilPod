@@ -28,6 +28,6 @@ var app = angular.module('PPOD',['ngRoute','mobile-angular-ui','mobile-angular-u
 
 app.config(function($routeProvider) {
   $routeProvider.when('/',              {templateUrl: 'index.html', reloadOnSearch: false});
-  $routeProvider.when('/home',        {templateUrl: 'Home.html', reloadOnSearch: false}); 
-  $routeProvider.when('/login',        {templateUrl: 'login.html', reloadOnSearch: false}); 
+  $routeProvider.when('/home',        {templateUrl: 'app/views/Home.html', reloadOnSearch: false}); 
+  $routeProvider.when('/login',        {templateUrl: 'app/views/others/login.html', reloadOnSearch: false}); 
 });
