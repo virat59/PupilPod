@@ -39,6 +39,15 @@
     -webkit-animation:fade 3000ms infinite;
 }*/
 
+@font-face {
+  font-family: 'SourceCode';
+  src: url("../font/SourceCodePro-Regular.otf");
+}
+
+body {
+	font-family: 'SourceCode';
+	
+}
 
 #lightbulb {
   font-size: 100px;
