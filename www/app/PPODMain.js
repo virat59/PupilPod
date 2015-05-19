@@ -40,5 +40,13 @@ app.config(function($routeProvider) {
 		templateUrl: 'app/views/others/login.html', 
 		reloadOnSearch: false
 	})
+	.when('/sidebar',{
+		templateUrl: 'app/views/others/sidebar.html', 
+		reloadOnSearch: false
+	})
+	.when('/sidebarRight',{
+		templateUrl: 'app/views/others/sidebarRight.html', 
+		reloadOnSearch: false
+	})
 	.otherwise({redirectTo: 'app/views/Home.html' });
 });
