@@ -3,7 +3,7 @@
  */
 
 
-.event {
+/*.event {
     border-radius:4px;
     -webkit-border-radius:4px;
     color:#FFFFFF;
@@ -37,7 +37,7 @@
 .blink {
     animation:fade 3000ms infinite;
     -webkit-animation:fade 3000ms infinite;
-}
+}*/
 
 
 #lightbulb {
