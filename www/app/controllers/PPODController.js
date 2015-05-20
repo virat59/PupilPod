@@ -52,6 +52,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
     };
 	
     function successHandler(result) {
+		alert('successHandler '+result);
 		return false;
     };
 	
