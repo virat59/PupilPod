@@ -69,7 +69,10 @@
 				<div ng-show="loading" class="app-content-loading">
 				  <i class="fa fa-spinner fa-spin loading-spinner"></i>
 				</div>
-				<p class="event received">Device is Ready</p>
+				<div id="deviceready" class="blink">
+					<p class="event listening">Connecting to Device</p>
+					<p class="event received">Device is Ready</p>
+				</div>
 				<span id="lbUsers"></span>
 				<div class="app-content">
 				  <ng-view></ng-view>

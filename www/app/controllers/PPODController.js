@@ -130,10 +130,12 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 				$('#lbUsers').html('');
 				if (result != null && result.rows != null) {
 					if(result.rows.length == 0){
+						alert('Entry Not Exist 11');
 						var pushNotification = window.plugins.pushNotification;
 						pushNotification.register(successHandler, errorHandler,{"senderID":"74320630987","ecb":"onNotificationGCM"});
 					}
 					else{
+						alert('Entry Exist');
 						for (var i = 0; i < result.rows.length; i++) {
 							var row = result.rows.item(i);
 							$('#lbUsers').append('<br>' + row.Id + '. ' +row.field_key+ ' ' + row.field_value);
@@ -142,6 +144,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 					}
 				}
 				else{
+					alert('Entry Not Exist 22');
 					var pushNotification = window.plugins.pushNotification;
 					pushNotification.register(successHandler, errorHandler,{"senderID":"74320630987","ecb":"onNotificationGCM"});
 				}
