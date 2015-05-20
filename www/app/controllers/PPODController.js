@@ -135,6 +135,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 					if(result.rows.length == 0){
 						alert('Entry Not Exist 11');
 						var pushNotification = window.plugins.pushNotification;
+						pushNotification.unregister(successHandler, errorHandler);
 						pushNotification.register(successHandler, errorHandler,{"senderID":"74320630987","ecb":"onNotificationGCM"});
 					}
 					else{
@@ -149,6 +150,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 				else{
 					alert('Entry Not Exist 22');
 					var pushNotification = window.plugins.pushNotification;
+					pushNotification.unregister(successHandler, errorHandler);
 					pushNotification.register(successHandler, errorHandler,{"senderID":"74320630987","ecb":"onNotificationGCM"});
 				}
 				return false;
