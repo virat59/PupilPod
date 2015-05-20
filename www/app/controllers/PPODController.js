@@ -91,7 +91,6 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 					db.transaction(function(transaction) {
 						transaction.executeSql('INSERT INTO tnet_login_details(field_key, field_value) VALUES (?,?)',['reg_id', e.regid],successInsert,errorHandlerQuery);
 					},errorHandlerTransaction,nullHandler);
-					this.getDBValues('reg_id');
                 }
                 break;
 
@@ -135,10 +134,6 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 						pushNotification.register(successHandler, errorHandler,{"senderID":"74320630987","ecb":"onNotificationGCM"});
 					}
 					else{
-						for (var i = 0; i < result.rows.length; i++) {
-							var row = result.rows.item(i);
-							$('#lbUsers').append('<br>' + row.Id + '. ' +row.field_key+ ' ' + row.field_value);
-						}
 						$window.location.href = '#/login';
 					}
 				}
