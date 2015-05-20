@@ -78,6 +78,40 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 		return false;
 	};
 	
+	$scope.onNotificationGCM = function(e) {
+        switch( e.event )
+        {
+            case 'registered':
+				alert('registration id 111 = '+e.regid);
+                if ( e.regid.length > 0 )
+                {
+                    console.log("Regid " + e.regid);
+                    alert('registration id = '+e.regid);
+					if (!window.openDatabase) {
+						alert('Databases are not supported in this browser.');
+						return;
+					}
+					db = window.openDatabase(shortName, version, displayName,maxSize);
+					db.transaction(function(transaction) {
+						transaction.executeSql('INSERT INTO tnet_login_details(field_key, field_value) VALUES (?,?)',['reg_id', e.regid],successInsert,errorHandlerQuery);
+					},errorHandlerTransaction,nullHandler);
+				}
+                break;
+
+            case 'message':
+                alert('message = '+e.message);
+                break;
+
+            case 'error':
+                alert('GCM error = '+e.msg);
+                break;
+
+            default:
+                alert('An unknown GCM event has occurred');
+                break;
+        }
+};
+	
     function AddValueToDB(field_key,field_value) {
 		if (!window.openDatabase) {
 			alert('Databases are not supported in this browser.');
@@ -163,7 +197,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	}); */
 });
 
-function onNotificationGCM(e) {
+/* function onNotificationGCM(e) {
         switch( e.event )
         {
             case 'registered':
@@ -176,6 +210,7 @@ function onNotificationGCM(e) {
 						alert('Databases are not supported in this browser.');
 						return;
 					}
+					db = window.openDatabase(shortName, version, displayName,maxSize);
 					db.transaction(function(transaction) {
 						transaction.executeSql('INSERT INTO tnet_login_details(field_key, field_value) VALUES (?,?)',['reg_id', e.regid],successInsert,errorHandlerQuery);
 					},errorHandlerTransaction,nullHandler);
@@ -194,7 +229,7 @@ function onNotificationGCM(e) {
                 alert('An unknown GCM event has occurred');
                 break;
         }
-};
+}; */
 
 app.directive('dragToDismiss', function($drag, $parse, $timeout){
   return {
