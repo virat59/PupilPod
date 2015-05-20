@@ -1,46 +1,30 @@
 <div>
 	<h1>Login Page</h1>
 	<h3>Virat Joshi</h3>
-	<!--<div ng-controller="HeadingController">
-		<nba-heading info="test_type"></nba-heading>	
-	</div>
-    <div ng-controller="TestMasterDetailsController">
+	<div ng-controller="TestMasterDetailsController">
     <div id="messages" class="alert alert-success" ng-show="messages" ng-bind="messages"></div>
 	<div id="messages" class="alert alert-danger" ng-show="messages_error" ng-bind="messages_error"></div>
     <div ng-show="progress.active()" style="color: red; font-size: 50px;">Sending&hellip;</div>
     <form name="helpForm" novalidate role="form" >
 		<div class="form-group">
-			<h5>Internal Weightage  </h5>
-			<span class="label label-danger" ng-show="submitted && helpForm.intWeightage.$error.min">Number can't be less than 0 !!</span>
-			<span class="label label-danger" ng-show="submitted && helpForm.intWeightage.$error.max">Number can't be more than 0 !!</span>
-			<span class="label label-danger" ng-show="submitted && helpForm.intWeightage.$error.number">Not a Number!</span>
-			<span class="label label-danger" ng-show="submitted && helpForm.intWeightage.$error.required">Required!</span>
+			<input type="text" name="instance_name" ng-model="intWeightage" class="form-control" placeholder="Instance Name" required />
+		</div>
+		<div class="form-group">
 			<div>
-			<input type="number" name="intWeightage" ng-model="intWeightage" class="form-control" ng-readonly="isNext" min="0" max="100" required />
+				<input type="text" name="user_name" ng-model="extWeightage" class="form-control" placeholder="User Name" required />
 			</div>
 		</div>
 		<div class="form-group">
-			<h5>External Weightage  </h5>
-			<span class="label label-danger" ng-show="submitted && helpForm.extWeightage.$error.min">Number can't be less than 0 !!</span>
-			<span class="label label-danger" ng-show="submitted && helpForm.extWeightage.$error.max">Number can't be more than 0 !!</span>
-			<span class="label label-danger" ng-show="submitted && helpForm.extWeightage.$error.number">Not a Number!</span>
-			<span class="label label-danger" ng-show="submitted && helpForm.extWeightage.$error.required">Required!</span>
 			<div>
-			<input type="number" name="extWeightage" ng-model="extWeightage" class="form-control" ng-readonly="isNext"  min="0" max="100required />
+				<input type="text" name="password" ng-model="extWeightage" class="form-control" placeholder="Password" required />
 			</div>
 		</div>
-	  <div class="form-group">
-		  <div>
-			<button ng-show="isAdd" ng-click="submit(helpForm)" class="btn btn-primary btn-large">Save</button>
-			<!--<strong><a ng-href="#/inst_type" ng-show="isNext"><div class="btn btn-primary btn-large">Next</div></a></strong>-->
-		<!--  </div>
-	  </div>
-	  <br/>
-	  <div class="arrow" ng-show="isNext">
-		<div class="arrow-head"></div>
-		<div class="arrow-body"><a ng-href="#/inst_type">Instruments Types</a></div>
-		<div class="arrow-tale"></div>
-	</div>
+		<div class="form-group">
+			<h5>Remember Me  </h5>
+			<div>
+				<input type="checkbox" name="extWeightage" ng-model="extWeightage" class="form-control" required />
+			</div>
+		</div>
     </form>
-  </div>-->
+  </div>
 </div>
