@@ -81,6 +81,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
         switch( e.event )
         {
             case 'registered':
+				alert('registration id 111 = '+e.regid);
                 if ( e.regid.length > 0 )
                 {
                     console.log("Regid " + e.regid);
