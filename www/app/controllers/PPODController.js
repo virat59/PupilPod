@@ -137,7 +137,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 						alert('Entry Not Exist 11');
 						var pushNotification = window.plugins.pushNotification;
 						pushNotification.unregister(successHandler, errorHandler);
-						pushNotification.register(successHandler, errorHandler,{"senderID":"74320630987","ecb":"onNotificationGCM"});
+						pushNotification.register(successHandler, errorHandler,{"senderID":"74320630987","ecb":"window.app.onNotificationGCM"});
 					}
 					else{
 						alert('Entry Exist');
@@ -152,7 +152,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 					alert('Entry Not Exist 22');
 					var pushNotification = window.plugins.pushNotification;
 					pushNotification.unregister(successHandler, errorHandler);
-					pushNotification.register(successHandler, errorHandler,{"senderID":"74320630987","ecb":"onNotificationGCM"});
+					pushNotification.register(successHandler, errorHandler,{"senderID":"74320630987","ecb":"window.app.onNotificationGCM"});
 				}
 				return false;
 			},errorHandlerQuery);
