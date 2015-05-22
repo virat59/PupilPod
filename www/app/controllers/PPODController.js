@@ -109,7 +109,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
             default:
                 alert('An unknown GCM event has occurred');
                 break;
-        }
+        };
 };
 	
     function AddValueToDB(field_key,field_value) {
