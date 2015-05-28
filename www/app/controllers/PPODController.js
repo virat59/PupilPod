@@ -133,15 +133,12 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 			var db = $cordovaSQLite.openDB({ name: "tnet_pupilpod" });
 			// for opening a background db:
 			var db = $cordovaSQLite.openDB({ name: "tnet_pupilpod", bgType: 1 });
-				$scope.execute = function() {
-					var query = "INSERT INTO tnet_login_details (field_key, field_value) VALUES (?,?)";
-					$cordovaSQLite.execute(db, query, ["reg_id", notification.regid]).then(function(res) {
-						console.log("insertId: " + res.insertId);
-					}, function (err) {
-						console.error(err);
-					});
-				};
-			
+			var query = "INSERT INTO tnet_login_details (field_key, field_value) VALUES (?,?)";
+			$cordovaSQLite.execute(db, query, ["reg_id", notification.regid]).then(function(res) {
+				console.log("insertId: " + res.insertId);
+			}, function (err) {
+				console.error(err);
+			});			
           }
           break;
 
