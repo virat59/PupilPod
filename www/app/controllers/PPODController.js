@@ -1,14 +1,15 @@
 app.controller('PPODController',function($scope,PPODService,$http,$window,$document,$rootScope){    //,'pushNotifications.ctrl'
 	$scope.contactname = "ThoughtNet Technologies (India) Pvt. Ltd";
-	var androidConfig = {
-		"senderID": "74320630987",
-	};
 	initialize();
 	function initialize() {
 		alert('Hi In initialize');
 		$scope.db = null;
         bindEvents();
     };
+	
+	var androidConfig = {
+		"senderID": "74320630987",
+	};
 	
 	function bindEvents() {
 		alert('Hi In BindEvents');
