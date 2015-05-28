@@ -121,16 +121,17 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
         case 'registered':
           if (notification.regid.length > 0 ) {
             alert('registration ID = ' + notification.regid);
-			/* if (!window.openDatabase) {
+			if (!window.openDatabase) {
 						alert('Databases are not supported in this browser.');
 						return;
 			}
 			db = window.openDatabase(shortName, version, displayName,maxSize);
 			db.transaction(function(transaction) {
+				alert('Inside transaction');
 				transaction.executeSql('INSERT INTO tnet_login_details(field_key, field_value) VALUES (?,?)',['reg_id', notification.regid],successInsert,errorHandlerQuery);
-			},errorHandlerTransaction,nullHandler); */
-			
-			var db = $cordovaSQLite.openDB({ name: "tnet_pupilpod" });
+			},errorHandlerTransaction,nullHandler);
+			alert('After Transaction');
+			/* var db = $cordovaSQLite.openDB({ name: "tnet_pupilpod" });
 			// for opening a background db:
 			var db = $cordovaSQLite.openDB({ name: "tnet_pupilpod", bgType: 1 });
 			var query = "INSERT INTO tnet_login_details (field_key, field_value) VALUES (?,?)";
@@ -138,7 +139,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 				console.log("insertId: " + res.insertId);
 			}, function (err) {
 				console.error(err);
-			});			
+			});			 */
           }
           break;
 
