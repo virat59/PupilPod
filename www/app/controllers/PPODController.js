@@ -1,4 +1,4 @@
-app.controller('PPODController',function($scope,PPODService,$http,$window,$document,$rootScope){    //
+app.controller('PPODController',function($scope,PPODService,$http,$window,$document,$rootScope,$cordovaPush){    //
 	$scope.contactname = "ThoughtNet Technologies (India) Pvt. Ltd";
 	initialize();
 	function initialize() {
