@@ -1,5 +1,8 @@
-app.controller('PPODController',function($scope,PPODService,$http,$window,$document){    //pushNotification
+app.controller('PPODController',function($scope,PPODService,$http,$window,$document,$rootScope){    //pushNotification
 	$scope.contactname = "ThoughtNet Technologies (India) Pvt. Ltd";
+	var androidConfig = {
+		"senderID": "74320630987",
+	};
 	initialize();
 	function initialize() {
 		alert('Hi In initialize');
@@ -78,7 +81,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 		return false;
 	};
 	
-	$window.onNotificationGCM = function(e) {
+	/* $window.onNotificationGCM = function(e) {
         switch( e.event )
         {
             case 'registered':
@@ -110,7 +113,32 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
                 alert('An unknown GCM event has occurred');
                 break;
         };
-};
+	}; */
+	
+	$rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
+      switch(notification.event) {
+        case 'registered':
+          if (notification.regid.length > 0 ) {
+            alert('registration ID = ' + notification.regid);
+          }
+          break;
+
+        case 'message':
+          // this is the actual push notification. its format depends on the data model from the push server
+          alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
+          break;
+
+        case 'error':
+          alert('GCM error = ' + notification.msg);
+          break;
+
+        default:
+          alert('An unknown GCM event has occurred');
+          break;
+      }
+    });
+	
+	
 	
     function AddValueToDB(field_key,field_value) {
 		if (!window.openDatabase) {
@@ -135,10 +163,16 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 				if (result != null && result.rows != null) {
 					if(result.rows.length == 0){
 						alert('Entry Not Exist 11');
-						var pushNotification = window.plugins.pushNotification;
+						/* var pushNotification = window.plugins.pushNotification;
 						pushNotification.unregister(successHandler, errorHandler);
-						pushNotification.register(successHandler, errorHandler,{"senderID":"74320630987","ecb":"onNotificationGCM"});
-						
+						pushNotification.register(successHandler, errorHandler,{"senderID":"74320630987","ecb":"onNotificationGCM"}); */
+						$cordovaPush.register(androidConfig).then(function(resultPush) {
+							// Success
+							alert('Success '+resultPush);
+						}, function(err) {
+							// Error
+							alert('Error '+err);
+						})	
 					}
 					else{
 						alert('Entry Exist');
@@ -151,9 +185,16 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 				}
 				else{
 					alert('Entry Not Exist 22');
-					var pushNotification = window.plugins.pushNotification;
+					/* var pushNotification = window.plugins.pushNotification;
 					pushNotification.unregister(successHandler, errorHandler);
-					pushNotification.register(successHandler, errorHandler,{"senderID":"74320630987","ecb":"onNotificationGCM"});
+					pushNotification.register(successHandler, errorHandler,{"senderID":"74320630987","ecb":"onNotificationGCM"}); */
+					$cordovaPush.register(androidConfig).then(function(resultPush) {
+						// Success
+						alert('Success '+resultPush);
+					}, function(err) {
+						// Error
+						alert('Error '+err);
+					})
 				}
 				return false;
 			},errorHandlerQuery);
