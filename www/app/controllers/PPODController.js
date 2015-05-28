@@ -115,7 +115,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
         };
 	}; */
 	
-	$rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
+	/* $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
       switch(notification.event) {
         case 'registered':
           if (notification.regid.length > 0 ) {
@@ -136,7 +136,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
           alert('An unknown GCM event has occurred');
           break;
       }
-    });
+    }); */
 	
 	
 	
@@ -166,13 +166,13 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 						/* var pushNotification = window.plugins.pushNotification;
 						pushNotification.unregister(successHandler, errorHandler);
 						pushNotification.register(successHandler, errorHandler,{"senderID":"74320630987","ecb":"onNotificationGCM"}); */
-						$cordovaPush.register(androidConfig).then(function(resultPush) {
+						/* $cordovaPush.register(androidConfig).then(function(resultPush) {
 							// Success
 							alert('Success '+resultPush);
 						}, function(err) {
 							// Error
 							alert('Error '+err);
-						})	
+						})	 */
 					}
 					else{
 						alert('Entry Exist');
@@ -188,13 +188,13 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 					/* var pushNotification = window.plugins.pushNotification;
 					pushNotification.unregister(successHandler, errorHandler);
 					pushNotification.register(successHandler, errorHandler,{"senderID":"74320630987","ecb":"onNotificationGCM"}); */
-					$cordovaPush.register(androidConfig).then(function(resultPush) {
+					/* $cordovaPush.register(androidConfig).then(function(resultPush) {
 						// Success
 						alert('Success '+resultPush);
 					}, function(err) {
 						// Error
 						alert('Error '+err);
-					})
+					}) */
 				}
 				return false;
 			},errorHandlerQuery);
