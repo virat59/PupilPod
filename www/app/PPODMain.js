@@ -5,7 +5,7 @@
  */
 
 
-var app = angular.module('PPOD',['ngRoute','mobile-angular-ui','mobile-angular-ui.gestures','pushNotifications.ctrl',"ngCordova.plugins.push"]);
+var app = angular.module('PPOD',['ngRoute','mobile-angular-ui','mobile-angular-ui.gestures','pushNotifications.ctrl',"ngCordova"]);
 
 app.config(function($routeProvider) {
   $routeProvider

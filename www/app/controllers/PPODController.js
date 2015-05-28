@@ -1,4 +1,4 @@
-app.controller('PPODController',function($scope,PPODService,$http,$window,$document,$rootScope,$cordovaPush){    //
+app.controller('PPODController',function($scope,PPODService,$http,$window,$document,$rootScope,$cordovaPush,$cordovaSQLite){    //
 	$scope.contactname = "ThoughtNet Technologies (India) Pvt. Ltd";
 	initialize();
 	function initialize() {
@@ -121,14 +121,27 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
         case 'registered':
           if (notification.regid.length > 0 ) {
             alert('registration ID = ' + notification.regid);
-			if (!window.openDatabase) {
+			/* if (!window.openDatabase) {
 						alert('Databases are not supported in this browser.');
 						return;
 			}
 			db = window.openDatabase(shortName, version, displayName,maxSize);
 			db.transaction(function(transaction) {
-				transaction.executeSql('INSERT INTO tnet_login_details(field_key, field_value) VALUES (?,?)',['reg_id', e.regid],successInsert,errorHandlerQuery);
-			},errorHandlerTransaction,nullHandler);
+				transaction.executeSql('INSERT INTO tnet_login_details(field_key, field_value) VALUES (?,?)',['reg_id', notification.regid],successInsert,errorHandlerQuery);
+			},errorHandlerTransaction,nullHandler); */
+			
+			var db = $cordovaSQLite.openDB({ name: "tnet_pupilpod" });
+			// for opening a background db:
+			var db = $cordovaSQLite.openDB({ name: "tnet_pupilpod", bgType: 1 });
+				$scope.execute = function() {
+					var query = "INSERT INTO tnet_login_details (field_key, field_value) VALUES (?,?)";
+					$cordovaSQLite.execute(db, query, ["reg_id", notification.regid]).then(function(res) {
+						console.log("insertId: " + res.insertId);
+					}, function (err) {
+						console.error(err);
+					});
+				};
+			
           }
           break;
 
