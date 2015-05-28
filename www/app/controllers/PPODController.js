@@ -1,4 +1,4 @@
-app.controller('PPODController',function($scope,PPODService,$http,$window,$document,$rootScope){    //,'pushNotifications.ctrl'
+app.controller('PPODController',function($scope,PPODService,$http,$window,$document){    //,'pushNotifications.ctrl'
 	$scope.contactname = "ThoughtNet Technologies (India) Pvt. Ltd";
 	initialize();
 	function initialize() {
