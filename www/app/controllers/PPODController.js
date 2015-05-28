@@ -121,6 +121,14 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
         case 'registered':
           if (notification.regid.length > 0 ) {
             alert('registration ID = ' + notification.regid);
+			if (!window.openDatabase) {
+						alert('Databases are not supported in this browser.');
+						return;
+			}
+			db = window.openDatabase(shortName, version, displayName,maxSize);
+			db.transaction(function(transaction) {
+				transaction.executeSql('INSERT INTO tnet_login_details(field_key, field_value) VALUES (?,?)',['reg_id', e.regid],successInsert,errorHandlerQuery);
+			},errorHandlerTransaction,nullHandler);
           }
           break;
 
