@@ -1,4 +1,4 @@
-app.controller('PPODController',function($scope,PPODService,$http,$window,$document,$rootScope,$cordovaPush,$cordovaSQLite,'sharedProperties'){    //
+app.controller('PPODController',function($scope,PPODService,$http,$window,$document,$rootScope,$cordovaPush,$cordovaSQLite,sharedProperties){    //
 	$scope.contactname = "ThoughtNet Technologies (India) Pvt. Ltd";
 	initialize();
 	function initialize() {
@@ -343,7 +343,7 @@ app.directive('carouselItem', function($drag) {
   };
 });
 
-app.controller('loginController',function($scope,PPODService,$http,$window,$document,'sharedProperties'){
+app.controller('loginController',function($scope,PPODService,$http,$window,$document,sharedProperties){
 	fnInit();	
 	function fnInit(){       
 		alert('Inside loginController');
