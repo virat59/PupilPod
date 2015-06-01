@@ -34,20 +34,15 @@ app.config(function($routeProvider) {
 	.otherwise({redirectTo: 'app/views/Home.html' });
 });
 
-app.factory('mySharedService', function($rootScope) {
-    var sharedService = {};
+app.service('sharedProperties', function () {
+  var list_name = '';
 
-    sharedService.registration_key = '';
-	sharedService.username = '';
-
-    sharedService.setRegKey = function(msg) {
-        this.registration_key = msg;
-    };
-	
-	sharedService.setUserName = function(msg) {
-        this.username = msg;
-    };
-    
-
-    return sharedService;
-});
+  return {
+      getListName: function() {
+          return list_name;
+      },
+      setListName: function(name) {
+        list_name = name;
+      }
+  };
+})
