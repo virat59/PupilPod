@@ -1,29 +1,29 @@
-<div>
-	<h1>Login Page</h1>
-	<h3>Virat Joshi</h3>
-	<div ng-controller="loginController">
-		<form name="loginForm" novalidate role="form" >
-			<div class="form-group">
-				<input type="text" name="instance_name" ng-model="instName" class="form-control" placeholder="Instance Name" required />
-			</div>
-			<div class="form-group">
-				<div>
-					<input type="text" name="user_name" ng-model="userName" class="form-control" placeholder="User Name" required />
+<div ng-controller="loginController">
+	<div class="scrollable" ui-state="searchBar">
+		<div class="scrollable-content">
+			<form name="loginForm" novalidate role="form" class="simple-form">
+				<div class="form-group">
+					<input type="text" name="instance_name" ng-model="instName" class="form-control" placeholder="Instance Name" required />
 				</div>
-			</div>
-			<div class="form-group">
-				<div>
-					<input type="password" name="password" ng-model="password" class="form-control" placeholder="Password" required />
+				<div class="form-group">
+					<div>
+						<input type="text" name="user_name" ng-model="userName" class="form-control" placeholder="User Name" required />
+					</div>
 				</div>
-			</div>
-			<div class="form-group">
-				<div>
-					<input type="checkbox" name="extWeightage" ng-model="extWeightage" class="form-control" required /><h5>Remember Me</h5>
+				<div class="form-group">
+					<div>
+						<input type="password" name="password" ng-model="password" class="form-control" placeholder="Password" required />
+					</div>
 				</div>
-			</div>
-			<div class="form-group">
-				<input type="button" value="Login" ng-click="submit(loginForm)" class="btn btn-primary"/> 
-			</div>
-		</form>
+				<div class="form-group">
+					<label>
+						<input type="checkbox" name="extWeightage" ng-model="extWeightage" required /> Remember Me
+					</label>
+				</div>
+				<div class="form-group">
+					<input type="button" value="Login" ng-click="submit(loginForm)" class="btn btn-primary"/> 
+				</div>
+			</form>
+		</div>
 	</div>
 </div>
