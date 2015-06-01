@@ -125,7 +125,8 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 						alert('Databases are not supported in this browser.');
 						return;
 			} */
-			alert('Before Transaction '+shortName+' Version '+version+' Display Name '+displayName+' maxSize '+maxSize);
+			alert('Hii Came');
+			//alert('Before Transaction '+shortName+' Version '+version+' Display Name '+displayName+' maxSize '+maxSize);
 			/* db = $window.openDatabase(shortName, version, displayName,maxSize);
 			alert('After database open');
 			db.transaction(function(transaction) {
