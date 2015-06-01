@@ -1,4 +1,4 @@
-app.controller('PPODController',function($scope,PPODService,$http,$window,$document,$rootScope,$cordovaPush,$cordovaSQLite){    //
+app.controller('PPODController',function($scope,PPODService,$http,$window,$document,$rootScope,$cordovaPush,$cordovaSQLite,'mySharedService'){    //
 	$scope.contactname = "ThoughtNet Technologies (India) Pvt. Ltd";
 	initialize();
 	function initialize() {
@@ -110,7 +110,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	
 	
 	
-    function AddValueToDB(field_key,field_value) { //mySharedService
+    function AddValueToDB(field_key,field_value) { //
 		if (!window.openDatabase) {
 			alert('Databases are not supported in this browser.');
 			return;
@@ -118,7 +118,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 		db.transaction(function(transaction) {
 			transaction.executeSql('INSERT INTO tnet_login_details(field_key, field_value) VALUES (?,?)',[field_key, field_value],nullHandler,errorHandlerQuery);
 		},errorHandlerTransaction,nullHandler);
-		//mySharedService.setRegKey(field_value);
+		sharedService.setRegKey(field_value);
 		return false;
 	};
 	
@@ -148,8 +148,8 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 						for (var i = 0; i < result.rows.length; i++) {
 							var row = result.rows.item(i);
 							//$('#lbUsers').append('<br>' + row.Id + '. ' +row.field_key+ ' ' + row.field_value);
-							/* if(row.field_key == 'reg_id')
-								mySharedService.setRegKey(row.field_value); */
+							if(row.field_key == 'reg_id')
+								sharedService.setRegKey(row.field_value);
 						}
 						$window.location.href = '#/login';
 					}
@@ -343,18 +343,18 @@ app.directive('carouselItem', function($drag) {
   };
 });
 
-/* app.controller('loginController',function($scope,PPODService,$http,$window,$document){
+app.controller('loginController',function($scope,PPODService,$http,$window,$document,'mysharedService'){
 	fnInit();	
 	function fnInit(){       
 		alert('Inside loginController');
     }
-	$scope.submit = function(form, sharedService) {
+	$scope.submit = function(form) {
 		$scope.submitted = true;
 		if (form.$invalid) {
 			return;
 		}
-		$scope.registration_key = sharedService.registration_key;
-		PPODService.loginFunction($scope);	  
+		//$scope.registration_key = sharedService.registration_key;
+		//PPODService.loginFunction($scope);	  
 	};
-}); */
+});
 
