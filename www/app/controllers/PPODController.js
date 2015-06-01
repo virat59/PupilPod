@@ -2,7 +2,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	$scope.contactname = "ThoughtNet Technologies (India) Pvt. Ltd";
 	initialize();
 	function initialize() {
-		alert('Hi In initialize');
+		//alert('Hi In initialize');
 		$scope.db = null;
         bindEvents();
     };
@@ -12,13 +12,13 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	};
 	
 	function bindEvents() {
-		alert('Hi In BindEvents');
+		//alert('Hi In BindEvents');
         document.addEventListener('deviceready', onDeviceReady, false);
     };
 	
 	
 	function onDeviceReady() {
-		alert('Alert onDeviceReady');
+		//alert('Alert onDeviceReady');
 		receivedEvent('deviceready');
 		var shortName = 'tnet_pupilpod';
 		var version = '1.0';
@@ -29,7 +29,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
     };
 	
 	function receivedEvent(id) {
-		alert('Event Received '+id);
+		//alert('Event Received '+id);
         var parentElement = document.getElementById(id);
         var listeningElement = parentElement.querySelector('.listening');
         var receivedElement = parentElement.querySelector('.received');
@@ -56,7 +56,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
     };
 	
     function successHandler(result) {
-		alert('successHandler '+result);
+		//alert('successHandler '+result);
 		return false;
     };
 	
@@ -86,8 +86,8 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
       switch(notification.event) {
         case 'registered':
           if (notification.regid.length > 0 ) {
-            alert('registration ID = ' + notification.regid);
-			alert('Hii Came');
+            //alert('registration ID = ' + notification.regid);
+			//alert('Hii Came');
 			AddValueToDB('reg_id',notification.regid);
 			$window.location.href = '#/login';
           }
@@ -110,7 +110,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	
 	
 	
-    function AddValueToDB(field_key,field_value) {
+    function AddValueToDB(field_key,field_value,sharedService) {
 		if (!window.openDatabase) {
 			alert('Databases are not supported in this browser.');
 			return;
@@ -118,6 +118,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 		db.transaction(function(transaction) {
 			transaction.executeSql('INSERT INTO tnet_login_details(field_key, field_value) VALUES (?,?)',[field_key, field_value],nullHandler,errorHandlerQuery);
 		},errorHandlerTransaction,nullHandler);
+		sharedService.setRegKey(field_value);
 		return false;
 	};
 	
@@ -132,7 +133,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 				$('#lbUsers').html('');
 				if (result != null && result.rows != null) {
 					if(result.rows.length == 0){
-						alert('Entry Not Exist 11');
+						//alert('Entry Not Exist 11');
 							$cordovaPush.register(androidConfig).then(function(resultPush) {
 							// Success
 							//alert('Success '+resultPush);
@@ -142,7 +143,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 						})
 					}
 					else{
-						alert('Entry Exist');
+						//alert('Entry Exist');
 						for (var i = 0; i < result.rows.length; i++) {
 							var row = result.rows.item(i);
 							$('#lbUsers').append('<br>' + row.Id + '. ' +row.field_key+ ' ' + row.field_value);
@@ -151,7 +152,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 					}
 				}
 				else{
-					alert('Entry Not Exist 22');
+					//alert('Entry Not Exist 22');
 					$cordovaPush.register(androidConfig).then(function(resultPush) {
 						// Success
 						//alert('Success '+resultPush);
@@ -339,4 +340,18 @@ app.directive('carouselItem', function($drag) {
   };
 });
 
+app.controller('loginController',function($scope,PPODService,$http,$window,$document){
+	fnInit();	
+	function fnInit(){       
+		
+    }
+	$scope.submit = function(form, sharedService) {
+		$scope.submitted = true;
+		if (form.$invalid) {
+			return;
+		}
+		$scope.registration_key = sharedService.registration_key;
+		PPODService.loginFunction($scope);	  
+	};
+});
 

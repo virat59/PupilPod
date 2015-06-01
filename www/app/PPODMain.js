@@ -7,6 +7,8 @@
 
 var app = angular.module('PPOD',['ngRoute','mobile-angular-ui','mobile-angular-ui.gestures','pushNotifications.ctrl',"ngCordova"]);
 
+app.constant('url', 'http://thoughtnet.pupilpod.in/PupilPodMobile/amfphp-2.1/Amfphp/?contentType=application/json');
+
 app.config(function($routeProvider) {
   $routeProvider
 	.when('/',{
@@ -30,4 +32,22 @@ app.config(function($routeProvider) {
 		reloadOnSearch: false
 	})
 	.otherwise({redirectTo: 'app/views/Home.html' });
+});
+
+app.factory('mySharedService', function($rootScope) {
+    var sharedService = {};
+
+    sharedService.registration_key = '';
+	sharedService.username = '';
+
+    sharedService.setRegKey = function(msg) {
+        this.registration_key = msg;
+    };
+	
+	sharedService.setUserName = function(msg) {
+        this.username = msg;
+    };
+    
+
+    return sharedService;
 });
