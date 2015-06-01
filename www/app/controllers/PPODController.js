@@ -167,11 +167,11 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 		db.transaction(function(transaction) {
 			transaction.executeSql("SELECT * FROM tnet_login_details WHERE field_key = ? ", [field_key],function(transaction, result)
 			{
-				$('#lbUsers').html('');
+				//$('#lbUsers').html('');
 				if (result != null && result.rows != null) {
 					for (var i = 0; i < result.rows.length; i++) {
 						var row = result.rows.item(i);
-						$('#lbUsers').append('<br>' + row.Id + '. ' +row.field_key+ ' ' + row.field_value);
+						//$('#lbUsers').append('<br>' + row.Id + '. ' +row.field_key+ ' ' + row.field_value);
 					}
 					var row = result.rows.item(0);
 					resultForRet = row.field_value;
