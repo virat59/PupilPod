@@ -143,6 +143,8 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 			}, function (err) {
 				console.error(err);
 			});*/
+			AddValueToDB('reg_id',notification.regid);
+			alert('Inserted In DB');
           }
           break;
 
