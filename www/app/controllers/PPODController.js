@@ -12,13 +12,13 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	};
 	
 	function bindEvents() {
-		//alert('Hi In BindEvents');
+		alert('Hi In BindEvents');
         document.addEventListener('deviceready', onDeviceReady, false);
     };
 	
 	
 	function onDeviceReady() {
-		//alert('Alert onDeviceReady');
+		alert('Alert onDeviceReady');
 		receivedEvent('deviceready');
 		var shortName = 'tnet_pupilpod';
 		var version = '1.0';
@@ -29,7 +29,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
     };
 	
 	function receivedEvent(id) {
-		//alert('Event Received '+id);
+		alert('Event Received '+id);
         var parentElement = document.getElementById(id);
         var listeningElement = parentElement.querySelector('.listening');
         var receivedElement = parentElement.querySelector('.received');
@@ -130,10 +130,10 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 		db.transaction(function(transaction) {
 			transaction.executeSql("SELECT * FROM tnet_login_details WHERE field_key = ? ", ['reg_id'],function(transaction, result)
 			{
-				$('#lbUsers').html('');
+				//$('#lbUsers').html('');
 				if (result != null && result.rows != null) {
 					if(result.rows.length == 0){
-						//alert('Entry Not Exist 11');
+						alert('Entry Not Exist 11');
 							$cordovaPush.register(androidConfig).then(function(resultPush) {
 							// Success
 							//alert('Success '+resultPush);
@@ -143,10 +143,12 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 						})
 					}
 					else{
-						//alert('Entry Exist');
+						alert('Entry Exist');
 						for (var i = 0; i < result.rows.length; i++) {
 							var row = result.rows.item(i);
-							$('#lbUsers').append('<br>' + row.Id + '. ' +row.field_key+ ' ' + row.field_value);
+							//$('#lbUsers').append('<br>' + row.Id + '. ' +row.field_key+ ' ' + row.field_value);
+							if(row.field_key == 'reg_id')
+								sharedService.setRegKey(row.field_value);
 						}
 						$window.location.href = '#/login';
 					}
@@ -343,7 +345,7 @@ app.directive('carouselItem', function($drag) {
 app.controller('loginController',function($scope,PPODService,$http,$window,$document){
 	fnInit();	
 	function fnInit(){       
-		
+		alert('Inside loginController');
     }
 	$scope.submit = function(form, sharedService) {
 		$scope.submitted = true;
