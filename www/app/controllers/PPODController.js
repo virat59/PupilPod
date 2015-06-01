@@ -24,7 +24,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 		var version = '1.0';
 		var displayName = 'Tnet_Pupilpod';
 		var maxSize = 65535;
-		db = window.openDatabase(shortName, version, displayName,maxSize);
+		db = $window.openDatabase(shortName, version, displayName,maxSize);
 		db.transaction(createTable,errorHandlerTransaction,successCallBack);
     };
 	
@@ -121,11 +121,13 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
         case 'registered':
           if (notification.regid.length > 0 ) {
             alert('registration ID = ' + notification.regid);
-			if (!window.openDatabase) {
+			if (!$window.openDatabase) {
 						alert('Databases are not supported in this browser.');
 						return;
 			}
-			db = window.openDatabase(shortName, version, displayName,maxSize);
+			alert('Before Transaction '+shortName+' Version '+version+' Display Name '+displayName+' maxSize '+maxSize);
+			db = $window.openDatabase(shortName, version, displayName,maxSize);
+			alert('After database open');
 			db.transaction(function(transaction) {
 				alert('Inside transaction');
 				transaction.executeSql('INSERT INTO tnet_login_details(field_key, field_value) VALUES (?,?)',['reg_id', notification.regid],successInsert,errorHandlerQuery);
@@ -139,7 +141,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 				console.log("insertId: " + res.insertId);
 			}, function (err) {
 				console.error(err);
-			});			 */
+			});*/
           }
           break;
 
