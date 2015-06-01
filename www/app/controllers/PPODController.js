@@ -110,7 +110,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	
 	
 	
-    function AddValueToDB(field_key,field_value,mySharedService) {
+    function AddValueToDB(field_key,field_value) { //mySharedService
 		if (!window.openDatabase) {
 			alert('Databases are not supported in this browser.');
 			return;
@@ -118,7 +118,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 		db.transaction(function(transaction) {
 			transaction.executeSql('INSERT INTO tnet_login_details(field_key, field_value) VALUES (?,?)',[field_key, field_value],nullHandler,errorHandlerQuery);
 		},errorHandlerTransaction,nullHandler);
-		mySharedService.setRegKey(field_value);
+		//mySharedService.setRegKey(field_value);
 		return false;
 	};
 	
@@ -126,7 +126,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 		return false;
 	};
 	
-	function successCallBack(mySharedService) {
+	function successCallBack() { //mySharedService
 		alert('successCallBack');
 		db.transaction(function(transaction) {
 			transaction.executeSql("SELECT * FROM tnet_login_details WHERE field_key = ? ", ['reg_id'],function(transaction, result)
@@ -148,8 +148,8 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 						for (var i = 0; i < result.rows.length; i++) {
 							var row = result.rows.item(i);
 							//$('#lbUsers').append('<br>' + row.Id + '. ' +row.field_key+ ' ' + row.field_value);
-							if(row.field_key == 'reg_id')
-								mySharedService.setRegKey(row.field_value);
+							/* if(row.field_key == 'reg_id')
+								mySharedService.setRegKey(row.field_value); */
 						}
 						$window.location.href = '#/login';
 					}
