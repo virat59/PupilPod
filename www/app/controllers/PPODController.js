@@ -107,7 +107,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 		db.transaction(function(transaction) {
 			transaction.executeSql('INSERT INTO tnet_login_details(field_key, field_value) VALUES (?,?)',[field_key, field_value],nullHandler,errorHandlerQuery);
 		},errorHandlerTransaction,nullHandler);
-		//sharedService.setRegKey(field_value);
+		sharedProperties.setRegKey(field_value);
 		return false;
 	};
 	
@@ -137,8 +137,8 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 						for (var i = 0; i < result.rows.length; i++) {
 							var row = result.rows.item(i);
 							//$('#lbUsers').append('<br>' + row.Id + '. ' +row.field_key+ ' ' + row.field_value);
-							//if(row.field_key == 'reg_id')
-								//sharedService.setRegKey(row.field_value);
+							if(row.field_key == 'reg_id')
+								sharedProperties.setRegKey(row.field_value); //sharedService.setRegKey(row.field_value);
 						}
 						$window.location.href = '#/login';
 					}
@@ -334,8 +334,9 @@ app.directive('carouselItem', function($drag) {
 
 app.controller('loginController',function($scope,PPODService,$http,$window,$document,sharedProperties){
 	fnInit();	
-	function fnInit(){       
-		alert('Inside loginController');
+	function fnInit(){
+		//sharedProperties.setRegKey(row.field_value);
+		alert('Inside loginController '+sharedProperties.getRegKey());
     }
 	$scope.submit = function(form) {
 		$scope.submitted = true;

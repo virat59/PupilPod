@@ -35,14 +35,20 @@ app.config(function($routeProvider) {
 });
 
 app.service('sharedProperties', function () {
-  var list_name = '';
-
-  return {
-      getListName: function() {
-          return list_name;
-      },
-      setListName: function(name) {
-        list_name = name;
-      }
-  };
-})
+	var reg_key = '';
+	var userName = '';
+	return {
+		getRegKey: function() {
+			return reg_key;
+		},
+		setRegKey: function(regKey) {
+			reg_key = regKey;
+		},
+		getUserName: function() {
+			return reg_key;
+		},
+		setUserName: function(user) {
+			reg_key = user;
+		}
+	};
+});
