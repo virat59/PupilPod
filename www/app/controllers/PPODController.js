@@ -342,7 +342,7 @@ app.directive('carouselItem', function($drag) {
   };
 });
 
-app.controller('loginController',function($scope,PPODService,$http,$window,$document){
+/* app.controller('loginController',function($scope,PPODService,$http,$window,$document){
 	fnInit();	
 	function fnInit(){       
 		alert('Inside loginController');
@@ -355,5 +355,5 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 		$scope.registration_key = sharedService.registration_key;
 		PPODService.loginFunction($scope);	  
 	};
-});
+}); */
 
