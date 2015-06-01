@@ -5,8 +5,8 @@
  */
 
 
-app.service('PPODService',function($http,$window,$timeout){    
-	/* this.loginFunction = function ($scope){      
+app.service('PPODService',function($http,url,$window,$timeout){    
+	this.loginFunction = function ($scope){      
         var param = JSON.stringify({
                 "serviceName":"TnetMobileService", 
                 "methodName":"login",
@@ -21,5 +21,5 @@ app.service('PPODService',function($http,$window,$timeout){
 				//deferred.reject("We could not successfully connect with the server.Try after some time.");
 			});
 		return deferred.promise;                        
-    }; */
+    };
 });

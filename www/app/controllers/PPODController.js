@@ -343,8 +343,8 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 		if (form.$invalid) {
 			return;
 		}
-		//$scope.registration_key = sharedService.registration_key;
-		//PPODService.loginFunction($scope);	  
+		$scope.registration_key = sharedProperties.getRegKey();
+		PPODService.loginFunction($scope);	  
 	};
 });
 
