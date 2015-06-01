@@ -7,7 +7,7 @@
 
 var app = angular.module('PPOD',['ngRoute','mobile-angular-ui','mobile-angular-ui.gestures','pushNotifications.ctrl',"ngCordova"]);
 
-app.constant('url', 'http://thoughtnet.pupilpod.in/PupilPodMobile/amfphp-2.1/Amfphp/?contentType=application/json');
+app.constant('url', 'http://thoughtnet.pupilpod.in/NBA/amfphp-2.1/Amfphp/?contentType=application/json');
 
 app.config(function($routeProvider) {
   $routeProvider
