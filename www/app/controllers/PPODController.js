@@ -29,7 +29,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
     };
 	
 	function receivedEvent(id) {
-		//alert('Event Received '+id);
+		alert('Event Received '+id);
         var parentElement = document.getElementById(id);
         var listeningElement = parentElement.querySelector('.listening');
         var receivedElement = parentElement.querySelector('.received');
@@ -43,17 +43,6 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	function createTable(tx){
 		tx.executeSql('CREATE TABLE IF NOT EXISTS tnet_login_details(Id INTEGER NOT NULL PRIMARY KEY, field_key TEXT NOT NULL, field_value TEXT NOT NULL)',[],nullHandler,errorHandlerQuery); 
 	};
-	
-    function receivedEvent(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
-
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
-
-        console.log('Received Event: ' + id);
-    };
 	
     function successHandler(result) {
 		//alert('successHandler '+result);
