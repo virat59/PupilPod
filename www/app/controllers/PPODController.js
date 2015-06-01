@@ -340,10 +340,11 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
     }
 	$scope.submit = function(form) {
 		$scope.submitted = true;
-		if (form.$invalid) {
+		/* if (form.$invalid) {
 			return;
-		}
+		} */
 		$scope.registration_key = sharedProperties.getRegKey();
+		alert('Hi values INST '+$scope.instName+' USER '+$scope.userName+' Pass '+$scope.password+' Rem '+$scope.remember);
 		PPODService.loginFunction($scope);	  
 	};
 });

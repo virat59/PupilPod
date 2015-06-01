@@ -6,7 +6,8 @@
 
 
 app.service('PPODService',function($http,url,$window,$timeout){    
-	this.loginFunction = function ($scope){      
+	this.loginFunction = function ($scope){
+		alert('Hi inside Service');
         var param = JSON.stringify({
                 "serviceName":"TnetMobileService", 
                 "methodName":"login",
