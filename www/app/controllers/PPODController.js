@@ -78,73 +78,18 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	function successInsert(error){
 		//login
 		//$window.location.href = '#/login';
-		alert('Value Inserted');
+		//alert('Value Inserted');
 		return false;
 	};
-	
-	/* $window.onNotificationGCM = function(e) {
-        switch( e.event )
-        {
-            case 'registered':
-				alert('registration id 111 = '+e.regid);
-                if ( e.regid.length > 0 )
-                {
-                    console.log("Regid " + e.regid);
-                    alert('registration id = '+e.regid);
-					if (!window.openDatabase) {
-						alert('Databases are not supported in this browser.');
-						return;
-					}
-					db = window.openDatabase(shortName, version, displayName,maxSize);
-					db.transaction(function(transaction) {
-						transaction.executeSql('INSERT INTO tnet_login_details(field_key, field_value) VALUES (?,?)',['reg_id', e.regid],successInsert,errorHandlerQuery);
-					},errorHandlerTransaction,nullHandler);
-				}
-                break;
-
-            case 'message':
-                alert('message = '+e.message);
-                break;
-
-            case 'error':
-                alert('GCM error = '+e.msg);
-                break;
-
-            default:
-                alert('An unknown GCM event has occurred');
-                break;
-        };
-	}; */
 	
 	$rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
       switch(notification.event) {
         case 'registered':
           if (notification.regid.length > 0 ) {
             alert('registration ID = ' + notification.regid);
-			/* if (!$window.openDatabase) {
-						alert('Databases are not supported in this browser.');
-						return;
-			} */
 			alert('Hii Came');
-			//alert('Before Transaction '+shortName+' Version '+version+' Display Name '+displayName+' maxSize '+maxSize);
-			/* db = $window.openDatabase(shortName, version, displayName,maxSize);
-			alert('After database open');
-			db.transaction(function(transaction) {
-				alert('Inside transaction');
-				transaction.executeSql('INSERT INTO tnet_login_details(field_key, field_value) VALUES (?,?)',['reg_id', notification.regid],successInsert,errorHandlerQuery);
-			},errorHandlerTransaction,nullHandler);
-			alert('After Transaction'); */
-			/* var db = $cordovaSQLite.openDB({ name: "tnet_pupilpod" });
-			// for opening a background db:
-			var db = $cordovaSQLite.openDB({ name: "tnet_pupilpod", bgType: 1 });
-			var query = "INSERT INTO tnet_login_details (field_key, field_value) VALUES (?,?)";
-			$cordovaSQLite.execute(db, query, ["reg_id", notification.regid]).then(function(res) {
-				console.log("insertId: " + res.insertId);
-			}, function (err) {
-				console.error(err);
-			});*/
 			AddValueToDB('reg_id',notification.regid);
-			alert('Inserted In DB');
+			$window.location.href = '#/login';
           }
           break;
 
@@ -188,12 +133,9 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 				if (result != null && result.rows != null) {
 					if(result.rows.length == 0){
 						alert('Entry Not Exist 11');
-						/* var pushNotification = window.plugins.pushNotification;
-						pushNotification.unregister(successHandler, errorHandler);
-						pushNotification.register(successHandler, errorHandler,{"senderID":"74320630987","ecb":"onNotificationGCM"}); */
-						$cordovaPush.register(androidConfig).then(function(resultPush) {
+							$cordovaPush.register(androidConfig).then(function(resultPush) {
 							// Success
-							alert('Success '+resultPush);
+							//alert('Success '+resultPush);
 						}, function(err) {
 							// Error
 							alert('Error '+err);
@@ -205,17 +147,14 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 							var row = result.rows.item(i);
 							$('#lbUsers').append('<br>' + row.Id + '. ' +row.field_key+ ' ' + row.field_value);
 						}
-						//$window.location.href = '#/login';
+						$window.location.href = '#/login';
 					}
 				}
 				else{
 					alert('Entry Not Exist 22');
-					/* var pushNotification = window.plugins.pushNotification;
-					pushNotification.unregister(successHandler, errorHandler);
-					pushNotification.register(successHandler, errorHandler,{"senderID":"74320630987","ecb":"onNotificationGCM"}); */
 					$cordovaPush.register(androidConfig).then(function(resultPush) {
 						// Success
-						alert('Success '+resultPush);
+						//alert('Success '+resultPush);
 					}, function(err) {
 						// Error
 						alert('Error '+err);
@@ -252,51 +191,8 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 		return false;
 	};
 	
-	/* $scope.userAgent = navigator.userAgent;
-  
-		// Needed for the loading screen
-	$rootScope.$on('$routeChangeStart', function(){
-		$rootScope.loading = true;
-	});
-
-	$rootScope.$on('$routeChangeSuccess', function(){
-		$rootScope.loading = false;
-	}); */
+	
 });
-
-/* function onNotificationGCM(e) {
-        switch( e.event )
-        {
-            case 'registered':
-				alert('registration id 111 = '+e.regid);
-                if ( e.regid.length > 0 )
-                {
-                    console.log("Regid " + e.regid);
-                    alert('registration id = '+e.regid);
-					if (!window.openDatabase) {
-						alert('Databases are not supported in this browser.');
-						return;
-					}
-					db = window.openDatabase(shortName, version, displayName,maxSize);
-					db.transaction(function(transaction) {
-						transaction.executeSql('INSERT INTO tnet_login_details(field_key, field_value) VALUES (?,?)',['reg_id', e.regid],successInsert,errorHandlerQuery);
-					},errorHandlerTransaction,nullHandler);
-				}
-                break;
-
-            case 'message':
-                alert('message = '+e.message);
-                break;
-
-            case 'error':
-                alert('GCM error = '+e.msg);
-                break;
-
-            default:
-                alert('An unknown GCM event has occurred');
-                break;
-        }
-}; */
 
 app.directive('dragToDismiss', function($drag, $parse, $timeout){
   return {
