@@ -16,7 +16,7 @@ app.service('PPODService',function($http,url,$window,$timeout){
 		//alert(param);
 		$http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded;charset=UTF-8";
 		$httpProvider.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded;charset=UTF-8";
-		$http.post(url, {'INSTITUTION_NAME' : $scope.instName,'USER_NAME' : $scope.userName,'PASSWORD': $scope.password,'registration_key' : $scope.registration_key})
+		$http.post(url, param)
 		.success(function(data, status, headers, config) {	
 			alert('Success');
 		})
