@@ -26,7 +26,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 		var maxSize = 65535;
 		db = $window.openDatabase(shortName, version, displayName,maxSize);
 		db.transaction(createTable,errorHandlerTransaction,successCallBack); */
-		PPODService.dbConnection($scope);
+		PPODService.dbConnection($scope,sharedProperties);
     };
 	
 	function receivedEvent(id) {

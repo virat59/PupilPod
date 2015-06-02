@@ -5,8 +5,8 @@
  */
 
 
-app.service('PPODService',function($http,url,$window,$timeout){    
-	this.dbConnection = function($scope){
+app.service('PPODService',function($http,url,$window,$timeout,sharedProperties){    
+	this.dbConnection = function($scope,sharedProperties){
 		var shortName = 'tnet_pupilpod';
 		var version = '1.0';
 		var displayName = 'Tnet_Pupilpod';
