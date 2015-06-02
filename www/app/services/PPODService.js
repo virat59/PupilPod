@@ -30,6 +30,7 @@ app.service('PPODService',function($http,url,$window,$timeout){
 			data: { 'INSTITUTION_NAME' : $scope.instName,'USER_NAME' : $scope.userName,'PASSWORD': $scope.password,'registration_key' : $scope.registration_key }
 		};
 		
+		$http(req).success(function(result){
 			alert('Success');
 		})
 		.error(function(){
