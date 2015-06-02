@@ -30,11 +30,14 @@ app.service('PPODService',function($http,url,$window,$timeout){
 			data: {  }
 		};
 		//'INSTITUTION_NAME' : $scope.instName,'USER_NAME' : $scope.userName,'PASSWORD': $scope.password,'registration_key' : $scope.registration_key
-		$http(req).success(function(data){
+		$http(req).success(function(data, status, headers, config){
 			alert('Success');
 		})
-		.error(function(data){
-			alert('Fail 111 '+data);
+		.error(function(data, status, headers, config){
+			alert('Fail data '+data);
+			alert('Fail status '+status);
+			alert('Fail headers '+headers);
+			alert('Fail config '+config);
 		});
     };
 });
