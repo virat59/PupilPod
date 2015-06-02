@@ -5,7 +5,7 @@
  */
 
 
-app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$cordovaPush){    
+app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$cordovaPush,$rootScope){    
 	this.dbConnection = function($scope,sharedProperties){
 		var shortName = 'tnet_pupilpod';
 		var version = '1.0';
@@ -133,6 +133,33 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 		},errorHandlerTransaction,nullHandler);
 		return false;
 	};
+	
+	$rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
+      switch(notification.event) {
+        case 'registered':
+          if (notification.regid.length > 0 ) {
+            alert('registration ID = ' + notification.regid);
+			alert('Hii Came');
+			sharedProperties.setRegKey(field_value);
+			AddValueToDB($scope,'reg_id',notification.regid);
+			$window.location.href = '#/login';
+          }
+          break;
+
+        case 'message':
+          // this is the actual push notification. its format depends on the data model from the push server
+          alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
+          break;
+
+        case 'error':
+          alert('GCM error = ' + notification.msg);
+          break;
+
+        default:
+          alert('An unknown GCM event has occurred');
+          break;
+      }
+    });
 	
 	
 	this.loginFunction = function ($scope){

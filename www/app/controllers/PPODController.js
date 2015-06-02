@@ -72,12 +72,12 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 		return false;
 	}; */
 	
-	$rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
+	/* $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
       switch(notification.event) {
         case 'registered':
           if (notification.regid.length > 0 ) {
-            //alert('registration ID = ' + notification.regid);
-			//alert('Hii Came');
+            alert('registration ID = ' + notification.regid);
+			alert('Hii Came');
 			sharedProperties.setRegKey(field_value);
 			PPODService.AddValueToDB($scope,'reg_id',notification.regid);
 			$window.location.href = '#/login';
@@ -97,7 +97,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
           alert('An unknown GCM event has occurred');
           break;
       }
-    });
+    }); */
 	
 	
 	
