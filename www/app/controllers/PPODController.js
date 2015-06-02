@@ -359,7 +359,11 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 		} */
 		$scope.registration_key = sharedProperties.getRegKey();
 		//alert('Hi values INST '+$scope.instName+' USER '+$scope.userName+' Pass '+$scope.password+' Rem '+$scope.remember);
-		PPODService.loginFunction($scope);	  
+		var valid = PPODService.loginFunction($scope);	  
+		if(valid)
+			$window.location.href = '#/mainLanding';
+		else
+			alert('Please Try again');
 	};
 });
 
