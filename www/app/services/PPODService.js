@@ -140,14 +140,14 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties){
                 });
 		$http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 		$http.post(url, param).success(function(data, status, headers, config) {	
-			alert('Success Data '+data);
+			alert('Success Data '+data.valid);
 			sharedProperties.setInstName($scope.instName);
 			sharedProperties.setUserName($scope.userName);
 			sharedProperties.setPassWord($scope.password);
 			if(data.valid == 'VALID')
-				return true;
+				$window.location.href = '#/mainLanding';
 			else
-				return false;
+				$scope.instDis = false;
 		})
 		.error(function(data, status, headers, config){
 			alert('Fail data '+data);
@@ -158,7 +158,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties){
 		});
     };
 	
-	this.validateLogin = function(sharedProperties){
+	this.validateLogin = function($scope,sharedProperties){
 		var param = JSON.stringify({
                 "serviceName":"TnetMobileService", 
                 "methodName":"loginValidate",
@@ -166,14 +166,14 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties){
                 });
 		$http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 		$http.post(url, param).success(function(data, status, headers, config) {	
-			alert('Success Data '+data);
+			alert('Success Data '+data.valid);
 			sharedProperties.setInstName($scope.instName);
 			sharedProperties.setUserName($scope.userName);
 			sharedProperties.setPassWord($scope.password);
 			if(data.valid == 'VALID')
-				return true;
+				$window.location.href = '#/mainLanding';
 			else
-				return false;
+				$scope.instDis = false;
 		})
 		.error(function(data, status, headers, config){
 			alert('Fail data '+data);

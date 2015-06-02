@@ -343,13 +343,7 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 		var password = sharedProperties.getPassWord();
 		var instname = sharedProperties.getInstName();
 		if(instname != '' && userName != '' && password != ''){
-			var validate = PPODService.validateLogin(sharedProperties);
-			if(validate){
-				$window.location.href = '#/mainLanding';
-			}
-			else{
-				$scope.instDis = false;
-			}
+			PPODService.validateLogin($scope,sharedProperties);
 		}
     }
 	$scope.submit = function(form) {
@@ -359,11 +353,7 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 		} */
 		$scope.registration_key = sharedProperties.getRegKey();
 		//alert('Hi values INST '+$scope.instName+' USER '+$scope.userName+' Pass '+$scope.password+' Rem '+$scope.remember);
-		var valid = PPODService.loginFunction($scope);	  
-		if(valid)
-			$window.location.href = '#/mainLanding';
-		else
-			alert('Please Try again');
+		PPODService.loginFunction($scope);	  
 	};
 });
 
