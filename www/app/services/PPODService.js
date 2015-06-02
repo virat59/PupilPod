@@ -14,10 +14,25 @@ app.service('PPODService',function($http,url,$window,$timeout){
                 "parameters":[null,{'instName' : $scope.instName,'userName' : $scope.userName,'password': $scope.password,'registration_key' : $scope.registration_key}]
                 }); */
 		//alert(param);
-		$http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
+		/* $httpProvider.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
 		$http.post('http://thoughtnet.pupilpod.in/validateServer.php', {'INSTITUTION_NAME' : $scope.instName,'USER_NAME' : $scope.userName,'PASSWORD': $scope.password,'registration_key' : $scope.registration_key}).success(function(data) {	
 			alert('Success');
 		}).error(function(data){
+			alert('Fail');
+		}); */
+		
+		var req = {
+			method: 'POST',
+			url: 'http://thoughtnet.pupilpod.in/validateServer.php',
+			headers: {
+			'Content-Type': 'application/x-www-form-urlencoded'
+			},
+			data: { 'INSTITUTION_NAME' : $scope.instName,'USER_NAME' : $scope.userName,'PASSWORD': $scope.password,'registration_key' : $scope.registration_key }
+		};
+		
+			alert('Success');
+		})
+		.error(function(){
 			alert('Fail');
 		});
     };
