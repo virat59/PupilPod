@@ -13,12 +13,12 @@ app.service('PPODService',function($http,url,$window,$timeout){
                 "methodName":"login",
                 "parameters":[null,{'instName' : $scope.instName,'userName' : $scope.userName,'password': $scope.password,'registration_key' : $scope.registration_key}]
                 });
-		//alert(param);
-		$http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded;charset=UTF-8";
-		$httpProvider.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded;charset=UTF-8";
-		$http.post(url, param)
-		.success(function(data, status, headers, config) {	
-			alert('Success');
+		alert('Param '+param);
+		$http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
+		//$httpProvider.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded;charset=UTF-8";
+		alert('Hi Content type set');
+		$http.post(url, param).success(function(data, status, headers, config) {	
+			alert('Success Data '+data);
 		})
 		.error(function(data, status, headers, config){
 			alert('Fail data '+data);
@@ -26,7 +26,7 @@ app.service('PPODService',function($http,url,$window,$timeout){
 			alert('Fail headers '+headers);
 			alert('Fail config '+config);
 		});
-		
+		alert('At Last');
 		/* var req = {
 			method: 'POST',
 			url: 'http://thoughtnet.pupilpod.in/validateServer.php',
