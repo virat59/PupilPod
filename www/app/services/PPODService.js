@@ -27,14 +27,14 @@ app.service('PPODService',function($http,url,$window,$timeout){
 			headers: {
 			'Content-Type': 'application/x-www-form-urlencoded'
 			},
-			data: { 'INSTITUTION_NAME' : $scope.instName,'USER_NAME' : $scope.userName,'PASSWORD': $scope.password,'registration_key' : $scope.registration_key }
+			data: {  }
 		};
-		
-		$http(req).success(function(result){
+		//'INSTITUTION_NAME' : $scope.instName,'USER_NAME' : $scope.userName,'PASSWORD': $scope.password,'registration_key' : $scope.registration_key
+		$http(req).success(function(data){
 			alert('Success');
 		})
-		.error(function(){
-			alert('Fail');
+		.error(function(data){
+			alert('Fail '+data);
 		});
     };
 });
