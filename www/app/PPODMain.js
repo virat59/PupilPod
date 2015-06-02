@@ -61,7 +61,7 @@ app.service('sharedProperties', function () {
 		},
 		setPassWord: function(pass) {
 			passWord = pass;
-		}
+		},
 		getInstName: function() {
 			return instName;
 		},
