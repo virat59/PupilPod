@@ -144,12 +144,43 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties){
 			sharedProperties.setInstName($scope.instName);
 			sharedProperties.setUserName($scope.userName);
 			sharedProperties.setPassWord($scope.password);
+			if(data.valid == 'VALID')
+				return true;
+			else
+				return false;
 		})
 		.error(function(data, status, headers, config){
 			alert('Fail data '+data);
 			alert('Fail status '+status);
 			alert('Fail headers '+headers);
 			alert('Fail config '+config);
+			return false;
 		});
     };
+	
+	this.validateLogin = function(sharedProperties){
+		var param = JSON.stringify({
+                "serviceName":"TnetMobileService", 
+                "methodName":"loginValidate",
+                "parameters":[null,{'instName' : $scope.instName,'userName' : $scope.userName,'password': $scope.password,'registration_key' : $scope.registration_key}]
+                });
+		$http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
+		$http.post(url, param).success(function(data, status, headers, config) {	
+			alert('Success Data '+data);
+			sharedProperties.setInstName($scope.instName);
+			sharedProperties.setUserName($scope.userName);
+			sharedProperties.setPassWord($scope.password);
+			if(data.valid == 'VALID')
+				return true;
+			else
+				return false;
+		})
+		.error(function(data, status, headers, config){
+			alert('Fail data '+data);
+			alert('Fail status '+status);
+			alert('Fail headers '+headers);
+			alert('Fail config '+config);
+			return false;
+		});
+	};
 });

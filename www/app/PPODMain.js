@@ -31,6 +31,10 @@ app.config(function($routeProvider) {
 		templateUrl: 'app/views/others/sidebarRight.html', 
 		reloadOnSearch: false
 	})
+	.when('/mainLanding',{
+		templateUrl: 'app/views/others/mainLanding.html', 
+		reloadOnSearch: false
+	})
 	.otherwise({redirectTo: 'app/views/Home.html' });
 });
 

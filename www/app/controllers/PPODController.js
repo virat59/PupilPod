@@ -335,10 +335,22 @@ app.directive('carouselItem', function($drag) {
 });
 
 app.controller('loginController',function($scope,PPODService,$http,$window,$document,sharedProperties){
-	fnInit();	
+	fnInit();
+	entryNotExist = true;
 	function fnInit(){
-		//sharedProperties.setRegKey(row.field_value);
-		//alert('Inside loginController '+sharedProperties.getRegKey());
+		var regkey = sharedProperties.getRegKey();
+		var username = sharedProperties.getUserName();
+		var password = sharedProperties.getPassWord();
+		var instname = sharedProperties.getInstName();
+		if(instname != '' && userName != '' && password != ''){
+			var validate = PPODService.validateLogin(sharedProperties);
+			if(validate){
+				$window.location.href = '#/mainLanding';
+			}
+			else{
+				entryNotExist = false;
+			}
+		}
     }
 	$scope.submit = function(form) {
 		$scope.submitted = true;
