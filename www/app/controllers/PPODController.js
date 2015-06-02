@@ -20,12 +20,6 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	function onDeviceReady() {
 		alert('Alert onDeviceReady');
 		receivedEvent('deviceready');
-		/* var shortName = 'tnet_pupilpod';
-		var version = '1.0';
-		var displayName = 'Tnet_Pupilpod';
-		var maxSize = 65535;
-		db = $window.openDatabase(shortName, version, displayName,maxSize);
-		db.transaction(createTable,errorHandlerTransaction,successCallBack); */
 		PPODService.dbConnection($scope,sharedProperties);
     };
 	
@@ -40,45 +34,13 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 
         console.log('Received Event: ' + id);
     };
-	
-	/* function createTable(tx){
-		tx.executeSql('CREATE TABLE IF NOT EXISTS tnet_login_details(Id INTEGER NOT NULL PRIMARY KEY, field_key TEXT NOT NULL, field_value TEXT NOT NULL)',[],nullHandler,errorHandlerQuery); 
-	};
-	
-    function successHandler(result) {
-		//alert('successHandler '+result);
-		return false;
-    };
-	
-    function errorHandler(error) {
-		alert("errorHandler Code : "+error.code+" Message "+error.message);
-		return false;
-    };
-	
-	function errorHandlerTransaction(error){
-		alert("errorHandlerTransaction Code : "+error.code+" Message "+error.message);
-		return false;
-	};
-	
-	function errorHandlerQuery(error){
-		alert("errorHandlerQuery Code : "+error.code+" Message "+error.message);
-		return false;
-	};
-	
-	function successInsert(error){
-		//login
-		//$window.location.href = '#/login';
-		//alert('Value Inserted');
-		return false;
-	}; */
-	
+		
 	$rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
       switch(notification.event) {
         case 'registered':
           if (notification.regid.length > 0 ) {
             alert('registration ID = ' + notification.regid);
 			alert('Hii Came');
-			//sharedProperties.setRegKey(field_value);
 			PPODService.AddValueToDB($scope,'reg_id',notification.regid);
 			$window.location.href = '#/login';
           }
@@ -99,68 +61,6 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
       }
     });
 	
-	
-	
-    /* function AddValueToDB(field_key,field_value) { //
-		if (!window.openDatabase) {
-			alert('Databases are not supported in this browser.');
-			return;
-		}
-		db.transaction(function(transaction) {
-			transaction.executeSql('INSERT INTO tnet_login_details(field_key, field_value) VALUES (?,?)',[field_key, field_value],nullHandler,errorHandlerQuery);
-		},errorHandlerTransaction,nullHandler);
-		sharedProperties.setRegKey(field_value);
-		return false;
-	};
-	
-	function nullHandler(){
-		return false;
-	};
-	
-	function successCallBack() { //mySharedService
-		alert('successCallBack');
-		db.transaction(function(transaction) {
-			transaction.executeSql("SELECT * FROM tnet_login_details WHERE field_key = ? ", ['reg_id'],function(transaction, result)
-			{
-				//$('#lbUsers').html('');
-				if (result != null && result.rows != null) {
-					if(result.rows.length == 0){
-						alert('Entry Not Exist 11');
-							$cordovaPush.register(androidConfig).then(function(resultPush) {
-							// Success
-							//alert('Success '+resultPush);
-						}, function(err) {
-							// Error
-							alert('Error '+err);
-						})
-					}
-					else{
-						alert('Entry Exist');
-						for (var i = 0; i < result.rows.length; i++) {
-							var row = result.rows.item(i);
-							//$('#lbUsers').append('<br>' + row.Id + '. ' +row.field_key+ ' ' + row.field_value);
-							if(row.field_key == 'reg_id')
-								sharedProperties.setRegKey(row.field_value); //sharedService.setRegKey(row.field_value);
-						}
-						$window.location.href = '#/login';
-					}
-				}
-				else{
-					//alert('Entry Not Exist 22');
-					$cordovaPush.register(androidConfig).then(function(resultPush) {
-						// Success
-						//alert('Success '+resultPush);
-					}, function(err) {
-						// Error
-						alert('Error '+err);
-					})
-				}
-				return false;
-			},errorHandlerQuery);
-		},errorHandlerTransaction,nullHandler);
-		return false;
-	}; */
-	
 	function getDBValues(field_key) {
 		if (!window.openDatabase) {
 			alert('Databases are not supported in this browser.');
@@ -169,11 +69,9 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 		db.transaction(function(transaction) {
 			transaction.executeSql("SELECT * FROM tnet_login_details WHERE field_key = ? ", [field_key],function(transaction, result)
 			{
-				//$('#lbUsers').html('');
 				if (result != null && result.rows != null) {
 					for (var i = 0; i < result.rows.length; i++) {
 						var row = result.rows.item(i);
-						//$('#lbUsers').append('<br>' + row.Id + '. ' +row.field_key+ ' ' + row.field_value);
 					}
 					var row = result.rows.item(0);
 					resultForRet = row.field_value;
@@ -348,11 +246,7 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
     }
 	$scope.submit = function(form) {
 		$scope.submitted = true;
-		/* if (form.$invalid) {
-			return;
-		} */
 		$scope.registration_key = sharedProperties.getRegKey();
-		//alert('Hi values INST '+$scope.instName+' USER '+$scope.userName+' Pass '+$scope.password+' Rem '+$scope.remember);
 		PPODService.loginFunction($scope);	  
 	};
 });

@@ -21,7 +21,6 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 	};
 	
     function successHandler(result) {
-		//alert('successHandler '+result);
 		return false;
     };
 	
@@ -52,16 +51,11 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 			alert('Databases are not supported in this browser.');
 			return;
 		}
-		/* $scope.db.transaction(function(transaction) {
-			
-		},errorHandlerTransaction,nullHandler);
-		 */
 		if(field_key == 'reg_id')
 			sharedProperties.setRegKey(field_value);
 		$scope.db.transaction(function(transaction) {
 			transaction.executeSql("SELECT * FROM tnet_login_details WHERE field_key = ? ", ['reg_id'],function(transaction, result)
 			{
-				//$('#lbUsers').html('');
 				if (result != null && result.rows != null) {
 					if(result.rows.length == 0){
 						transaction.executeSql('INSERT INTO tnet_login_details(field_key, field_value) VALUES (?,?)',[field_key, field_value],nullHandler,errorHandlerQuery);
@@ -90,15 +84,11 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				var androidConfig = {
 					"senderID": "74320630987",
 				};
-				//$('#lbUsers').html('');
 				if (result != null && result.rows != null) {
 					if(result.rows.length == 0){
 						alert('Entry Not Exist 11');
 						$cordovaPush.register(androidConfig).then(function(resultPush) {
-							// Success
-							//alert('Success '+resultPush);
 						}, function(err) {
-							// Error
 							alert('Error '+err);
 						})
 					}
@@ -106,9 +96,8 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 						alert('Entry Exist');
 						for (var i = 0; i < result.rows.length; i++) {
 							var row = result.rows.item(i);
-							//$('#lbUsers').append('<br>' + row.Id + '. ' +row.field_key+ ' ' + row.field_value);
 							if(row.field_key == 'reg_id'){
-								sharedProperties.setRegKey(row.field_value); //sharedService.setRegKey(row.field_value);
+								sharedProperties.setRegKey(row.field_value);
 							}
 							else if(row.field_key == 'username'){
 								sharedProperties.setUserName(row.field_value);
@@ -123,8 +112,6 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				else{
 					//alert('Entry Not Exist 22');
 					$cordovaPush.register(androidConfig).then(function(resultPush) {
-						// Success
-						//alert('Success '+resultPush);
 					}, function(err) {
 						// Error
 						alert('Error '+err);
@@ -135,34 +122,6 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 		},errorHandlerTransaction,nullHandler);
 		return false;
 	};
-	
-	/* $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
-      switch(notification.event) {
-        case 'registered':
-          if (notification.regid.length > 0 ) {
-            alert('registration ID = ' + notification.regid);
-			alert('Hii Came');
-			//sharedProperties.setRegKey(field_value);
-			AddValueToDB($scope,'reg_id',notification.regid);
-			$window.location.href = '#/login';
-          }
-          break;
-
-        case 'message':
-          // this is the actual push notification. its format depends on the data model from the push server
-          alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
-          break;
-
-        case 'error':
-          alert('GCM error = ' + notification.msg);
-          break;
-
-        default:
-          alert('An unknown GCM event has occurred');
-          break;
-      }
-    }); */
-	
 	
 	this.loginFunction = function ($scope){
 		var param = JSON.stringify({
