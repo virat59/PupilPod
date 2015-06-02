@@ -5,7 +5,7 @@
  */
 
 
-app.service('PPODService',function($http,url,$window,$timeout,sharedProperties){    
+app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$cordovaPush){    
 	this.dbConnection = function($scope,sharedProperties){
 		var shortName = 'tnet_pupilpod';
 		var version = '1.0';
@@ -85,11 +85,14 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties){
 		db.transaction(function(transaction) {
 			transaction.executeSql("SELECT * FROM tnet_login_details WHERE field_key = ? ", ['reg_id'],function(transaction, result)
 			{
+				var androidConfig = {
+					"senderID": "74320630987",
+				};
 				//$('#lbUsers').html('');
 				if (result != null && result.rows != null) {
 					if(result.rows.length == 0){
 						alert('Entry Not Exist 11');
-							$cordovaPush.register(androidConfig).then(function(resultPush) {
+						$cordovaPush.register(androidConfig).then(function(resultPush) {
 							// Success
 							//alert('Success '+resultPush);
 						}, function(err) {
