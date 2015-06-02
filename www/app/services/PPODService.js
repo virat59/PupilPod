@@ -8,29 +8,16 @@
 app.service('PPODService',function($http,url,$window,$timeout){    
 	this.loginFunction = function ($scope){
 		alert('Hi inside Service '+url);
-        /* var param = JSON.stringify({
+        var param = JSON.stringify({
                 "serviceName":"TnetMobileService", 
                 "methodName":"login",
                 "parameters":[null,{'instName' : $scope.instName,'userName' : $scope.userName,'password': $scope.password,'registration_key' : $scope.registration_key}]
-                }); */
+                });
 		//alert(param);
-		/* $httpProvider.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
-		$http.post('http://thoughtnet.pupilpod.in/validateServer.php', {'INSTITUTION_NAME' : $scope.instName,'USER_NAME' : $scope.userName,'PASSWORD': $scope.password,'registration_key' : $scope.registration_key}).success(function(data) {	
-			alert('Success');
-		}).error(function(data){
-			alert('Fail');
-		}); */
-		
-		var req = {
-			method: 'POST',
-			url: 'http://thoughtnet.pupilpod.in/validateServer.php',
-			headers: {
-			'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-			},
-			data: {  }
-		};
-		//'INSTITUTION_NAME' : $scope.instName,'USER_NAME' : $scope.userName,'PASSWORD': $scope.password,'registration_key' : $scope.registration_key
-		$http(req).success(function(data, status, headers, config){
+		$http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded;charset=UTF-8";
+		$httpProvider.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded;charset=UTF-8";
+		$http.post(url, {'INSTITUTION_NAME' : $scope.instName,'USER_NAME' : $scope.userName,'PASSWORD': $scope.password,'registration_key' : $scope.registration_key})
+		.success(function(data, status, headers, config) {	
 			alert('Success');
 		})
 		.error(function(data, status, headers, config){
@@ -39,5 +26,24 @@ app.service('PPODService',function($http,url,$window,$timeout){
 			alert('Fail headers '+headers);
 			alert('Fail config '+config);
 		});
+		
+		/* var req = {
+			method: 'POST',
+			url: 'http://thoughtnet.pupilpod.in/validateServer.php',
+			headers: {
+			'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+			},
+			data: {  }
+		}; */
+		//'INSTITUTION_NAME' : $scope.instName,'USER_NAME' : $scope.userName,'PASSWORD': $scope.password,'registration_key' : $scope.registration_key
+		/* $http(req).success(function(data, status, headers, config){
+			alert('Success');
+		})
+		.error(function(data, status, headers, config){
+			alert('Fail data '+data);
+			alert('Fail status '+status);
+			alert('Fail headers '+headers);
+			alert('Fail config '+config);
+		}); */
     };
 });
