@@ -56,6 +56,8 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 			
 		},errorHandlerTransaction,nullHandler);
 		 */
+		if(field_key == 'reg_id')
+			sharedProperties.setRegKey(field_value);
 		$scope.db.transaction(function(transaction) {
 			transaction.executeSql("SELECT * FROM tnet_login_details WHERE field_key = ? ", ['reg_id'],function(transaction, result)
 			{
@@ -134,13 +136,13 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 		return false;
 	};
 	
-	$rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
+	/* $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
       switch(notification.event) {
         case 'registered':
           if (notification.regid.length > 0 ) {
             alert('registration ID = ' + notification.regid);
 			alert('Hii Came');
-			sharedProperties.setRegKey(field_value);
+			//sharedProperties.setRegKey(field_value);
 			AddValueToDB($scope,'reg_id',notification.regid);
 			$window.location.href = '#/login';
           }
@@ -159,7 +161,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
           alert('An unknown GCM event has occurred');
           break;
       }
-    });
+    }); */
 	
 	
 	this.loginFunction = function ($scope){
