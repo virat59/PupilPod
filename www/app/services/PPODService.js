@@ -34,7 +34,7 @@ app.service('PPODService',function($http,url,$window,$timeout){
 			alert('Success');
 		})
 		.error(function(data){
-			alert('Fail '+data);
+			alert('Fail 111 '+data);
 		});
     };
 });
