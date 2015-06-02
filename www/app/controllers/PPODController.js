@@ -336,7 +336,7 @@ app.directive('carouselItem', function($drag) {
 
 app.controller('loginController',function($scope,PPODService,$http,$window,$document,sharedProperties){
 	fnInit();
-	entryNotExist = true;
+	entryExist = false;
 	function fnInit(){
 		var regkey = sharedProperties.getRegKey();
 		var username = sharedProperties.getUserName();
@@ -348,7 +348,7 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 				$window.location.href = '#/mainLanding';
 			}
 			else{
-				entryNotExist = false;
+				entryExist = true;
 			}
 		}
     }
