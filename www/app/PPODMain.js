@@ -37,6 +37,8 @@ app.config(function($routeProvider) {
 app.service('sharedProperties', function () {
 	var reg_key = '';
 	var userName = '';
+	var passWord = '';
+	var instName = '';
 	return {
 		getRegKey: function() {
 			return reg_key;
@@ -45,10 +47,22 @@ app.service('sharedProperties', function () {
 			reg_key = regKey;
 		},
 		getUserName: function() {
-			return reg_key;
+			return userName;
 		},
 		setUserName: function(user) {
-			reg_key = user;
+			userName = user;
+		},
+		getPassWord: function() {
+			return passWord;
+		},
+		setPassWord: function(pass) {
+			passWord = pass;
+		}
+		getInstName: function() {
+			return instName;
+		},
+		setInstName: function(inst) {
+			instName = inst;
 		}
 	};
 });

@@ -78,6 +78,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
           if (notification.regid.length > 0 ) {
             //alert('registration ID = ' + notification.regid);
 			//alert('Hii Came');
+			sharedProperties.setRegKey(field_value);
 			PPODService.AddValueToDB($scope,'reg_id',notification.regid);
 			$window.location.href = '#/login';
           }

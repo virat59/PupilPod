@@ -52,10 +52,27 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties){
 			alert('Databases are not supported in this browser.');
 			return;
 		}
-		$scope.db.transaction(function(transaction) {
-			transaction.executeSql('INSERT INTO tnet_login_details(field_key, field_value) VALUES (?,?)',[field_key, field_value],nullHandler,errorHandlerQuery);
+		/* $scope.db.transaction(function(transaction) {
+			
 		},errorHandlerTransaction,nullHandler);
-		sharedProperties.setRegKey(field_value);
+		 */
+		$scope.db.transaction(function(transaction) {
+			transaction.executeSql("SELECT * FROM tnet_login_details WHERE field_key = ? ", ['reg_id'],function(transaction, result)
+			{
+				//$('#lbUsers').html('');
+				if (result != null && result.rows != null) {
+					if(result.rows.length == 0){
+						transaction.executeSql('INSERT INTO tnet_login_details(field_key, field_value) VALUES (?,?)',[field_key, field_value],nullHandler,errorHandlerQuery);
+						alert('Inserted');
+					}
+					else{
+						transaction.executeSql('UPDATE tnet_login_details set field_value = ? WHERE field_key = ? ',[field_key, field_value],nullHandler,errorHandlerQuery);
+						alert('Updated');
+					}
+				}
+			},errorHandlerQuery);
+		},errorHandlerTransaction,nullHandler);
+				
 		return false;
 	};
 	
@@ -85,8 +102,15 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties){
 						for (var i = 0; i < result.rows.length; i++) {
 							var row = result.rows.item(i);
 							//$('#lbUsers').append('<br>' + row.Id + '. ' +row.field_key+ ' ' + row.field_value);
-							if(row.field_key == 'reg_id')
+							if(row.field_key == 'reg_id'){
 								sharedProperties.setRegKey(row.field_value); //sharedService.setRegKey(row.field_value);
+							}
+							else if(row.field_key == 'username'){
+								sharedProperties.setUserName(row.field_value);
+							}
+							else if(row.field_key == 'password'){
+								sharedProperties.setPassWord(row.field_value);
+							}
 						}
 						$window.location.href = '#/login';
 					}
@@ -117,6 +141,9 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties){
 		$http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 		$http.post(url, param).success(function(data, status, headers, config) {	
 			alert('Success Data '+data);
+			sharedProperties.setInstName($scope.instName);
+			sharedProperties.setUserName($scope.userName);
+			sharedProperties.setPassWord($scope.password);
 		})
 		.error(function(data, status, headers, config){
 			alert('Fail data '+data);
