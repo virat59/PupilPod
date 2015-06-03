@@ -37,20 +37,42 @@
     <body>
 		<div ng-controller="PPODController">
 			<div ng-if="!loginTrue">
-				<div class="app-body" ng-class="{loading: loading}">
-					<div ng-show="loading" class="app-content-loading">
-					  <i class="fa fa-spinner fa-spin loading-spinner"></i>
+				<div class="app">
+					<div class="navbar navbar-app navbar-absolute-top">
+							<div class="navbar-brand navbar-brand-center" ui-yield-to="title">
+								PupilPod
+							</div>
+						<div class="btn-group pull-left">
+							
+						</div>
+						<div class="btn-group pull-right" ui-yield-to="navbarAction">
+							
+						</div>
 					</div>
-					<div id="deviceready" class="blink">
-						<p class="event listening"></p>
-						<p class="event received"></p>
-						Login False
+
+					<div class="navbar navbar-app navbar-absolute-bottom">
+						<div class="btn-group justified">
+							<a href="http://thoughtnet.in" class="btn btn-navbar"><i class="fa fa-home fa-navbar"></i> ThoughtNet</a>
+							<a href="#" class="btn btn-navbar"><i class="fa fa-github fa-navbar"></i> Organisation</a>
+						</div>
 					</div>
-					<!--<span id="lbUsers"></span>-->
-					<div class="app-content">
-					  <ng-view></ng-view>
+			   
+					<div class="app-body" ng-class="{loading: loading}">
+						<div ng-show="loading" class="app-content-loading">
+						  <i class="fa fa-spinner fa-spin loading-spinner"></i>
+						</div>
+						<div id="deviceready" class="blink">
+							<p class="event listening"></p>
+							<p class="event received"></p>
+							Login False
+						</div>
+						<!--<span id="lbUsers"></span>-->
+						<div class="app-content">
+						  <ng-view></ng-view>
+						</div>
 					</div>
-				 </div>
+				</div>
+				<div ui-yield-to="modals"></div>
 			</div>
 			<div ng-if="loginTrue">
 				
