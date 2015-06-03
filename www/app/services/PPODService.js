@@ -138,7 +138,8 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 			if(data.valid == 'VALID'){
 				$window.location.href = '#/mainLanding';
 				sharedProperties.setIsLogin(true);
-				$scope.$broadcast('loginStatus', true);
+				//$scope.$broadcast('loginStatus', true);
+				$scope.$emit('loginStatus', true);
 			}
 			else
 				$scope.instDis = false;
@@ -167,7 +168,8 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 			if(data.valid == 'VALID'){
 				$window.location.href = '#/mainLanding';
 				sharedProperties.setIsLogin(true);
-				$scope.$broadcast('loginStatus', true);
+				//$scope.$broadcast('loginStatus', true);  $emit
+				$scope.$emit('loginStatus', true);
 			}
 			else
 				$scope.instDis = false;
