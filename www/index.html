@@ -2,7 +2,7 @@
 <!--
 	/* PupilPod */
 -->
-<html ng-app="PPOD">
+<html >
     <head>
         <!--<meta charset="utf-8" />
         <meta name="format-detection" content="telephone=no" />
@@ -34,9 +34,8 @@
 		<script src="app/services/PPODService.js"></script>
 		
     </head>
-    <body>
-		<div ng-controller="PPODController">
-			<div ng-if="loginTrue">
+    <body ng-app="PPOD" ng-controller="PPODController">
+			<!--<div ng-if="loginTrue">
 				<div class="app">
 					<div class="navbar navbar-app navbar-absolute-top">
 							<div class="navbar-brand navbar-brand-center" ui-yield-to="title">
@@ -67,14 +66,14 @@
 							
 						</div>
 						<!--<span id="lbUsers"></span>-->
-						<div class="app-content">
+					<!--	<div class="app-content">
 						  <ng-view></ng-view>
 						</div>
 					</div>
 				</div>
 				<div ui-yield-to="modals"></div>
 			</div>
-			<div ng-if="!loginTrue">
+			<div ng-if="!loginTrue"> -->
 				
 				<div ng-include="'app/views/others/sidebar.html'" 
 				ui-track-as-search-param='true'
@@ -84,39 +83,10 @@
 				class="sidebar sidebar-right"></div>
 		   
 				<div class="app" ng-swipe-right='Ui.turnOn("uiSidebarLeft")' ng-swipe-left='Ui.turnOff("uiSidebarLeft")'>
-					<!--
-					
 					<div class="navbar navbar-app navbar-absolute-top">
-					<div class="navbar-brand navbar-brand-center" ui-yield-to="title">
-						PupilPod
-					</div>
-				<div class="btn-group pull-left">
-					<div ui-toggle="uiSidebarLeft" class="btn sidebar-toggle">
-						<i class="fa fa-bars"></i> Home
-					</div>
-				</div>
-				<div class="btn-group pull-right" ui-yield-to="navbarAction">
-					<div ui-toggle="uiSidebarRight" class="btn">
-						<i class="fa fa-comment"></i> Virat Joshi
-					</div>
-				</div>
-			</div>
-
-			<div class="navbar navbar-app navbar-absolute-bottom">
-				<div class="btn-group justified">
-					<a href="http://thoughtnet.in" class="btn btn-navbar"><i class="fa fa-home fa-navbar"></i> ThoughtNet</a>
-					<a href="#" class="btn btn-navbar"><i class="fa fa-github fa-navbar"></i> Organisation</a>
-					<a href="#" class="btn btn-navbar"><i class="fa fa-exclamation-circle fa-navbar"></i> School Site</a>
-				</div>
-			</div>
-
-					
-					-->
-					
-					<div class="navbar navbar-app navbar-absolute-top">
-							<div class="navbar-brand navbar-brand-center" ui-yield-to="title">
-								PupilPod
-							</div>
+						<div class="navbar-brand navbar-brand-center" ui-yield-to="title">
+							PupilPod
+						</div>
 						<div class="btn-group pull-left">
 							<div ui-toggle="uiSidebarLeft" class="btn sidebar-toggle">
 								<i class="fa fa-bars"></i> Home
@@ -152,8 +122,7 @@
 					</div>
 				</div>
 				<div ui-yield-to="modals"></div>
-			</div>
-		</div>
+			<!--</div>-->
     </body>
 	<script>
        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
