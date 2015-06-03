@@ -3,25 +3,27 @@
 		<div class="scrollable-content">
 			<form name="loginForm" novalidate role="form" class="simple-form">
 				<div class="form-group">
-					<input type="text" name="instance_name" ng-model="instName" class="form-control" placeholder="Instance Name" ng-show="instDis" required />
+					<input type="text" name="instance_name" ng-model="instName" class="topcoat-text-input--large" placeholder="Instance Name" ng-show="instDis" required />
 				</div>
 				<div class="form-group">
 					<div>
-						<input type="text" name="user_name" ng-model="userName" class="form-control" placeholder="User Name" required />
+						<input type="text" name="user_name" ng-model="userName" class="topcoat-text-input--large" placeholder="User Name" required />
 					</div>
 				</div>
 				<div class="form-group">
 					<div>
-						<input type="password" name="password" ng-model="password" class="form-control" placeholder="Password" required />
+						<input type="password" name="password" ng-model="password" class="topcoat-text-input--large" placeholder="Password" required />
 					</div>
 				</div>
 				<div class="form-group">
-					<label>
-						<input type="checkbox" name="remember" ng-model="remember" required /> Remember Me
+					<label class="topcoat-checkbox" name="remember" ng-model="remember" required >
+						<input type="checkbox">
+						<div class="topcoat-checkbox__checkmark"></div>
+							Remember Me
 					</label>
 				</div>
 				<div class="form-group">
-					<input type="button" value="Login" ng-click="submit(loginForm)" class="btn btn-primary"/> 
+					<input type="button" value="Login" ng-click="submit(loginForm)" class="topcoat-button--large--cta"/> 
 				</div>
 			</form>
 		</div>
