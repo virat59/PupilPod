@@ -243,8 +243,9 @@ app.directive('carouselItem', function($drag) {
 app.controller('loginController',function($scope,PPODService,$http,$window,$document,sharedProperties){
 	fnInit();
 	$scope.instDis = true;
-	$scope.loginTrue = sharedProperties.getIsLogin();
+	//$scope.loginTrue = sharedProperties.getIsLogin();
 	function fnInit(){
+		alert('Hi Inside loginController');
 		var regkey = sharedProperties.getRegKey();
 		var username = sharedProperties.getUserName();
 		var password = sharedProperties.getPassWord();

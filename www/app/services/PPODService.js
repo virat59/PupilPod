@@ -131,7 +131,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
                 });
 		$http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 		$http.post(url, param).success(function(data, status, headers, config) {	
-			//alert('Success Data '+data.valid);
+			alert('Success Data '+data.valid);
 			sharedProperties.setInstName($scope.instName);
 			sharedProperties.setUserName($scope.userName);
 			sharedProperties.setPassWord($scope.password);
