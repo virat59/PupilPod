@@ -36,7 +36,7 @@
     </head>
     <body>
 		<div ng-controller="PPODController">
-			<div ng-if="!loginTrue">
+			<div ng-if="loginTrue">
 				<div class="app">
 					<div class="navbar navbar-app navbar-absolute-top">
 							<div class="navbar-brand navbar-brand-center" ui-yield-to="title">
@@ -74,7 +74,7 @@
 				</div>
 				<div ui-yield-to="modals"></div>
 			</div>
-			<div ng-if="loginTrue">
+			<div ng-if="!loginTrue">
 				
 				<div ng-include="'app/views/others/sidebar.html'" 
 				ui-track-as-search-param='true'
