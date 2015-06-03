@@ -37,7 +37,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
     };
 	
 	$rootScope.$on('loginStatus',function(event,args){
-		alert('BroadCast loginStatus '+args)
+		alert('BroadCast loginStatus '+args);
 		sharedProperties.setIsLogin(args);
 		$scope.loginTrue = args;
 	});
