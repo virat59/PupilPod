@@ -77,7 +77,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 	};
 	
 	function successCallBack() { //mySharedService
-		alert('successCallBack');
+		//alert('successCallBack');
 		db.transaction(function(transaction) {
 			transaction.executeSql("SELECT * FROM tnet_login_details WHERE field_key = ? ", ['reg_id'],function(transaction, result)
 			{
@@ -86,14 +86,14 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				};
 				if (result != null && result.rows != null) {
 					if(result.rows.length == 0){
-						alert('Entry Not Exist 11');
+						//alert('Entry Not Exist 11');
 						$cordovaPush.register(androidConfig).then(function(resultPush) {
 						}, function(err) {
 							alert('Error '+err);
 						})
 					}
 					else{
-						alert('Entry Exist');
+						//alert('Entry Exist');
 						for (var i = 0; i < result.rows.length; i++) {
 							var row = result.rows.item(i);
 							if(row.field_key == 'reg_id'){
@@ -131,7 +131,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
                 });
 		$http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 		$http.post(url, param).success(function(data, status, headers, config) {	
-			alert('Success Data '+data.valid);
+			//alert('Success Data '+data.valid);
 			sharedProperties.setInstName($scope.instName);
 			sharedProperties.setUserName($scope.userName);
 			sharedProperties.setPassWord($scope.password);
@@ -161,7 +161,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
                 });
 		$http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 		$http.post(url, param).success(function(data, status, headers, config) {	
-			alert('Success Data '+data.valid);
+			//alert('Success Data '+data.valid);
 			sharedProperties.setInstName($scope.instName);
 			sharedProperties.setUserName($scope.userName);
 			sharedProperties.setPassWord($scope.password);
