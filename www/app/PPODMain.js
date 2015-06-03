@@ -1,10 +1,3 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
 var app = angular.module('PPOD',['ngRoute','mobile-angular-ui','mobile-angular-ui.gestures','pushNotifications.ctrl',"ngCordova"]);
 
 app.constant('url', 'http://thoughtnet.pupilpod.in/NBA/amfphp-2.1/Amfphp/?contentType=application/json');
@@ -43,6 +36,8 @@ app.service('sharedProperties', function () {
 	var userName = '';
 	var passWord = '';
 	var instName = '';
+	var parOrStu = '';
+	var login_entity_guid = '';
 	return {
 		getRegKey: function() {
 			return reg_key;
@@ -67,6 +62,18 @@ app.service('sharedProperties', function () {
 		},
 		setInstName: function(inst) {
 			instName = inst;
+		},
+		getParOrStu: function() {
+			return parOrStu;
+		},
+		setParOrStu: function(typeoflogin) {
+			parOrStu = typeoflogin;
+		},
+		getLoginEntityGuid: function() {
+			return login_entity_guid;
+		},
+		setLoginEntityGuid: function(entity_guid) {
+			login_entity_guid = entity_guid;
 		}
 	};
 });
