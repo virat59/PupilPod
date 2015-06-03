@@ -25,7 +25,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
     };
 	
 	function receivedEvent(id) {
-	/alert('Event Received '+id);
+		alert('Event Received '+id);
         var parentElement = document.getElementById(id);
         var listeningElement = parentElement.querySelector('.listening');
         var receivedElement = parentElement.querySelector('.received');
