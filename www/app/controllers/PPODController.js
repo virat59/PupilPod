@@ -1,6 +1,7 @@
 app.controller('PPODController',function($scope,PPODService,$http,$window,$document,$rootScope,$cordovaPush,$cordovaSQLite,sharedProperties){    //
 	$scope.contactname = "ThoughtNet Technologies (India) Pvt. Ltd";
 	initialize();
+	$scope.loginTrue = sharedProperties.getIsLogin();
 	function initialize() {
 		//alert('Hi In initialize');
 		$scope.db = null;
@@ -12,19 +13,19 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	};
 	
 	function bindEvents() {
-		alert('Hi In BindEvents');
+		//alert('Hi In BindEvents');
         document.addEventListener('deviceready', onDeviceReady, false);
     };
 	
 	
 	function onDeviceReady() {
-		alert('Alert onDeviceReady');
+		//alert('Alert onDeviceReady');
 		receivedEvent('deviceready');
 		PPODService.dbConnection($scope,sharedProperties);
     };
 	
 	function receivedEvent(id) {
-		alert('Event Received '+id);
+		//alert('Event Received '+id);
         var parentElement = document.getElementById(id);
         var listeningElement = parentElement.querySelector('.listening');
         var receivedElement = parentElement.querySelector('.received');
@@ -39,8 +40,8 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
       switch(notification.event) {
         case 'registered':
           if (notification.regid.length > 0 ) {
-            alert('registration ID = ' + notification.regid);
-			alert('Hii Came');
+            //alert('registration ID = ' + notification.regid);
+			//alert('Hii Came');
 			PPODService.AddValueToDB($scope,'reg_id',notification.regid);
 			$window.location.href = '#/login';
           }
@@ -235,6 +236,7 @@ app.directive('carouselItem', function($drag) {
 app.controller('loginController',function($scope,PPODService,$http,$window,$document,sharedProperties){
 	fnInit();
 	$scope.instDis = true;
+	$scope.loginTrue = sharedProperties.getIsLogin();
 	function fnInit(){
 		var regkey = sharedProperties.getRegKey();
 		var username = sharedProperties.getUserName();

@@ -28,6 +28,14 @@ app.config(function($routeProvider) {
 		templateUrl: 'app/views/others/mainLanding.html', 
 		reloadOnSearch: false
 	})
+	.when('/exam_details',{
+		templateUrl: 'app/views/others/exam_details.html', 
+		reloadOnSearch: false
+	})
+	.when('/fees',{
+		templateUrl: 'app/views/others/fees.html', 
+		reloadOnSearch: false
+	})
 	.otherwise({redirectTo: 'app/views/Home.html' });
 });
 
@@ -37,6 +45,7 @@ app.service('sharedProperties', function () {
 	var passWord = '';
 	var instName = '';
 	var parOrStu = '';
+	var isLogin = false;
 	var login_entity_guid = '';
 	return {
 		getRegKey: function() {
@@ -74,6 +83,12 @@ app.service('sharedProperties', function () {
 		},
 		setLoginEntityGuid: function(entity_guid) {
 			login_entity_guid = entity_guid;
+		},
+		getIsLogin: function() {
+			return isLogin;
+		},
+		setIsLogin: function(login) {
+			isLogin = login;
 		}
 	};
 });
