@@ -253,6 +253,9 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 		if(instname != '' && userName != '' && password != ''){
 			PPODService.validateLogin($scope,sharedProperties);
 		}
+		else{
+			alert('Else Part');
+		}
     }
 	$scope.submit = function(form) {
 		$scope.submitted = true;
