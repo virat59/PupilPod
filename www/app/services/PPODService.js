@@ -86,14 +86,14 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				};
 				if (result != null && result.rows != null) {
 					if(result.rows.length == 0){
-						//alert('Entry Not Exist 11');
+						alert('Entry Not Exist 11');
 						$cordovaPush.register(androidConfig).then(function(resultPush) {
 						}, function(err) {
 							alert('Error '+err);
 						})
 					}
 					else{
-						//alert('Entry Exist');
+						alert('Entry Exist');
 						for (var i = 0; i < result.rows.length; i++) {
 							var row = result.rows.item(i);
 							if(row.field_key == 'reg_id'){

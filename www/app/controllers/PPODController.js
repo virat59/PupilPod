@@ -3,7 +3,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	initialize();
 	$scope.loginTrue = sharedProperties.getIsLogin();
 	function initialize() {
-		//alert('Hi In initialize');
+		alert('Hi In initialize');
 		$scope.db = null;
         bindEvents();
     };
@@ -13,19 +13,19 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	};
 	
 	function bindEvents() {
-		//alert('Hi In BindEvents');
+		alert('Hi In BindEvents');
         document.addEventListener('deviceready', onDeviceReady, false);
     };
 	
 	
 	function onDeviceReady() {
-		//alert('Alert onDeviceReady');
+		alert('Alert onDeviceReady');
 		receivedEvent('deviceready');
 		PPODService.dbConnection($scope,sharedProperties);
     };
 	
 	function receivedEvent(id) {
-		//alert('Event Received '+id);
+	/alert('Event Received '+id);
         var parentElement = document.getElementById(id);
         var listeningElement = parentElement.querySelector('.listening');
         var receivedElement = parentElement.querySelector('.received');
@@ -40,7 +40,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
       switch(notification.event) {
         case 'registered':
           if (notification.regid.length > 0 ) {
-            //alert('registration ID = ' + notification.regid);
+            alert('registration ID = ' + notification.regid);
 			//alert('Hii Came');
 			PPODService.AddValueToDB($scope,'reg_id',notification.regid);
 			$window.location.href = '#/login';
