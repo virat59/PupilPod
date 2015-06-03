@@ -35,7 +35,14 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 
         console.log('Received Event: ' + id);
     };
-		
+	
+	$rootScope.$on('loginStatus',function(event,args){
+		alert('BroadCast loginStatus '+args)
+		sharedProperties.setIsLogin(args);
+		$scope.loginTrue = args;
+	});
+	
+	
 	$rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
       switch(notification.event) {
         case 'registered':

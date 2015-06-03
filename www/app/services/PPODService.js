@@ -139,6 +139,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				$window.location.href = '#/mainLanding';
 				$scope.loginTrue = true;
 				sharedProperties.setIsLogin(true);
+				$scope.$broadcast('loginStatus', true);
 			}
 			else
 				$scope.instDis = false;
@@ -168,6 +169,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				$window.location.href = '#/mainLanding';
 				$scope.loginTrue = true;
 				sharedProperties.setIsLogin(true);
+				$scope.$broadcast('loginStatus', true);
 			}
 			else
 				$scope.instDis = false;
