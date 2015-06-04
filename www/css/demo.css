@@ -67,6 +67,11 @@ h1 {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#fefefe', GradientType=0 );
 }
 
+.header_sub{
+	padding: 10px;
+	margin-top: 15px;
+}
+
 .navbar-app .btn, .navbar-app .btn-navbar {
 	color: #FFFFFF;
 }
