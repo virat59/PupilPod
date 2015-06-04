@@ -246,6 +246,9 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 	//$scope.loginTrue = sharedProperties.getIsLogin();
 	function fnInit(){
 		//alert('Hi Inside loginController');
+		$scope.instName = "";
+		$scope.userName = "";
+		$scope.password = "";
 		var regkey = sharedProperties.getRegKey();
 		var username = sharedProperties.getUserName();
 		var password = sharedProperties.getPassWord();
