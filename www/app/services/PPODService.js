@@ -135,6 +135,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 			sharedProperties.setInstName($scope.instName);
 			sharedProperties.setUserName($scope.userName);
 			sharedProperties.setPassWord($scope.password);
+			$scope.loading = false;
 			if(data.valid == 'VALID'){
 				$window.location.href = '#/mainLanding';
 				sharedProperties.setIsLogin(true);
@@ -166,6 +167,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 			sharedProperties.setUserName($scope.userName);
 			sharedProperties.setPassWord($scope.password);
 			if(data.valid == 'VALID'){
+				$scope.loading = false;
 				$window.location.href = '#/mainLanding';
 				sharedProperties.setIsLogin(true);
 				//$scope.$broadcast('loginStatus', true);  $emit

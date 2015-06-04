@@ -246,6 +246,7 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 	//$scope.loginTrue = sharedProperties.getIsLogin();
 	function fnInit(){
 		//alert('Hi Inside loginController');
+		$scope.loading = true;
 		$scope.instName = "";
 		$scope.userName = "";
 		$scope.password = "";
@@ -257,10 +258,12 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 			PPODService.validateLogin($scope,sharedProperties);
 		}
 		else{
+			$scope.loading = false;
 			//alert('Else Part');
 		}
     }
 	$scope.submit = function(form) {
+		$scope.loading = true;
 		$scope.submitted = true;
 		$scope.registration_key = sharedProperties.getRegKey();
 		PPODService.loginFunction($scope);	  
@@ -271,6 +274,15 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 app.controller('mainController',function($scope,PPODService,$http,$window,$document,sharedProperties){
 	fnInit();
 	function fnInit(){
-		alert('Hi Inside mainController');	
+		//alert('Hi Inside mainController');	
+		$scope.stu_name = "Virat Joshi";
+		$scope.stu_dob = "01-April-1990";
+		$scope.stu_id = "1OY10MCA84";
+		$scope.stu_fat_name = "Hemendra Kumar Joshi";
+		$scope.stu_mot_name = "Kanta Joshi";
+		$scope.stu_fat_mob_no = "+91 8792533839";
+		$scope.stu_address = "J. P. Nagar, Bangalore";
+		$scope.stu_class = "VI Sem";
+		$scope.stu_sec = "VI C Section";
     }
 });
