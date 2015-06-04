@@ -22,6 +22,7 @@
 		<link rel="stylesheet" type="text/css" href="css/mobile-angular-ui-desktop.min.css" />
 		<link rel="stylesheet" type="text/css" href="css/demo.css" />
 		
+		<script type="text/javascript" charset="utf-8" src="js/index.js"></script>
 		<script type="text/javascript" charset="utf-8" src="js/angular.min.js"></script>
 		<script type="text/javascript" charset="utf-8" src="js/angular-route.min.js"></script>
 		<script type="text/javascript" charset="utf-8" src="js/mobile-angular-ui.min.js"></script>
@@ -45,7 +46,7 @@
 				<div ng-include="'app/views/others/sidebarRight.html'" 
 				class="sidebar sidebar-right" ng-show="loginTrue"></div>
 		   
-				<div class="app" ng-if="loginTrue" ng-swipe-right='Ui.turnOn("uiSidebarLeft")' ng-swipe-left='Ui.turnOff("uiSidebarLeft")'>
+				<div class="app" ng-if="loginTrue" ng-swipe-right='Ui.turnOn("uiSidebarLeft");blurMain();' ng-swipe-left='Ui.turnOff("uiSidebarLeft");unblurMain();'>
 					<div class="navbar navbar-app navbar-absolute-top">
 						<div class="navbar-brand navbar-brand-center" ui-yield-to="title">
 							PupilPod
