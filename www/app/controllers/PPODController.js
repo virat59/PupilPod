@@ -267,3 +267,10 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 	};
 });
 
+
+app.controller('mainController',function($scope,PPODService,$http,$window,$document,sharedProperties){
+	fnInit();
+	function fnInit(){
+		alert('Hi Inside mainController');	
+    }
+});
