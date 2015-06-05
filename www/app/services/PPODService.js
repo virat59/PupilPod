@@ -53,6 +53,15 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 		}
 		if(field_key == 'reg_id')
 			sharedProperties.setRegKey(field_value);
+		if($scope.db == null || $scope.db == undefined || $scope.db == ''){
+			var shortName = 'tnet_pupilpod';
+			var version = '1.0';
+			var displayName = 'Tnet_Pupilpod';
+			var maxSize = 65535;
+			db = $window.openDatabase(shortName, version, displayName,maxSize);
+			db.transaction(createTable,errorHandlerTransaction,nullHandler);
+			$scope.db = db;		
+		}
 		$scope.db.transaction(function(transaction) {
 			transaction.executeSql("SELECT * FROM tnet_login_details WHERE field_key = ? ", ['reg_id'],function(transaction, result)
 			{
@@ -105,6 +114,15 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 							else if(row.field_key == 'password'){
 								sharedProperties.setPassWord(row.field_value);
 							}
+							else if(row.field_key == 'instname'){
+								sharedProperties.setInstName(row.field_value);
+							}
+							else if(row.field_key == 'appid'){
+								sharedProperties.setAppId(row.field_value);
+							}
+							else if(row.field_key == 'userguid'){
+								sharedProperties.setUserGuid(row.field_value);
+							}
 						}
 						$window.location.href = '#/login';
 					}
@@ -123,21 +141,28 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 		return false;
 	};
 	
-	this.loginFunction = function ($scope){
+	this.loginFunction = function ($scope,sharedProperties){
 		var param = JSON.stringify({
                 "serviceName":"TnetMobileService", 
                 "methodName":"login",
-                "parameters":[null,{'instName' : $scope.instName,'userName' : $scope.userName,'password': $scope.password,'registration_key' : $scope.registration_key}]
+                "parameters":[null,{'instName' : $scope.instName,'userName' : $scope.userName,'password': $scope.password,'registration_key' : $scope.registration_key,'app_id' : $scope.app_id}]
                 });
 		$http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 		var tempUrl = "http://"+$scope.instName+"/"+url;
 		alert('Url '+tempUrl);
-		$http.post(tempUrl, param).success(function(data, status, headers, config) {	
-			sharedProperties.setInstName($scope.instName);
-			sharedProperties.setUserName($scope.userName);
-			sharedProperties.setPassWord($scope.password);
+		$http.post(tempUrl, param).success(function(data, status, headers, config) {		
 			$scope.loading = false;
 			if(data.valid == 'VALID'){
+				sharedProperties.setInstName($scope.instName);
+				sharedProperties.setUserName($scope.userName);
+				sharedProperties.setPassWord($scope.password);
+				sharedProperties.setAppId(data.app_id);
+				sharedProperties.setUserGuid(data.user_guid);
+				AddValueToDB($scope,'username',$scope.userName);
+				AddValueToDB($scope,'password',$scope.password);
+				AddValueToDB($scope,'instname',$scope.instName);
+				AddValueToDB($scope,'appid',data.app_id);
+				AddValueToDB($scope,'userguid',data.user_guid);
 				$scope.login = true;
 				sharedProperties.setIsLogin(true);
 				$scope.$emit('loginStatus', true);
@@ -158,7 +183,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 		});
     };
 	
-	this.validateLogin = function($scope,sharedProperties){
+	/* this.validateLogin = function($scope,sharedProperties){
 		var param = JSON.stringify({
                 "serviceName":"TnetMobileService", 
                 "methodName":"loginValidate",
@@ -189,5 +214,5 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 			alert('Please give instance name correct,Wrong Instance Name. eg: xyz.pupilpod.in');
 			return false;
 		});
-	};
+	}; */
 });

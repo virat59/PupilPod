@@ -258,9 +258,15 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 		var usernameTemp = sharedProperties.getUserName();
 		var passwordTemp = sharedProperties.getPassWord();
 		var instnameTemp = sharedProperties.getInstName();
+		var appId = sharedProperties.getappId();
 		alert('Reg '+regkey+' Inst Name '+instnameTemp+' UserName '+usernameTemp+' password '+passwordTemp);
 		if(instnameTemp != '' && usernameTemp != '' && passwordTemp != ''){
-			PPODService.validateLogin($scope,sharedProperties);
+			$scope.instName = instnameTemp;
+			$scope.userName = usernameTemp;
+			$scope.password = passwordTemp;
+			$scope.registration_key = regkey;
+			$scope.app_id = appId;
+			PPODService.loginFunction($scope,sharedProperties);
 		}
 		else{
 			$scope.loading = false;
@@ -286,7 +292,7 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 			alert('Please enter password, password field can not be empty');
 			return false;
 		}
-		PPODService.loginFunction($scope);	  
+		PPODService.loginFunction($scope,sharedProperties);	  
 	};
 });
 

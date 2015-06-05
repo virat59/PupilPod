@@ -47,6 +47,7 @@ app.service('sharedProperties', function () {
 	var parOrStu = '';
 	var isLogin = false;
 	var login_entity_guid = '';
+	var app_id = '';
 	return {
 		getRegKey: function() {
 			return reg_key;
@@ -78,10 +79,10 @@ app.service('sharedProperties', function () {
 		setParOrStu: function(typeoflogin) {
 			parOrStu = typeoflogin;
 		},
-		getLoginEntityGuid: function() {
+		getUserGuid: function() {
 			return login_entity_guid;
 		},
-		setLoginEntityGuid: function(entity_guid) {
+		setUserGuid: function(entity_guid) {
 			login_entity_guid = entity_guid;
 		},
 		getIsLogin: function() {
@@ -89,6 +90,12 @@ app.service('sharedProperties', function () {
 		},
 		setIsLogin: function(login) {
 			isLogin = login;
+		},
+		getAppId: function() {
+			return app_id;
+		},
+		setAppId: function(appid) {
+			app_id = appid;
 		}
 	};
 });
