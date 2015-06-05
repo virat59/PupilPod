@@ -244,7 +244,7 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 	fnInit();
 	$scope.instDis = true;
 	function fnInit(){
-		//alert('Hi Inside loginController');
+		alert('Hi Inside loginController');
 		$scope.loading = true;
 		$scope.instName = "";
 		$scope.userName = "";
@@ -258,7 +258,7 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 		}
 		else{
 			$scope.loading = false;
-			//alert('Else Part');
+			alert('Else Part');
 		}
     }
 	$scope.submit = function(form) {
