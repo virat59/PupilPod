@@ -266,14 +266,17 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 		$scope.submitted = true;
 		$scope.registration_key = sharedProperties.getRegKey();
 		if($scope.instName == "" || $scope.instName == null){
+			$scope.loading = false;
 			alert('Please enter Instance Name, Instance Name field can not be empty');
 			return false;
 		}
 		else if($scope.userName == "" || $scope.userName == null){
+			$scope.loading = false;
 			alert('Please enter User Name, User Name/id field can not be empty');
 			return false;
 		}
 		else if($scope.password == "" || $scope.password == null){
+			$scope.loading = false;
 			alert('Please enter password, password field can not be empty');
 			return false;
 		}
