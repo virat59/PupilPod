@@ -71,7 +71,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 						alert('Inserted');
 					}
 					else{
-						transaction.executeSql('UPDATE tnet_login_details set field_value = ? WHERE field_key = ? ',[field_key, field_value],nullHandler,errorHandlerQuery);
+						transaction.executeSql('UPDATE tnet_login_details set field_value = ? WHERE field_key = ? ',[ field_value,field_key],nullHandler,errorHandlerQuery);
 						alert('Updated');
 					}
 				}
