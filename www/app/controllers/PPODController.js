@@ -250,10 +250,11 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 		$scope.userName = "";
 		$scope.password = "";
 		var regkey = sharedProperties.getRegKey();
-		var username = sharedProperties.getUserName();
-		var password = sharedProperties.getPassWord();
-		var instname = sharedProperties.getInstName();
-		if(instname != '' && userName != '' && password != ''){
+		var usernameTemp = sharedProperties.getUserName();
+		var passwordTemp = sharedProperties.getPassWord();
+		var instnameTemp = sharedProperties.getInstName();
+		alert('Reg '+regkey+' Inst Name '+instnameTemp+' UserName '+usernameTemp+' password '+passwordTemp);
+		if(instnameTemp != '' && usernameTemp != '' && passwordTemp != ''){
 			PPODService.validateLogin($scope,sharedProperties);
 		}
 		else{
