@@ -258,7 +258,7 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 		var usernameTemp = sharedProperties.getUserName();
 		var passwordTemp = sharedProperties.getPassWord();
 		var instnameTemp = sharedProperties.getInstName();
-		var appId = sharedProperties.getappId();
+		var appId = sharedProperties.getAppId();
 		alert('Reg '+regkey+' Inst Name '+instnameTemp+' UserName '+usernameTemp+' password '+passwordTemp);
 		if(instnameTemp != '' && usernameTemp != '' && passwordTemp != ''){
 			$scope.instName = instnameTemp;
