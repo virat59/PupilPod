@@ -142,6 +142,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 	};
 	
 	this.loginFunction = function ($scope,sharedProperties){
+		var self = this;
 		var param = JSON.stringify({
                 "serviceName":"TnetMobileService", 
                 "methodName":"login",
@@ -155,7 +156,6 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 			if(data.valid == 'VALID'){
 				alert('Valid');
 				alert('data '+data);
-				var self = this;
 				sharedProperties.setInstName($scope.instName);
 				sharedProperties.setUserName($scope.userName);
 				sharedProperties.setPassWord($scope.password);
