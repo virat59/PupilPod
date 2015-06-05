@@ -150,7 +150,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 		var param = JSON.stringify({
                 "serviceName":"TnetMobileService", 
                 "methodName":"login",
-                "parameters":[null,{'instName' : $scope.instName,'userName' : $scope.userName,'password': $scope.password,'registration_key' : $scope.registration_key,'app_id' : $scope.app_id}]
+                "parameters":[null,{'instName' : $scope.instName,'userName' : $scope.userName,'password': $scope.password,'registration_key' : $scope.registration_key,'app_id' : $scope.app_id,'user_guid' : $scope.user_guid}]
                 });
 		$http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 		var tempUrl = "http://"+$scope.instName+"/"+url;

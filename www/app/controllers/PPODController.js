@@ -259,13 +259,14 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 		var passwordTemp = sharedProperties.getPassWord();
 		var instnameTemp = sharedProperties.getInstName();
 		var appId = sharedProperties.getAppId();
-		alert('Reg '+regkey+' Inst Name '+instnameTemp+' UserName '+usernameTemp+' password '+passwordTemp);
+		alert('Reg '+regkey+' Inst Name '+instnameTemp+' UserName '+usernameTemp+' password '+passwordTemp+' appId '+appId);
 		if(instnameTemp != '' && usernameTemp != '' && passwordTemp != ''){
 			$scope.instName = instnameTemp;
 			$scope.userName = usernameTemp;
 			$scope.password = passwordTemp;
 			$scope.registration_key = regkey;
 			$scope.app_id = appId;
+			$scope.user_guid = 
 			PPODService.loginFunction($scope,sharedProperties);
 		}
 		else{
