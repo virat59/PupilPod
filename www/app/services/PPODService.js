@@ -130,7 +130,8 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
                 "parameters":[null,{'instName' : $scope.instName,'userName' : $scope.userName,'password': $scope.password,'registration_key' : $scope.registration_key}]
                 });
 		$http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
-		$http.post(url, param).success(function(data, status, headers, config) {	
+		var tempUrl = "http://"+$scope.instName+"/"+url;
+		$http.post(tempUrl, param).success(function(data, status, headers, config) {	
 			//alert('Success Data '+data.valid);
 			sharedProperties.setInstName($scope.instName);
 			sharedProperties.setUserName($scope.userName);
@@ -146,10 +147,9 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				$scope.instDis = false;
 		})
 		.error(function(data, status, headers, config){
-			alert('Fail data '+data);
-			alert('Fail status '+status);
-			alert('Fail headers '+headers);
-			alert('Fail config '+config);
+			if(status == 404){
+				alert('Please give instance name correct,Wrong Instance Name. eg: xyz.pupilpod.in');
+			}
 			return false;
 		});
     };
@@ -160,8 +160,9 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
                 "methodName":"loginValidate",
                 "parameters":[null,{'instName' : $scope.instName,'userName' : $scope.userName,'password': $scope.password,'registration_key' : $scope.registration_key}]
                 });
+		var tempUrl = "http://"+$scope.instName+"/"+url;
 		$http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
-		$http.post(url, param).success(function(data, status, headers, config) {	
+		$http.post(tempUrl, param).success(function(data, status, headers, config) {	
 			//alert('Success Data '+data.valid);
 			sharedProperties.setInstName($scope.instName);
 			sharedProperties.setUserName($scope.userName);
@@ -177,10 +178,9 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				$scope.instDis = false;
 		})
 		.error(function(data, status, headers, config){
-			alert('Fail data '+data);
-			alert('Fail status '+status);
-			alert('Fail headers '+headers);
-			alert('Fail config '+config);
+			if(status == 404){
+				alert('Please give instance name correct,Wrong Instance Name. eg: xyz.pupilpod.in');
+			}
 			return false;
 		});
 	};

@@ -243,7 +243,6 @@ app.directive('carouselItem', function($drag) {
 app.controller('loginController',function($scope,PPODService,$http,$window,$document,sharedProperties){
 	fnInit();
 	$scope.instDis = true;
-	//$scope.loginTrue = sharedProperties.getIsLogin();
 	function fnInit(){
 		//alert('Hi Inside loginController');
 		$scope.loading = true;
@@ -266,6 +265,18 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 		$scope.loading = true;
 		$scope.submitted = true;
 		$scope.registration_key = sharedProperties.getRegKey();
+		if($scope.instName == "" || $scope.instName == null){
+			alert('Please enter Instance Name, Instance Name field can not be empty');
+			return false;
+		}
+		else if($scope.userName == "" || $scope.userName == null){
+			alert('Please enter User Name, User Name/id field can not be empty');
+			return false;
+		}
+		else if($scope.password == "" || $scope.password == null){
+			alert('Please enter password, password field can not be empty');
+			return false;
+		}
 		PPODService.loginFunction($scope);	  
 	};
 });
