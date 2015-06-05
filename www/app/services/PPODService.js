@@ -131,6 +131,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
                 });
 		$http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 		var tempUrl = "http://"+$scope.instName+"/"+url;
+		alert('Url '+tempUrl);
 		$http.post(tempUrl, param).success(function(data, status, headers, config) {	
 			//alert('Success Data '+data.valid);
 			sharedProperties.setInstName($scope.instName);
@@ -142,14 +143,17 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				sharedProperties.setIsLogin(true);
 				//$scope.$broadcast('loginStatus', true);
 				$scope.$emit('loginStatus', true);
+				$scope.loading = false;
 			}
-			else
+			else{
 				$scope.instDis = false;
+				$scope.loading = false;
+				alert('Wrong User Name or Password, Please try again');
+			}
 		})
 		.error(function(data, status, headers, config){
-			if(status == 404){
-				alert('Please give instance name correct,Wrong Instance Name. eg: xyz.pupilpod.in');
-			}
+			$scope.loading = false;
+			alert('Please give instance name correct,Wrong Instance Name. eg: xyz.pupilpod.in');
 			return false;
 		});
     };
@@ -161,6 +165,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
                 "parameters":[null,{'instName' : $scope.instName,'userName' : $scope.userName,'password': $scope.password,'registration_key' : $scope.registration_key}]
                 });
 		var tempUrl = "http://"+$scope.instName+"/"+url;
+		alert('Url '+tempUrl);
 		$http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 		$http.post(tempUrl, param).success(function(data, status, headers, config) {	
 			//alert('Success Data '+data.valid);
@@ -174,13 +179,15 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				//$scope.$broadcast('loginStatus', true);  $emit
 				$scope.$emit('loginStatus', true);
 			}
-			else
+			else{
 				$scope.instDis = false;
+				$scope.loading = false;
+				alert('Wrong User Name or Password, Please try again');
+			}
 		})
 		.error(function(data, status, headers, config){
-			if(status == 404){
-				alert('Please give instance name correct,Wrong Instance Name. eg: xyz.pupilpod.in');
-			}
+			$scope.loading = false;
+			alert('Please give instance name correct,Wrong Instance Name. eg: xyz.pupilpod.in');
 			return false;
 		});
 	};
