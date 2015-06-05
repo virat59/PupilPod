@@ -153,6 +153,8 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 		$http.post(tempUrl, param).success(function(data, status, headers, config) {		
 			$scope.loading = false;
 			if(data.valid == 'VALID'){
+				alert('Valid');
+				alert('data '+data);
 				sharedProperties.setInstName($scope.instName);
 				sharedProperties.setUserName($scope.userName);
 				sharedProperties.setPassWord($scope.password);
