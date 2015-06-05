@@ -4,7 +4,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	$scope.loginTrue = sharedProperties.getIsLogin();
 	function initialize() {
 		//alert('Hi In initialize');
-		if($scope.loginTrue == true){
+		if(sharedProperties.getIsLogin() == true){
 			$window.location.href = '#/mainLanding';
 			return false;
 		}	
@@ -42,7 +42,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	
 	$rootScope.$on('loginStatus',function(event,args){
 		//alert('BroadCast loginStatus '+args);
-		sharedProperties.setIsLogin(args);
+		//sharedProperties.setIsLogin(args);
 		$scope.loginTrue = args;
 	});
 	
@@ -249,7 +249,7 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 	$scope.instDis = true;
 	function fnInit(){
 		alert('Hi Inside loginController');
-		if($scope.login == true){
+		if(sharedProperties.getIsLogin() == true){
 			$window.location.href = '#/mainLanding';
 			return false;
 		}
