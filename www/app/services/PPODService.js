@@ -63,16 +63,16 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 			$scope.db = db;		
 		}
 		$scope.db.transaction(function(transaction) {
-			transaction.executeSql("SELECT * FROM tnet_login_details WHERE field_key = ? ", ['reg_id'],function(transaction, result)
+			transaction.executeSql("SELECT * FROM tnet_login_details WHERE field_key = ? ", [field_key],function(transaction, result)
 			{
 				if (result != null && result.rows != null) {
 					if(result.rows.length == 0){
 						transaction.executeSql('INSERT INTO tnet_login_details(field_key, field_value) VALUES (?,?)',[field_key, field_value],nullHandler,errorHandlerQuery);
-						//alert('Inserted');
+						alert('Inserted');
 					}
 					else{
 						transaction.executeSql('UPDATE tnet_login_details set field_value = ? WHERE field_key = ? ',[field_key, field_value],nullHandler,errorHandlerQuery);
-						//alert('Updated');
+						alert('Updated');
 					}
 				}
 			},errorHandlerQuery);
