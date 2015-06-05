@@ -68,11 +68,11 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				if (result != null && result.rows != null) {
 					if(result.rows.length == 0){
 						transaction.executeSql('INSERT INTO tnet_login_details(field_key, field_value) VALUES (?,?)',[field_key, field_value],nullHandler,errorHandlerQuery);
-						alert('Inserted');
+						//alert('Inserted');
 					}
 					else{
 						transaction.executeSql('UPDATE tnet_login_details set field_value = ? WHERE field_key = ? ',[ field_value,field_key],nullHandler,errorHandlerQuery);
-						alert('Updated');
+						//alert('Updated');
 					}
 				}
 			},errorHandlerQuery);
@@ -107,7 +107,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 						{
 							for (var i = 0; i < resultT1.rows.length; i++) {
 								var row = resultT1.rows.item(i);
-								alert('Key '+row.field_key+' Value '+row.field_value);
+								//alert('Key '+row.field_key+' Value '+row.field_value);
 								if(row.field_key == 'reg_id'){
 									sharedProperties.setRegKey(row.field_value);
 								}
@@ -154,24 +154,24 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
                 });
 		$http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 		var tempUrl = "http://"+$scope.instName+"/"+url;
-		alert('Url '+tempUrl);
+		//alert('Url '+tempUrl);
 		$http.post(tempUrl, param).success(function(data, status, headers, config) {		
 			$scope.loading = false;
 			if(data.valid == 'VALID'){
-				alert('Valid');
-				alert('data '+data);
+				//alert('Valid');
+				//alert('data '+data);
 				sharedProperties.setInstName($scope.instName);
 				sharedProperties.setUserName($scope.userName);
 				sharedProperties.setPassWord($scope.password);
 				sharedProperties.setAppId(data.app_id);
 				sharedProperties.setUserGuid(data.user_guid);
-				alert('Reached Here 1111');
+				//alert('Reached Here 1111');
 				self.AddValueToDB($scope,'username',$scope.userName);
 				self.AddValueToDB($scope,'password',$scope.password);
 				self.AddValueToDB($scope,'instname',$scope.instName);
 				self.AddValueToDB($scope,'appid',data.app_id);
 				self.AddValueToDB($scope,'userguid',data.user_guid);
-				alert('Reached Here 2222');
+				//alert('Reached Here 2222');
 				$scope.login = true;
 				sharedProperties.setIsLogin(true);
 				$scope.$emit('loginStatus', true);

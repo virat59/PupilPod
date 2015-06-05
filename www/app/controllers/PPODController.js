@@ -248,7 +248,7 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 	fnInit();
 	$scope.instDis = true;
 	function fnInit(){
-		alert('Hi Inside loginController');
+		//alert('Hi Inside loginController');
 		if(sharedProperties.getIsLogin() == true){
 			$window.location.href = '#/mainLanding';
 			return false;
@@ -259,7 +259,7 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 		var passwordTemp = sharedProperties.getPassWord();
 		var instnameTemp = sharedProperties.getInstName();
 		var appId = sharedProperties.getAppId();
-		alert('Reg '+regkey+' Inst Name '+instnameTemp+' UserName '+usernameTemp+' password '+passwordTemp+' appId '+appId);
+		//alert('Reg '+regkey+' Inst Name '+instnameTemp+' UserName '+usernameTemp+' password '+passwordTemp+' appId '+appId);
 		if(instnameTemp != '' && usernameTemp != '' && passwordTemp != ''){
 			$scope.instName = instnameTemp;
 			$scope.userName = usernameTemp;
@@ -271,7 +271,7 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 		}
 		else{
 			$scope.loading = false;
-			alert('Else Part');
+			//alert('Else Part');
 		}
     }
 	$scope.submit = function(form) {
