@@ -155,17 +155,18 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 			if(data.valid == 'VALID'){
 				alert('Valid');
 				alert('data '+data);
+				var self = this;
 				sharedProperties.setInstName($scope.instName);
 				sharedProperties.setUserName($scope.userName);
 				sharedProperties.setPassWord($scope.password);
 				sharedProperties.setAppId(data.app_id);
 				sharedProperties.setUserGuid(data.user_guid);
 				alert('Reached Here 1111');
-				this.AddValueToDB($scope,'username',$scope.userName);
-				this.AddValueToDB($scope,'password',$scope.password);
-				this.AddValueToDB($scope,'instname',$scope.instName);
-				this.AddValueToDB($scope,'appid',data.app_id);
-				this.AddValueToDB($scope,'userguid',data.user_guid);
+				self.AddValueToDB($scope,'username',$scope.userName);
+				self.AddValueToDB($scope,'password',$scope.password);
+				self.AddValueToDB($scope,'instname',$scope.instName);
+				self.AddValueToDB($scope,'appid',data.app_id);
+				self.AddValueToDB($scope,'userguid',data.user_guid);
 				alert('Reached Here 2222');
 				$scope.login = true;
 				sharedProperties.setIsLogin(true);
