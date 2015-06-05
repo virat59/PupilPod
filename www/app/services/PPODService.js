@@ -161,11 +161,11 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				sharedProperties.setAppId(data.app_id);
 				sharedProperties.setUserGuid(data.user_guid);
 				alert('Reached Here 1111');
-				PPODService.AddValueToDB($scope,'username',$scope.userName);
-				PPODService.AddValueToDB($scope,'password',$scope.password);
-				PPODService.AddValueToDB($scope,'instname',$scope.instName);
-				PPODService.AddValueToDB($scope,'appid',data.app_id);
-				PPODService.AddValueToDB($scope,'userguid',data.user_guid);
+				this.AddValueToDB($scope,'username',$scope.userName);
+				this.AddValueToDB($scope,'password',$scope.password);
+				this.AddValueToDB($scope,'instname',$scope.instName);
+				this.AddValueToDB($scope,'appid',data.app_id);
+				this.AddValueToDB($scope,'userguid',data.user_guid);
 				alert('Reached Here 2222');
 				$scope.login = true;
 				sharedProperties.setIsLogin(true);
