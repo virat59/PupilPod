@@ -133,17 +133,17 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 		var tempUrl = "http://"+$scope.instName+"/"+url;
 		alert('Url '+tempUrl);
 		$http.post(tempUrl, param).success(function(data, status, headers, config) {	
-			//alert('Success Data '+data.valid);
 			sharedProperties.setInstName($scope.instName);
 			sharedProperties.setUserName($scope.userName);
 			sharedProperties.setPassWord($scope.password);
 			$scope.loading = false;
 			if(data.valid == 'VALID'){
-				$window.location.href = '#/mainLanding';
+				$scope.login = true;
 				sharedProperties.setIsLogin(true);
-				//$scope.$broadcast('loginStatus', true);
 				$scope.$emit('loginStatus', true);
 				$scope.loading = false;
+				$window.location.href = '#/mainLanding';
+				
 			}
 			else{
 				$scope.instDis = false;
@@ -168,16 +168,15 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 		alert('Url '+tempUrl);
 		$http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 		$http.post(tempUrl, param).success(function(data, status, headers, config) {	
-			//alert('Success Data '+data.valid);
 			sharedProperties.setInstName($scope.instName);
 			sharedProperties.setUserName($scope.userName);
 			sharedProperties.setPassWord($scope.password);
 			if(data.valid == 'VALID'){
 				$scope.loading = false;
-				$window.location.href = '#/mainLanding';
+				$scope.login = true;
 				sharedProperties.setIsLogin(true);
-				//$scope.$broadcast('loginStatus', true);  $emit
 				$scope.$emit('loginStatus', true);
+				$window.location.href = '#/mainLanding';
 			}
 			else{
 				$scope.instDis = false;

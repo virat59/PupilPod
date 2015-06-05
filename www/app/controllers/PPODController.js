@@ -4,6 +4,10 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	$scope.loginTrue = sharedProperties.getIsLogin();
 	function initialize() {
 		//alert('Hi In initialize');
+		if($scope.loginTrue == true){
+			$window.location.href = '#/mainLanding';
+			return false;
+		}	
 		$scope.db = null;
         bindEvents();
     };
@@ -245,10 +249,11 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 	$scope.instDis = true;
 	function fnInit(){
 		alert('Hi Inside loginController');
+		if($scope.login == true){
+			$window.location.href = '#/mainLanding';
+			return false;
+		}
 		$scope.loading = true;
-		$scope.instName = "";
-		$scope.userName = "";
-		$scope.password = "";
 		var regkey = sharedProperties.getRegKey();
 		var usernameTemp = sharedProperties.getUserName();
 		var passwordTemp = sharedProperties.getPassWord();
