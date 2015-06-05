@@ -103,27 +103,31 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 					}
 					else{
 						//alert('Entry Exist');
-						for (var i = 0; i < result.rows.length; i++) {
-							var row = result.rows.item(i);
-							if(row.field_key == 'reg_id'){
-								sharedProperties.setRegKey(row.field_value);
+						transaction.executeSql("SELECT * FROM tnet_login_details", [],function(transaction, resultT1)
+						{
+							for (var i = 0; i < resultT1.rows.length; i++) {
+								var row = resultT1.rows.item(i);
+								alert('Key '+row.field_key+' Value '+row.field_value);
+								if(row.field_key == 'reg_id'){
+									sharedProperties.setRegKey(row.field_value);
+								}
+								else if(row.field_key == 'username'){
+									sharedProperties.setUserName(row.field_value);
+								}
+								else if(row.field_key == 'password'){
+									sharedProperties.setPassWord(row.field_value);
+								}
+								else if(row.field_key == 'instname'){
+									sharedProperties.setInstName(row.field_value);
+								}
+								else if(row.field_key == 'appid'){
+									sharedProperties.setAppId(row.field_value);
+								}
+								else if(row.field_key == 'userguid'){
+									sharedProperties.setUserGuid(row.field_value);
+								}
 							}
-							else if(row.field_key == 'username'){
-								sharedProperties.setUserName(row.field_value);
-							}
-							else if(row.field_key == 'password'){
-								sharedProperties.setPassWord(row.field_value);
-							}
-							else if(row.field_key == 'instname'){
-								sharedProperties.setInstName(row.field_value);
-							}
-							else if(row.field_key == 'appid'){
-								sharedProperties.setAppId(row.field_value);
-							}
-							else if(row.field_key == 'userguid'){
-								sharedProperties.setUserGuid(row.field_value);
-							}
-						}
+						},errorHandlerQuery);
 						$window.location.href = '#/login';
 					}
 				}
