@@ -1,3 +1,16 @@
+document.addEventListener('CallsuccessPage', CallsuccessPage, false);
+document.addEventListener('CallfailPage', CallfailPage, false);
+
+function CallsuccessPage() {
+	alert('Alert CallsuccessPage');
+	//$window.location.href = '#/mainLanding';
+};
+
+function CallfailPage() {
+	alert('Alert CallfailPage');
+	//$window.location.href = '#/mainLanding';
+};
+
 app.controller('PPODController',function($scope,PPODService,$http,$window,$document,$rootScope,$cordovaPush,$cordovaSQLite,sharedProperties){    //
 	$scope.contactname = "ThoughtNet Technologies (India) Pvt. Ltd";
 	initialize();
@@ -19,8 +32,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	function bindEvents() {
 		alert('Hi In BindEvents');
         document.addEventListener('deviceready', onDeviceReady, false);
-		document.addEventListener('CallsuccessPage', CallsuccessPage, false);
-		document.addEventListener('CallfailPage', CallfailPage, false);
+		
     };
 	
 	
@@ -30,15 +42,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 		PPODService.dbConnection($scope,sharedProperties);
     };
 	
-	function CallsuccessPage() {
-		alert('Alert CallsuccessPage');
-		$window.location.href = '#/mainLanding';
-    };
 	
-	function CallfailPage() {
-		alert('Alert CallfailPage');
-		$window.location.href = '#/mainLanding';
-    };
 	
 	
 	function receivedEvent(id) {
