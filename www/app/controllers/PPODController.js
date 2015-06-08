@@ -330,3 +330,20 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 		$scope.stu_sec = "VI C Section";
     }
 });
+
+app.controller('feesController',function($scope,PPODService,$http,$window,$document,sharedProperties){
+	fnInit();
+	function fnInit(){
+		alert('Hi Inside feesController');	
+    }
+	$scope.makePayment = function(payment_id){
+		alert('Hi Inside makePayment '+payment_id);
+		var ref = window.open('http://thoughtnet.pupilpod.in/paymenttest.php', '_blank', 'location=yes');
+        ref.addEventListener('loadstart', function(event) { alert('start: ' + event.url); });
+        ref.addEventListener('loadstop', function(event) { alert('stop: ' + event.url); });
+        ref.addEventListener('loaderror', function(event) { alert('error: ' + event.message); });
+        ref.addEventListener('exit', function(event) { alert(event.type); });
+	}
+});
+
+

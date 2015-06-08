@@ -1,10 +1,10 @@
-<div ng-controller="mainController">
+<div ng-controller="feesController">
 	<div class="scrollable">
 		<div class="scrollable-content">
 			<br/>
 			<div class="header_sub"><h4>Fees Details<h4></div>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-thumbs-o-up"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No Fees Due<br/>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://thoughtnet.pupilpod.in/paymenttest.php">Pay</a>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" id="makePayment" ng-click="makePayment(1)">Pay</button>
 		</div>
 	</div>
 </div>
