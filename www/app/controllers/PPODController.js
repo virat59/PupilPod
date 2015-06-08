@@ -17,8 +17,10 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	};
 	
 	function bindEvents() {
-		//alert('Hi In BindEvents');
+		alert('Hi In BindEvents');
         document.addEventListener('deviceready', onDeviceReady, false);
+		document.addEventListener('CallsuccessPage', CallsuccessPage, false);
+		document.addEventListener('CallfailPage', CallfailPage, false);
     };
 	
 	
@@ -27,6 +29,17 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 		receivedEvent('deviceready');
 		PPODService.dbConnection($scope,sharedProperties);
     };
+	
+	function CallsuccessPage() {
+		alert('Alert CallsuccessPage');
+		$window.location.href = '#/mainLanding';
+    };
+	
+	function CallfailPage() {
+		alert('Alert CallfailPage');
+		$window.location.href = '#/mainLanding';
+    };
+	
 	
 	function receivedEvent(id) {
 		//alert('Event Received '+id);
