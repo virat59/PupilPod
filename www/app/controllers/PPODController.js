@@ -333,17 +333,21 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 
 app.controller('feesController',function($scope,PPODService,$http,$window,$document,sharedProperties){
 	fnInit();
+	var ref = "";
 	function fnInit(){
 		alert('Hi Inside feesController');	
     }
 	$scope.makePayment = function(payment_id){
 		alert('Hi Inside makePayment '+payment_id);
-		var ref = window.open('http://thoughtnet.pupilpod.in/paymenttest.php', '_blank', 'location=yes');
+		ref = window.open('http://thoughtnet.pupilpod.in/paymenttest.php', '_blank', 'location=no');
         ref.addEventListener('loadstart', function(event) { alert('start: ' + event.url); });
         ref.addEventListener('loadstop', function(event) { alert('stop: ' + event.url); });
         ref.addEventListener('loaderror', function(event) { alert('error: ' + event.message); });
         ref.addEventListener('exit', function(event) { alert(event.type); });
+		ref.addEventListener('CallsuccessPage', function(event) { alert(event.type); });
+		ref.addEventListener('CallfailPage', function(event) { alert(event.type); });
 	}
+	
 });
 
 
