@@ -340,19 +340,18 @@ app.controller('feesController',function($scope,PPODService,$http,$window,$docum
 	$scope.makePayment = function(payment_id){
 		alert('Hi Inside makePayment '+payment_id);
 		ref = window.open('http://thoughtnet.pupilpod.in/paymenttest.php', '_blank', 'location=no');
-        ref.addEventListener('loadstart', function(event) { alert('start: ' + event.url); });
-        ref.addEventListener('loadstop', function(event) { alert('stop: ' + event.url); 
+        ref.addEventListener('loadstart', function(event) {  });
+        ref.addEventListener('loadstop', function(event) {  
 			if (event.url.match("/close")) {
 				ref.close();
 			}
 		});
-        ref.addEventListener('loaderror', function(event) { alert('error: ' + event.message); 
+        ref.addEventListener('loaderror', function(event) {
 			if (event.url.match("/close")) {
 				ref.close();
 			} 
 		});
-		//ref.addEventListener('loaderror', function(event) { alert('error: ' + event.message); });
-        ref.addEventListener('exit', function(event) { alert(event.type); });
+		ref.addEventListener('exit', function(event) { $window.location.href = '#/paymentCallBack'; });
 	}
 	
 });

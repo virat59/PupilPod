@@ -36,6 +36,10 @@ app.config(function($routeProvider) {
 		templateUrl: 'app/views/others/fees.html', 
 		reloadOnSearch: false
 	})
+	.when('/paymentCallBack',{
+		templateUrl: 'app/views/others/paymentCallBack.html', 
+		reloadOnSearch: false
+	})
 	.otherwise({redirectTo: 'app/views/Home.html' });
 });
 
