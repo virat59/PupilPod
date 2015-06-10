@@ -1,7 +1,6 @@
 app.controller('PPODController',function($scope,PPODService,$http,$window,$document,$rootScope,$cordovaPush,$cordovaSQLite,sharedProperties){    //
 	$scope.contactname = "ThoughtNet Technologies (India) Pvt. Ltd";
 	initialize();
-	$scope.ngViewClass = "modalOff";
 	$scope.loginTrue = sharedProperties.getIsLogin();
 	function initialize() {
 		$scope.ngViewClass = "modalOff";
@@ -58,6 +57,12 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 		//alert('BroadCast loginStatus '+args);
 		//sharedProperties.setIsLogin(args);
 		$scope.loginTrue = args;
+	});
+	
+	$rootScope.$on('modelOffEvent',function(event){
+		//alert('BroadCast loginStatus '+args);
+		//sharedProperties.setIsLogin(args);
+		$scope.ngViewClass = "modalOff";
 	});
 	
 	
@@ -262,8 +267,7 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 	fnInit();
 	$scope.instDis = true;
 	function fnInit(){
-		//alert('Hi Inside loginController');
-		$scope.ngViewClass = "modalOff";
+		$scope.$emit('modelOffEvent', true);
 		if(sharedProperties.getIsLogin() == true){
 			$window.location.href = '#/mainLanding';
 			return false;
@@ -316,8 +320,7 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 app.controller('mainController',function($scope,PPODService,$http,$window,$document,sharedProperties){
 	fnInit();
 	function fnInit(){
-		$scope.ngViewClass = "modalOff";
-		//alert('Hi Inside mainController');	
+		$scope.$emit('modelOffEvent', true);
 		$scope.stu_name = "Virat Joshi";
 		$scope.stu_dob = "01-April-1990";
 		$scope.stu_id = "1OY10MCA84";
@@ -334,8 +337,7 @@ app.controller('feesController',function($scope,PPODService,$http,$window,$docum
 	fnInit();
 	var ref = "";
 	function fnInit(){
-		$scope.ngViewClass = "modalOff";
-		//alert('Hi Inside feesController');	
+		$scope.$emit('modelOffEvent', true);	
     }
 	$scope.makePayment = function(payment_id){
 		alert('Hi Inside makePayment '+payment_id);
