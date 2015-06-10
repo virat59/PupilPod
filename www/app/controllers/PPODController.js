@@ -4,6 +4,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	$scope.ngViewClass = "modalOff";
 	$scope.loginTrue = sharedProperties.getIsLogin();
 	function initialize() {
+		$scope.ngViewClass = "modalOff";
 		//alert('Hi In initialize');
 		if(sharedProperties.getIsLogin() == true){
 			$window.location.href = '#/mainLanding';
@@ -262,6 +263,7 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 	$scope.instDis = true;
 	function fnInit(){
 		//alert('Hi Inside loginController');
+		$scope.ngViewClass = "modalOff";
 		if(sharedProperties.getIsLogin() == true){
 			$window.location.href = '#/mainLanding';
 			return false;
@@ -314,6 +316,7 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 app.controller('mainController',function($scope,PPODService,$http,$window,$document,sharedProperties){
 	fnInit();
 	function fnInit(){
+		$scope.ngViewClass = "modalOff";
 		//alert('Hi Inside mainController');	
 		$scope.stu_name = "Virat Joshi";
 		$scope.stu_dob = "01-April-1990";
@@ -331,7 +334,8 @@ app.controller('feesController',function($scope,PPODService,$http,$window,$docum
 	fnInit();
 	var ref = "";
 	function fnInit(){
-		alert('Hi Inside feesController');	
+		$scope.ngViewClass = "modalOff";
+		//alert('Hi Inside feesController');	
     }
 	$scope.makePayment = function(payment_id){
 		alert('Hi Inside makePayment '+payment_id);
