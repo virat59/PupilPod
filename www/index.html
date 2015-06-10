@@ -45,14 +45,14 @@
 				<div ng-include="'app/views/others/sidebarRight.html'" 
 				class="sidebar sidebar-right" ng-show="loginTrue"></div>
 		   
-				<div class="app" ng-if="loginTrue" ng-swipe-right='Ui.turnOn("uiSidebarLeft");swapeOn();' ng-swipe-left='Ui.turnOff("uiSidebarLeft");swapeOff()'>
-					<div ng-class="ngViewClass"></div>
+				<div class="app" ng-if="loginTrue" ng-swipe-right='Ui.turnOn("uiSidebarLeft");swapeOn();' ng-swipe-left='Ui.turnOff("uiSidebarLeft");swapeOff();'>
+					<div ng-class="ngViewClass"  ng-click="swapeOff();"></div>
 					<div class="navbar navbar-app navbar-absolute-top">
 						<div class="navbar-brand navbar-brand-center" ui-yield-to="title">
 							PupilPod
 						</div>
 						<div class="btn-group pull-left">
-							<div ui-toggle="uiSidebarLeft" class="btn sidebar-toggle">
+							<div ui-toggle="uiSidebarLeft" class="btn sidebar-toggle" ng-click="swapeOn();">
 								<i class="fa fa-bars"></i>
 							</div>
 						</div>
@@ -63,12 +63,12 @@
 						</div>
 					</div>
 
-					<div class="navbar navbar-app navbar-absolute-bottom">
+					<!--<div class="navbar navbar-app navbar-absolute-bottom">
 						<div class="btn-group justified">
 							<a href="http://thoughtnet.in" class="btn btn-navbar"><i class="fa fa-home fa-navbar"></i> ThoughtNet</a>
 							<a href="#" class="btn btn-navbar"><i class="fa fa-github fa-navbar"></i> Organisation</a>
 						</div>
-					</div>
+					</div> -->
 			   
 					<div class="app-body" ng-class="{loading: loading}">
 						<div ng-show="loading" class="app-content-loading">
