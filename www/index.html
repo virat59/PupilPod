@@ -37,6 +37,7 @@
 		<script src="app/services/PPODService.js"></script>
     </head>
     <body ng-app="PPOD" ng-controller="PPODController">
+				
 				<div ng-include="'app/views/others/sidebar.html'" 
 				ui-track-as-search-param='true'
 				class="sidebar sidebar-left" ng-show="loginTrue"></div>
@@ -45,6 +46,7 @@
 				class="sidebar sidebar-right" ng-show="loginTrue"></div>
 		   
 				<div class="app" ng-if="loginTrue" ng-swipe-right='Ui.turnOn("uiSidebarLeft");swapeOn();' ng-swipe-left='Ui.turnOff("uiSidebarLeft");swapeOff()'>
+					<div ng-class="ngViewClass"></div>
 					<div class="navbar navbar-app navbar-absolute-top">
 						<div class="navbar-brand navbar-brand-center" ui-yield-to="title">
 							PupilPod
@@ -80,7 +82,7 @@
 						<!--<span id="lbUsers"></span>-->
 						<div class="app-content">
 						  <!--<ng-view></ng-view>-->
-						  <div ng-view ng-class="ngViewClass"> </div>
+						  <div ng-view> </div>
 						</div>
 					</div>
 				</div>

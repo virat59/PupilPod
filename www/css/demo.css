@@ -201,11 +201,37 @@ input.scrollable-header {
 /*animations */
 
 .blurOn{
-	opacity: 0;
+	/*opacity: 0;*/
+	background-color: rgba(0, 0, 0, 0.5);
 }
 
 .blurOff{
 	opacity: 1;
 }
 
+.modalOff{
+	position:fixed;
+	top:0px;
+	left:0px;
+	right:0px;
+	bottom:0px;
+	z-index:999;
+	background-color:#554343;
+	height:100%;
+	display:none;
+	opacity:0.75
+}
+
+.modalOn{
+	position:fixed;
+	top:0px;
+	left:0px;
+	right:0px;
+	bottom:0px;
+	z-index:999;
+	background-color:#554343;
+	height:100%;
+	display:visible;
+	opacity:0.75
+}
 /* animation end */

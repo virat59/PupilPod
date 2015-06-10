@@ -1,7 +1,7 @@
 app.controller('PPODController',function($scope,PPODService,$http,$window,$document,$rootScope,$cordovaPush,$cordovaSQLite,sharedProperties){    //
 	$scope.contactname = "ThoughtNet Technologies (India) Pvt. Ltd";
 	initialize();
-	$scope.ngViewClass = "blurOn";
+	$scope.ngViewClass = "modalOff";
 	$scope.loginTrue = sharedProperties.getIsLogin();
 	function initialize() {
 		//alert('Hi In initialize');
@@ -33,13 +33,13 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	$scope.swapeOn = function(){
 		alert('swape on');
 		//return "blurOn";
-		$scope.ngViewClass = "blurOn";
+		$scope.ngViewClass = "modalOn";
 	};
 	
 	$scope.swapeOff = function(){
 		alert('swape off');
 		//return "blurOff";
-		$scope.ngViewClass = "blurOff";
+		$scope.ngViewClass = "modalOff";
 	};
 	
 	function receivedEvent(id) {
