@@ -1,4 +1,4 @@
-var app = angular.module('PPOD',['ngRoute','mobile-angular-ui','mobile-angular-ui.gestures','pushNotifications.ctrl',"ngCordova"]);
+var app = angular.module('PPOD',['ngRoute','mobile-angular-ui','mobile-angular-ui.gestures','pushNotifications.ctrl',"ngCordova",'ngAnimate']);
 
 app.constant('url', 'NBA/amfphp-2.1/Amfphp/?contentType=application/json');
 
