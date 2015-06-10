@@ -18,9 +18,8 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	};
 	
 	function bindEvents() {
-		alert('Hi In BindEvents');
-        document.addEventListener('deviceready', onDeviceReady, false);
-		
+		//alert('Hi In BindEvents');
+        document.addEventListener('deviceready', onDeviceReady, false);	
     };
 	
 	
@@ -31,13 +30,13 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
     };
 	
 	$scope.swapeOn = function(){
-		alert('swape on');
+		//alert('swape on');
 		//return "blurOn";
 		$scope.ngViewClass = "modalOn";
 	};
 	
 	$scope.swapeOff = function(){
-		alert('swape off');
+		//alert('swape off');
 		//return "blurOff";
 		$scope.ngViewClass = "modalOff";
 	};
