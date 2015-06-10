@@ -29,8 +29,13 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 		PPODService.dbConnection($scope,sharedProperties);
     };
 	
+	$scope.swapeOn = function(){
+		alert('swape on');
+	};
 	
-	
+	$scope.swapeOff = function(){
+		alert('swape off');
+	};
 	
 	function receivedEvent(id) {
 		//alert('Event Received '+id);
