@@ -4,8 +4,8 @@ app.constant('url', 'NBA/amfphp-2.1/Amfphp/?contentType=application/json');
 
 app.run(function() {
     FastClick.attach(document.body);
-  });
-  
+});
+
 app.config(function($routeProvider) {
   $routeProvider
 	.when('/',{

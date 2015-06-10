@@ -1,16 +1,3 @@
-document.addEventListener('CallsuccessPage', CallsuccessPage, false);
-document.addEventListener('CallfailPage', CallfailPage, false);
-
-function CallsuccessPage() {
-	alert('Alert CallsuccessPage');
-	//$window.location.href = '#/mainLanding';
-};
-
-function CallfailPage() {
-	alert('Alert CallfailPage');
-	//$window.location.href = '#/mainLanding';
-};
-
 app.controller('PPODController',function($scope,PPODService,$http,$window,$document,$rootScope,$cordovaPush,$cordovaSQLite,sharedProperties){    //
 	$scope.contactname = "ThoughtNet Technologies (India) Pvt. Ltd";
 	initialize();
