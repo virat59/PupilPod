@@ -2,6 +2,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	$scope.contactname = "ThoughtNet Technologies (India) Pvt. Ltd";
 	initialize();
 	$scope.loginTrue = sharedProperties.getIsLogin();
+	$scope.student_name = "Virat Joshi";
 	function initialize() {
 		$scope.ngViewClass = "modalOff";
 		//alert('Hi In initialize');
