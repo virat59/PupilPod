@@ -5,13 +5,13 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	$scope.student_name = "Virat Joshi";
 	$scope.colours = [
 		{
-			name: "Red",
-			hex: "#F21B1B"
+			name: "Virat Joshi",
+			hex: "#ViratJoshi"
 		}, {
-			name: "Blue",
+			name: "Midhun T. M.",
 			hex: "#1B66F2"
 		}, {
-			name: "Green",
+			name: "Palaxa",
 			hex: "#07BA16"
 		}
 	];
