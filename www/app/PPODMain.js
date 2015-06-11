@@ -56,6 +56,8 @@ app.service('sharedProperties', function () {
 	var isLogin = false;
 	var login_entity_guid = '';
 	var app_id = '';
+	var student_guid = '';
+	var student_name = '';
 	return {
 		getRegKey: function() {
 			return reg_key;
@@ -104,6 +106,18 @@ app.service('sharedProperties', function () {
 		},
 		setAppId: function(appid) {
 			app_id = appid;
+		},
+		getStudentSelectedGuid: function() {
+			return student_guid;
+		},
+		setStudentSelectedGuid: function(stuGuid) {
+			student_guid = stuGuid;
+		},
+		getStudentSelectedName: function() {
+			return student_name;
+		},
+		setStudentSelectedName: function(stuName) {
+			student_name = stuName;
 		}
 	};
 });

@@ -383,6 +383,7 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 app.controller('mainController',function($scope,PPODService,$http,$window,$document,sharedProperties){
 	fnInit();
 	function fnInit(){
+		PPODService.getStudentDetails($scope,sharedProperties);
 		$scope.$emit('modelOffEvent', true);
 		$scope.stu_name = "Virat Joshi";
 		$scope.stu_dob = "01-April-1990";

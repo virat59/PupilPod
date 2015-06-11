@@ -176,6 +176,9 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				sharedProperties.setIsLogin(true);
 				$scope.$emit('loginStatus', true);
 				$scope.loading = false;
+				$scope.students = data.studentList;
+				sharedProperties.setStudentSelectedGuid(data.studentList[0]['student_guid']);
+				sharedProperties.setStudentSelectedName(data.studentList[0]['name']);
 				$window.location.href = '#/mainLanding';
 				
 			}
@@ -192,30 +195,21 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 		});
     };
 	
-	/* this.validateLogin = function($scope,sharedProperties){
+	this.getStudentDetails = function($scope,sharedProperties){
 		var param = JSON.stringify({
                 "serviceName":"TnetMobileService", 
-                "methodName":"loginValidate",
-                "parameters":[null,{'instName' : $scope.instName,'userName' : $scope.userName,'password': $scope.password,'registration_key' : $scope.registration_key}]
+                "methodName":"getStudentDetails",
+                "parameters":[null,{'user_id' : $scope.userName,'student_guid': $scope.student_guid}]
                 });
-		var tempUrl = "http://"+$scope.instName+"/"+url;
-		alert('Url '+tempUrl);
+		var tempUrl = "http://"+sharedProperties.getInstName()+"/"+url;
 		$http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 		$http.post(tempUrl, param).success(function(data, status, headers, config) {	
-			sharedProperties.setInstName($scope.instName);
-			sharedProperties.setUserName($scope.userName);
-			sharedProperties.setPassWord($scope.password);
 			if(data.valid == 'VALID'){
 				$scope.loading = false;
-				$scope.login = true;
-				sharedProperties.setIsLogin(true);
-				$scope.$emit('loginStatus', true);
-				$window.location.href = '#/mainLanding';
+				$scope.studentDetails = data.studentDetails;
 			}
 			else{
-				$scope.instDis = false;
 				$scope.loading = false;
-				alert('Wrong User Name or Password, Please try again');
 			}
 		})
 		.error(function(data, status, headers, config){
@@ -223,5 +217,5 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 			alert('Please give instance name correct,Wrong Instance Name. eg: xyz.pupilpod.in');
 			return false;
 		});
-	}; */
+	}; 
 });
