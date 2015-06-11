@@ -252,10 +252,11 @@ input.scrollable-header {
 	  -moz-box-sizing: border-box;
 	}
 	dropdown {
-		padding-top: 15px;
-	  float: right;
-	  display: block;
-	  z-index: 999;
+		padding: 5px 5px 5px 5px;
+		float: right;
+		display: block;
+		z-index: 999;
+		width: 100%;
 	}
 	dropdown > div {
 	  float: left;
