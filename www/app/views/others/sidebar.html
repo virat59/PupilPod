@@ -1,10 +1,12 @@
 <div class="scrollable">	
-	<h1 class="scrollable-header app-name" style="color:#4286F5;">{{student_name}}</h1>
+	<h1 class="scrollable-header app-name" style="color:#4286F5;">{{student_name}}
+	<dropdown class="ng-isolate-scope" selected="colour" property="name" list="colours" placeholder="Colour..."></dropdown></h1>
 	<div class="scrollable-content">
 		<div class="list-group" ui-turn-off='uiSidebarLeft;'>
 			<a class="list-group-item" href="#/mainLanding" ng-click="swapeOff();"><i class="fa fa-home"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Home <i class="fa fa-chevron-right pull-right"></i></a>
 			<a class="list-group-item" href="#/exam_details" ng-click="swapeOff();"><i class="fa fa-graduation-cap"></i>&nbsp;&nbsp;&nbsp;&nbsp;Examination <i class="fa fa-chevron-right pull-right"></i></a>
 			<a class="list-group-item" href="#/fees" ng-click="swapeOff();"><i class="fa fa-inr"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fees<i class="fa fa-chevron-right pull-right"></i></a>
 		</div>
+		
 	</div>
 </div>
