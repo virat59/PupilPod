@@ -15,7 +15,7 @@
 
 
 @font-face {
-    font-family: 'source-sans-pro';
+    font-family: 'source-sans-pro-regular';
     src: url('sourcesanspro-regular-webfont.eot');
     src: url('sourcesanspro-regular-webfont.eot?#iefix') format('embedded-opentype'),
          url('sourcesanspro-regular-webfont.woff') format('woff'),
@@ -30,7 +30,7 @@
 
 
 @font-face {
-    font-family: 'source-sans-pro';
+    font-family: 'source-sans-pro-semibold';
     src: url('sourcesanspro-semibold-webfont.eot');
     src: url('sourcesanspro-semibold-webfont.eot?#iefix') format('embedded-opentype'),
          url('sourcesanspro-semibold-webfont.woff') format('woff'),
