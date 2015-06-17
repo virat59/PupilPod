@@ -232,6 +232,8 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 			if(data.valid == 'VALID'){
 				$scope.loading = false;
 				$scope.studentTestDetails = data.all_tests;
+				$scope.termName = data.term_name;
+				$scope.sectionName = data.section_name;
 			}
 			else{
 				$scope.loading = false;
