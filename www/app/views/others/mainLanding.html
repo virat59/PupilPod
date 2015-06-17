@@ -5,12 +5,13 @@
 			<div class="header_sub"><h4>Student Details<h4></div>
 			<table class="table table-hover">
 				<tbody>
-					<tr><td><img src="http://thoughtnet.pupilpod.in/files/thoughtnet.pupilpod.in/photos/91986337552022d9e49528_13anand.r.jpg" alt="Student Image" height="50" width="50"/></span></td>
-						<td><span ng-bind="studentName"></span ></td>
+					<tr><td><img src="http://thoughtnet.pupilpod.in/files/thoughtnet.pupilpod.in/photos/91986337552022d9e49528_13anand.r.jpg" alt="Student Image" height="50" width="50"/></td>
+						<td>{{studentName}}</span ></td><td>1</td>
 					</tr>
 					<tr ng-repeat="details in studentDetails">
-						<td><span ng-bind="details.key"></span ></td>
-						<td><span ng-bind="details.key"></span ></td>
+						<td>{{details.key}}</td>
+						<td>{{details.value}}</td>
+						<td>2</td>
 					</tr>
 				</tbody>
 			</table>
