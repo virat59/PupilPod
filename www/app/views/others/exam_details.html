@@ -3,17 +3,20 @@
 		<div class="scrollable-content">
 			<br/>
 			<div class="header_sub"><h4>Test Details<h4></div>
-				<table class="table table-hover">
-					<tbody>
-						<tr>
-							<td><i class="fa fa-check"></i>First Internal Exam</td><td>Details&nbsp;&nbsp;&nbsp;<i class="fa fa-plus-circle"></i></td>
-						</tr>
-						<tr>
-							<td><i class="fa fa-check"></i>Second Internal Exam</td><td>Details&nbsp;&nbsp;&nbsp;<i class="fa fa-plus-circle"></i></td>
-						</tr>
-					</tbody>
-				</table>
-				Virat
+			<table class="table table-hover">
+				<tbody>
+					<tr>
+						<td>{{termName}}</td>
+						<td></td>
+						<td>{{sectionName}}</td>
+					</tr>
+					<tr ng-repeat="details in studentTestDetails">
+						<td>{{details.test_name}}</td>
+						<td>{{details.test_code}}</td>
+						<td>Details&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-plus-circle"></i></td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 	</div>
 </div>

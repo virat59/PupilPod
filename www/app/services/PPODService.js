@@ -222,13 +222,13 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 
 	this.getStudentTestDetails = function($scope,sharedProperties){
 		var param = JSON.stringify({
-                "serviceName":"TnetMobileService", 
-                "methodName":"getStudentTestDetails",
-                "parameters":[null,{'user_id' : sharedProperties.getAppId(),'student_guid': sharedProperties.getStudentSelectedGuid()}]
-                });
+			"serviceName":"TnetMobileService", 
+			"methodName":"getStudentTestDetails",
+			"parameters":[null,{'user_id' : sharedProperties.getAppId(),'student_guid': sharedProperties.getStudentSelectedGuid()}]
+        });
 		var tempUrl = "http://"+sharedProperties.getInstName()+"/"+url;
 		$http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
-		$http.post(tempUrl, param).success(function(data, status, headers, config) {	
+		$http.post(tempUrl, param).success(function(data, status, headers, config) {
 			if(data.valid == 'VALID'){
 				$scope.loading = false;
 				$scope.studentTestDetails = data.all_tests;
