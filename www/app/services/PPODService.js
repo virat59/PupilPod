@@ -177,8 +177,6 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				$scope.$emit('loginStatus', true);
 				$scope.loading = false;
 				$scope.students = data.studentDetails;
-				alert('Student Guid '+data.studentDetails[0]['student_guid']);
-				alert('Student Name '+data.studentDetails[0]['name']);
 				sharedProperties.setStudentSelectedGuid(data.studentDetails[0]['student_guid']);
 				sharedProperties.setStudentSelectedName(data.studentDetails[0]['name']);
 				$window.location.href = '#/mainLanding';
@@ -200,7 +198,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 		var param = JSON.stringify({
                 "serviceName":"TnetMobileService", 
                 "methodName":"getStudentDetails",
-                "parameters":[null,{'user_id' : $scope.userName,'student_guid': $scope.student_guid}]
+                "parameters":[null,{'user_id' : sharedProperties.getAppId(),'student_guid': sharedProperties.setStudentSelectedGuid()}]
                 });
 		var tempUrl = "http://"+sharedProperties.getInstName()+"/"+url;
 		$http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
