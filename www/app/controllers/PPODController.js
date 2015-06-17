@@ -396,6 +396,18 @@ app.controller('gettingAllTests',function($scope,PPODService,$http,$window,$docu
     }
 });
 
+app.controller('TestDetailsForStudent',function($scope,PPODService,$http,$window,$document,sharedProperties,$routeParams){
+	fnInit();
+	function fnInit(){
+		//PPODService.getStudentTestDetails($scope,sharedProperties);
+		//$scope.$emit('modelOffEvent', true);
+		app.controller("renameShowCtrl",function($scope,$routeParams){
+			$scope.showName = $routeParams.test_ins_guid;
+		});
+		alert('Test Instance Guid '+$scope.showName);
+    }
+});
+
 app.controller('feesController',function($scope,PPODService,$http,$window,$document,sharedProperties){
 	fnInit();
 	var ref = "";
