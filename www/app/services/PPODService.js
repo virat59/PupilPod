@@ -205,7 +205,9 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 		$http.post(tempUrl, param).success(function(data, status, headers, config) {	
 			if(data.valid == 'VALID'){
 				$scope.loading = false;
-				$scope.studentDetails = data.studentDetails;
+				$scope.studentName = data.studentDetails['name'];
+				$scope.studentImage = data.studentDetails['photo'];
+				$scope.studentDetails = data.studentDetails['all_other'];
 			}
 			else{
 				$scope.loading = false;
