@@ -176,11 +176,12 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				sharedProperties.setIsLogin(true);
 				$scope.$emit('loginStatus', true);
 				$scope.loading = false;
-				$scope.students = data.studentList;
-				sharedProperties.setStudentSelectedGuid(data.studentList[0]['student_guid']);
-				sharedProperties.setStudentSelectedName(data.studentList[0]['name']);
+				$scope.students = data.studentDetails;
+				alert('Student Guid '+data.studentDetails[0]['student_guid']);
+				alert('Student Name '+data.studentDetails[0]['name']);
+				sharedProperties.setStudentSelectedGuid(data.studentDetails[0]['student_guid']);
+				sharedProperties.setStudentSelectedName(data.studentDetails[0]['name']);
 				$window.location.href = '#/mainLanding';
-				
 			}
 			else{
 				$scope.instDis = false;
