@@ -3,37 +3,14 @@
 		<div class="scrollable-content">
 			<br/>
 			<div class="header_sub"><h4>Student Details<h4></div>
-				<table class="table table-hover">
-					<tbody>
-						<tr>
-							<td>Name : </td><td>{{stu_name}}</td>
-						</tr>
-						<tr>
-							<td>DOB</td><td>{{stu_dob}}</td>
-						</tr>
-						<tr>
-							<td>Student ID</td><td>{{stu_id}}</td>
-						</tr>
-						<tr>
-							<td>Father Name</td><td>{{stu_fat_name}}</td>
-						</tr>
-						<tr>
-							<td>Mother Name</td><td>{{stu_mot_name}}</td>
-						</tr>
-						<tr>
-							<td>Mobile No</td><td>{{stu_fat_mob_no}}</td>
-						</tr>
-						<tr>
-							<td>Address</td><td>{{stu_address}}</td>
-						</tr>
-						<tr>
-							<td>Class</td><td>{{stu_class}}</td>
-						</tr>
-						<tr>
-							<td>Section</td><td>{{stu_sec}}</td>
-						</tr>
-					</tbody>
-				</table>
+			<table class="table table-hover">
+				<tbody>
+					<tr ng-repeat="details in studentDetails">
+						<td><span ng-bind="details.key"></span ></td>
+						<td><span ng-bind="details.key"></span ></td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 	</div>
 </div>
