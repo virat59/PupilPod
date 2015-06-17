@@ -401,9 +401,7 @@ app.controller('TestDetailsForStudent',function($scope,PPODService,$http,$window
 	function fnInit(){
 		//PPODService.getStudentTestDetails($scope,sharedProperties);
 		//$scope.$emit('modelOffEvent', true);
-		app.controller("renameShowCtrl",function($scope,$routeParams){
-			$scope.showName = $routeParams.test_ins_guid;
-		});
+		$scope.showName = $routeParams.test_ins_guid;
 		alert('Test Instance Guid '+$scope.showName);
     }
 });
