@@ -388,6 +388,14 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
     }
 });
 
+app.controller('gettingAllTests',function($scope,PPODService,$http,$window,$document,sharedProperties){
+	fnInit();
+	function fnInit(){
+		PPODService.getStudentTestDetails($scope,sharedProperties);
+		//$scope.$emit('modelOffEvent', true);
+    }
+});
+
 app.controller('feesController',function($scope,PPODService,$http,$window,$document,sharedProperties){
 	fnInit();
 	var ref = "";
