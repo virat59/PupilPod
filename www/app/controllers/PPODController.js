@@ -385,15 +385,6 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 	function fnInit(){
 		PPODService.getStudentDetails($scope,sharedProperties);
 		$scope.$emit('modelOffEvent', true);
-		$scope.stu_name = "Virat Joshi";
-		$scope.stu_dob = "01-April-1990";
-		$scope.stu_id = "1OY10MCA84";
-		$scope.stu_fat_name = "Hemendra Kumar Joshi";
-		$scope.stu_mot_name = "Kanta Joshi";
-		$scope.stu_fat_mob_no = "+91 8792533839";
-		$scope.stu_address = "J. P. Nagar, Bangalore";
-		$scope.stu_class = "VI Sem";
-		$scope.stu_sec = "VI C Section";
     }
 });
 

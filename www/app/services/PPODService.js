@@ -206,7 +206,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 			if(data.valid == 'VALID'){
 				$scope.loading = false;
 				$scope.studentName = data.name;
-				$scope.studentImage = data.photo;
+				$scope.studentImage = "http://"+sharedProperties.getInstName()+"/"+data.photo;
 				$scope.studentDetails = data.all_other;
 			}
 			else{
