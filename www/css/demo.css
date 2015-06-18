@@ -159,7 +159,7 @@ h1 {
 }
 
 [drag-to-dismiss]{
-  transform: translate(0,0); /* NOTE: this is required to prevent mobile webkit issues */ 
+ transform: translate(0,0); /* NOTE: this is required to prevent mobile webkit issues */ 
   -webkit-user-drag: none;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -167,9 +167,9 @@ h1 {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  -webkit-transition: opacity 0.3s;
-  -moz-transition: opacity 0.3s;
-  transition: opacity 0.3s;
+  -webkit-transition: opacity 300ms, -webkit-transform 300ms;
+  -moz-transition: opacity 300ms, -moz-transform 300ms;
+  transition: opacity 300ms, transform 300ms;
   opacity: 1;
 }
 
@@ -178,17 +178,17 @@ h1 {
 }
 
 .dismiss {
+  -webkit-transition: opacity 300ms, -webkit-transform 300ms;
+  -moz-transition: opacity 300ms, -moz-transform 300ms;
+  transition: opacity 300ms, transform 300ms;
   opacity: 0.5;
-  -webkit-transition: opacity 0.3s;
-  -moz-transition: opacity 0.3s;
-  transition: opacity 0.3s;
 }
 
 .dismitted {
+  -webkit-transition: opacity 300ms, -webkit-transform 300ms;
+  -moz-transition: opacity 300ms, -moz-transform 300ms;
+  transition: opacity 300ms, transform 300ms;
   opacity: 0;
-  -webkit-transition: opacity 0.3s;
-  -moz-transition: opacity 0.3s;
-  transition: opacity 0.3s;
 }
 
 .list-group-item-home {
@@ -209,6 +209,8 @@ input.scrollable-header {
 	/*opacity: 0;*/
 	background-color: rgba(0, 0, 0, 0.5);
 }
+
+.toucharea {width: 100%; height: 100%;}
 
 .blurOff{
 	opacity: 1;
