@@ -44,7 +44,7 @@ app.config(function($routeProvider) {
 		templateUrl: 'app/views/others/paymentCallBack.html', 
 		reloadOnSearch: false
 	})
-	.when('/view_test_details/:test_ins_guid?', { 
+	.when('/view_test_details/:test_ins_guid', { 
 		controller: 'TestDetailsForStudent', 
 		templateUrl: 'app/views/others/view_test_details.html',
 		reloadOnSearch: false
