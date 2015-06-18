@@ -404,6 +404,7 @@ app.controller('TestDetailsForStudent',function($scope,PPODService,$http,$window
 		$scope.test_ins_guid = $routeParams.test_ins_guid;
 		//alert('Test Instance Guid '+$scope.showName);
 		PPODService.getStudentTestMarks($scope,sharedProperties);
+		alert('TIG '+$scope.test_ins_guid);
     }
 });
 
