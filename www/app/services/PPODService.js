@@ -194,7 +194,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 		});
     };
 	
-	this.getStudentDetails = function($scope,sharedProperties){
+	this.getStudentDetails = function($scope,sharedProperties,myCache){
 		var param = JSON.stringify({
                 "serviceName":"TnetMobileService", 
                 "methodName":"getStudentDetails",
@@ -208,6 +208,9 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				$scope.studentName = data.name;
 				$scope.studentImage = "http://"+sharedProperties.getInstName()+"/"+data.photo;
 				$scope.studentDetails = data.all_other;
+				myCache.put('studentDetails', data.all_other);
+				myCache.put('studentName', data.name);
+				myCache.put('studentImage', data.photo);
 			}
 			else{
 				$scope.loading = false;

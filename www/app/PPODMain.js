@@ -6,6 +6,10 @@ app.run(function() {
     FastClick.attach(document.body);
 });
 
+app.factory('myCache', function($cacheFactory) {
+ return $cacheFactory('myData');
+});
+
 app.config(function($routeProvider) {
   $routeProvider
 	.when('/',{

@@ -378,9 +378,20 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 });
 
 
-app.controller('mainController',function($scope,PPODService,$http,$window,$document,sharedProperties){
+app.controller('mainController',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache){
 	function fnInit(){
-		PPODService.getStudentDetails($scope,sharedProperties);
+		var cache = myCache.get('studentName');
+		if(cache){
+			alert('Already Exist');
+			$scope.loading = false;
+			$scope.studentName = myCache.get('studentName');
+			$scope.studentImage = "http://"+sharedProperties.getInstName()+"/"+myCache.get('studentImage');;
+			$scope.studentDetails = myCache.get('studentDetails');
+		}
+		else{
+			alert('Not Exist');
+			PPODService.getStudentDetails($scope,sharedProperties,myCache);
+		}
 		$scope.$emit('modelOffEvent', true);
     }
 	fnInit();
