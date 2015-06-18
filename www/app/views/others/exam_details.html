@@ -13,7 +13,7 @@
 					<tr ng-repeat="details in studentTestDetails">
 						<td>{{details.test_name}}</td>
 						<td>{{details.test_code}}</td>
-						<td><a href="#/view_test_details/1234"><i class="fa fa-plus-circle"></i></a></td>
+						<td><a href="#/view_test_details/{{details.test_instance_guid}}"><i class="fa fa-plus-circle"></i></a></td>
 					</tr>
 				</tbody>
 			</table>
