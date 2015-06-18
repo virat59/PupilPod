@@ -245,4 +245,30 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 			return false;
 		});
 	};
+	
+	this.getStudentTestMarks = function($scope,sharedProperties){
+		var param = JSON.stringify({
+			"serviceName":"TnetMobileService", 
+			"methodName":"getStudentTestMarks",
+			"parameters":[null,{'user_id' : sharedProperties.getAppId(),'student_guid': sharedProperties.getStudentSelectedGuid(),'test_ins_guid': $scope.test_ins_guid }]
+        });
+		var tempUrl = "http://"+sharedProperties.getInstName()+"/"+url;
+		$http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
+		$http.post(tempUrl, param).success(function(data, status, headers, config) {
+			if(data.valid == 'VALID'){
+				$scope.loading = false;
+				$scope.studentTestMarks = data.test_details;
+				$scope.testName = data.test_name;
+				$scope.testCode = data.test_code;
+			}
+			else{
+				$scope.loading = false;
+			}
+		})
+		.error(function(data, status, headers, config){
+			$scope.loading = false;
+			alert('Please give instance name correct,Wrong Instance Name. eg: xyz.pupilpod.in');
+			return false;
+		});
+	};
 });
