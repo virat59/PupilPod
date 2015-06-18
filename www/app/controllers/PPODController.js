@@ -1,6 +1,5 @@
 app.controller('PPODController',function($scope,PPODService,$http,$window,$document,$rootScope,$cordovaPush,$cordovaSQLite,sharedProperties){    //
 	$scope.contactname = "ThoughtNet Technologies (India) Pvt. Ltd";
-	initialize();
 	$scope.loginTrue = sharedProperties.getIsLogin();
 	$scope.student_name = "Virat Joshi";
 	$scope.colours = [
@@ -128,8 +127,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 		},errorHandlerTransaction,nullHandler);
 		return false;
 	};
-	
-	
+	initialize();
 });
 
 app.run(function($rootScope) {
@@ -327,7 +325,6 @@ app.directive('carouselItem', function($drag) {
 });
 
 app.controller('loginController',function($scope,PPODService,$http,$window,$document,sharedProperties){
-	fnInit();
 	$scope.instDis = true;
 	function fnInit(){
 		$scope.$emit('modelOffEvent', true);
@@ -377,27 +374,27 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 		}
 		PPODService.loginFunction($scope,sharedProperties);	  
 	};
+	fnInit();
 });
 
 
 app.controller('mainController',function($scope,PPODService,$http,$window,$document,sharedProperties){
-	fnInit();
 	function fnInit(){
 		PPODService.getStudentDetails($scope,sharedProperties);
 		$scope.$emit('modelOffEvent', true);
     }
+	fnInit();
 });
 
 app.controller('gettingAllTests',function($scope,PPODService,$http,$window,$document,sharedProperties){
-	fnInit();
 	function fnInit(){
 		PPODService.getStudentTestDetails($scope,sharedProperties);
 		//$scope.$emit('modelOffEvent', true);
     }
+	fnInit();
 });
 
 app.controller('TestDetailsForStudent',function($scope,PPODService,$http,$window,$document,sharedProperties,$routeParams){
-	fnInit();
 	function fnInit(){
 		//PPODService.getStudentTestDetails($scope,sharedProperties);
 		//$scope.$emit('modelOffEvent', true);
@@ -406,10 +403,10 @@ app.controller('TestDetailsForStudent',function($scope,PPODService,$http,$window
 		PPODService.getStudentTestMarks($scope,sharedProperties);
 		alert('TIG '+$scope.test_ins_guid);
     }
+	fnInit();
 });
 
 app.controller('feesController',function($scope,PPODService,$http,$window,$document,sharedProperties){
-	fnInit();
 	var ref = "";
 	function fnInit(){
 		$scope.$emit('modelOffEvent', true);	
@@ -430,7 +427,7 @@ app.controller('feesController',function($scope,PPODService,$http,$window,$docum
 		});
 		ref.addEventListener('exit', function(event) { $window.location.href = '#/paymentCallBack'; });
 	}
-	
+	fnInit();
 });
 
 
