@@ -387,11 +387,11 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 });
 
 app.controller('gettingAllTests',function($scope,PPODService,$http,$window,$document,sharedProperties){
-	$scope.fnInit = function(){
+	function fnInit(){
 		PPODService.getStudentTestDetails($scope,sharedProperties);
 		//$scope.$emit('modelOffEvent', true);
     }
-	$scope.fnInit();
+	fnInit();
 });
 
 app.controller('TestDetailsForStudent',function($scope,PPODService,$http,$window,$document,sharedProperties,$routeParams){
