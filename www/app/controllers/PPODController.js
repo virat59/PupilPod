@@ -123,6 +123,14 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 			return false;
 	});
 	
+	$scope.onReload = function() {
+      console.warn('reload');
+      var deferred = $q.defer();
+      setTimeout(function() {
+        deferred.resolve(true);
+      }, 1000);
+      return deferred.promise;
+    };
 	
 	initialize();
 });
