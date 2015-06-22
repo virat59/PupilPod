@@ -118,6 +118,11 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	$rootScope.$on('studentChanged',function(event,args){
 		alert('Hi Inside studentChanged');
 	});
+	
+	$scope.stuChange = function(){
+		alert('Hi Inside stuChange');
+	};
+	
 	initialize();
 });
 
@@ -165,11 +170,10 @@ app.directive("dropdown", function($rootScope,sharedProperties) {
 			scope.$watch("selected", function(value) {
 				scope.isPlaceholder = scope.selected[scope.property] === undefined;
 				scope.display = scope.selected[scope.property];
-				//sharedProperties.setStudentSelectedGuid(scope.selected[scope.student_guid]['student_guid']);
-				//sharedProperties.setStudentSelectedName(scope.selected[scope.property]);
-				alert('SG '+scope.selected['student_guid']);
-				alert('Name '+scope.selected['name']);
-				$scope.$emit('studentChanged',{'name':scope.selected['name'],'student_guid':scope.selected['student_guid']});
+				sharedProperties.setStudentSelectedGuid(scope.selected['student_guid']);
+				sharedProperties.setStudentSelectedName(scope.selected['name']);
+				scope.$emit('studentChanged',{'name':scope.selected['name'],'student_guid':scope.selected['student_guid']});
+				scope.stuChange();
 			});
 		}
 	}
