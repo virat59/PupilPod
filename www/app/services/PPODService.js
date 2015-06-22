@@ -170,6 +170,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				sharedProperties.setStudentSelectedGuid(data.studentDetails[0]['student_guid']);
 				sharedProperties.setStudentSelectedName(data.studentDetails[0]['name']);
 				myCache.put('students', data.studentDetails);
+				myCache.put('main_students_guid', data.studentDetails[0]['student_guid']);
 				self.AddValueToDB($scope,'username',$scope.userName);
 				self.AddValueToDB($scope,'password',$scope.password);
 				self.AddValueToDB($scope,'instname',$scope.instName);

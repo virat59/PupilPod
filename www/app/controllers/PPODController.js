@@ -57,7 +57,8 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	$rootScope.$on('loginStatus',function(event,args){
 		$scope.loginTrue = args;
 		$scope.students = myCache.get('students');
-		$scope.student_name = sharedProperties.getStudentSelectedName()
+		$scope.student_name = sharedProperties.getStudentSelectedName();
+		
 		
 	});
 	
@@ -116,10 +117,10 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	};
 	
 	$rootScope.$on('studentChanged',function(event,args){
-		alert('Hi Inside studentChanged');
 		$scope.student_name = args['name'];
-		alert('Name '+sharedProperties.getStudentSelectedName());
-		alert('SG '+sharedProperties.getStudentSelectedGuid());
+		myCache.put('main_students_guid', args['student_guid']);
+		$window.location.href = '#/mainLanding';
+			return false;
 	});
 	
 	
@@ -379,9 +380,15 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 
 app.controller('mainController',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache){
 	function fnInit(){
+		var main_students_guid = myCache.get('main_students_guid');
 		var cache = myCache.get('studentName');
 		if(cache){
 			alert('Already Exist');
+			if(main_students_guid != sharedProperties.getStudentSelectedGuid())
+			{
+				alert('Exist but for other student');
+				PPODService.getStudentDetails($scope,sharedProperties,myCache);
+			}
 			$scope.loading = false;
 			$scope.studentName = myCache.get('studentName');
 			$scope.studentImage = "http://"+sharedProperties.getInstName()+"/"+myCache.get('studentImage');;
