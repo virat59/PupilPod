@@ -163,8 +163,8 @@ app.directive("dropdown", function($rootScope,sharedProperties) {
 				scope.display = scope.selected[scope.property];
 				//sharedProperties.setStudentSelectedGuid(scope.selected[scope.student_guid]['student_guid']);
 				//sharedProperties.setStudentSelectedName(scope.selected[scope.property]);
-				alert('SG '+scope.selected[scope.property]['student_guid']);
-				alert('Name '+scope.selected[scope.property]['name']);
+				alert('SG '+scope.selected[scope.property].student_guid);
+				alert('Name '+scope.selected[scope.property].name);
 			});
 		}
 	}
