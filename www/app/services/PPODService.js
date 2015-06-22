@@ -145,7 +145,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 		return false;
 	};
 	
-	this.loginFunction = function ($scope,sharedProperties){
+	this.loginFunction = function ($scope,sharedProperties,myCache){
 		var self = this;
 		var param = JSON.stringify({
                 "serviceName":"TnetMobileService", 
@@ -154,32 +154,31 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
                 });
 		$http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 		var tempUrl = "http://"+$scope.instName+"/"+url;
-		//alert('Url '+tempUrl);
 		$http.post(tempUrl, param).success(function(data, status, headers, config) {		
 			$scope.loading = false;
 			if(data.valid == 'VALID'){
-				//alert('Valid');
-				//alert('data '+data);
 				sharedProperties.setInstName($scope.instName);
 				sharedProperties.setUserName($scope.userName);
 				sharedProperties.setPassWord($scope.password);
 				sharedProperties.setAppId(data.app_id);
 				sharedProperties.setUserGuid(data.user_guid);
-				//alert('Reached Here 1111');
+				
+				$scope.login = true;
+				sharedProperties.setIsLogin(true);
+				$scope.loading = false;
+				$scope.students = data.studentDetails;
+				sharedProperties.setStudentSelectedGuid(data.studentDetails[0]['student_guid']);
+				sharedProperties.setStudentSelectedName(data.studentDetails[0]['name']);
+				myCache.put('students', data.studentDetails);
 				self.AddValueToDB($scope,'username',$scope.userName);
 				self.AddValueToDB($scope,'password',$scope.password);
 				self.AddValueToDB($scope,'instname',$scope.instName);
 				self.AddValueToDB($scope,'appid',data.app_id);
 				self.AddValueToDB($scope,'userguid',data.user_guid);
-				//alert('Reached Here 2222');
-				$scope.login = true;
-				sharedProperties.setIsLogin(true);
+				
 				$scope.$emit('loginStatus', true);
-				$scope.loading = false;
-				$scope.students = data.studentDetails;
-				sharedProperties.setStudentSelectedGuid(data.studentDetails[0]['student_guid']);
-				sharedProperties.setStudentSelectedName(data.studentDetails[0]['name']);
 				$window.location.href = '#/mainLanding';
+				
 			}
 			else{
 				$scope.instDis = false;

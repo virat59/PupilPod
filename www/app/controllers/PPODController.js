@@ -1,4 +1,4 @@
-app.controller('PPODController',function($scope,PPODService,$http,$window,$document,$rootScope,$cordovaPush,$cordovaSQLite,sharedProperties){    //
+app.controller('PPODController',function($scope,PPODService,$http,$window,$document,$rootScope,$cordovaPush,$cordovaSQLite,sharedProperties,myCache){    //
 	$scope.contactname = "ThoughtNet Technologies (India) Pvt. Ltd";
 	$scope.loginTrue = sharedProperties.getIsLogin();
 	$scope.student_name = "Virat Joshi";
@@ -67,9 +67,9 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
     };
 	
 	$rootScope.$on('loginStatus',function(event,args){
-		//alert('BroadCast loginStatus '+args);
-		//sharedProperties.setIsLogin(args);
 		$scope.loginTrue = args;
+		$scope.students = myCache.get('students');
+		
 	});
 	
 	$rootScope.$on('modelOffEvent',function(event){
@@ -324,7 +324,7 @@ app.directive('carouselItem', function($drag) {
   };
 });
 
-app.controller('loginController',function($scope,PPODService,$http,$window,$document,sharedProperties){
+app.controller('loginController',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache){
 	$scope.instDis = true;
 	function fnInit(){
 		$scope.$emit('modelOffEvent', true);
@@ -346,7 +346,7 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 			$scope.registration_key = regkey;
 			$scope.app_id = appId;
 			$scope.user_guid = 
-			PPODService.loginFunction($scope,sharedProperties);
+			PPODService.loginFunction($scope,sharedProperties,myCache);
 		}
 		else{
 			$scope.loading = false;
