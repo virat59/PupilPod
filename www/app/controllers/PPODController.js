@@ -324,7 +324,7 @@ app.directive('carouselItem', function($drag) {
   };
 });
 
-app.controller('loginController',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache){
+app.controller('loginController',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache,$q){
 	$scope.instDis = true;
 	function fnInit(){
 		$scope.$emit('modelOffEvent', true);
@@ -374,6 +374,16 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 		}
 		PPODService.loginFunction($scope,sharedProperties);	  
 	};
+	
+	$scope.onReload = function() {
+      console.warn('reload');
+      var deferred = $q.defer();
+      setTimeout(function() {
+        deferred.resolve(true);
+      }, 1000);
+      return deferred.promise;
+    };
+	
 	fnInit();
 });
 
@@ -389,12 +399,12 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 	function fnInit(){
 		var main_students_guid = myCache.get('main_students_guid');
 		var cache = myCache.get('studentName');
-		alert('main_students_guid '+main_students_guid);
+		//alert('main_students_guid '+main_students_guid);
 		if(cache){
-			alert('Already Exist');
+			//alert('Already Exist');
 			if(myCache.get('main_students_guid') != sharedProperties.getStudentSelectedGuid())
 			{
-				alert('Exist but for other student');
+				//alert('Exist but for other student');
 				PPODService.getStudentDetails($scope,sharedProperties,myCache);
 			}
 			$scope.loading = false;
