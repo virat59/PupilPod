@@ -118,7 +118,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	
 	$rootScope.$on('studentChanged',function(event,args){
 		$scope.student_name = args['name'];
-		myCache.put('main_students_guid', args['student_guid']);
+		//myCache.put('main_students_guid', args['student_guid']);
 		$window.location.href = '#/mainLanding';
 			return false;
 	});
