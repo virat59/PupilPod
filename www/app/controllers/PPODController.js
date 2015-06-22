@@ -161,11 +161,10 @@ app.directive("dropdown", function($rootScope,sharedProperties) {
 			scope.$watch("selected", function(value) {
 				scope.isPlaceholder = scope.selected[scope.property] === undefined;
 				scope.display = scope.selected[scope.property];
-				sharedProperties.setStudentSelectedGuid(scope.selected[scope.student_guid]);
-				sharedProperties.setStudentSelectedName(scope.selected[scope.property]);
-				//scope.student_name = scope.selected[scope.property];
-				alert('Hi Inside Change 111 '+scope.selected[scope.property]);
-				alert('Hi Inside Change 222 '+scope.selected[scope.student_guid]);
+				//sharedProperties.setStudentSelectedGuid(scope.selected[scope.student_guid]['student_guid']);
+				//sharedProperties.setStudentSelectedName(scope.selected[scope.property]);
+				alert('SG '+scope.selected[scope.property]['student_guid']);
+				alert('Name '+scope.selected[scope.property]['name']);
 			});
 		}
 	}
