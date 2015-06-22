@@ -162,8 +162,9 @@ app.directive("dropdown", function($rootScope,sharedProperties) {
 				scope.isPlaceholder = scope.selected[scope.property] === undefined;
 				scope.display = scope.selected[scope.property];
 				sharedProperties.setStudentSelectedGuid(scope.selected[scope.student_guid]);
-				sharedProperties.setStudentSelectedName(scope.selected[scope.name]);
-				
+				sharedProperties.setStudentSelectedName(scope.selected[scope.property]);
+				scope.student_name = scope.selected[scope.property];
+				alert('Hi Inside Change '+scope.student_name);
 			});
 		}
 	}
