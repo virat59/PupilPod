@@ -117,6 +117,9 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	
 	$rootScope.$on('studentChanged',function(event,args){
 		alert('Hi Inside studentChanged');
+		$scope.student_name = args['name'];
+		alert('Name '+sharedProperties.getStudentSelectedName());
+		alert('SG '+sharedProperties.getStudentSelectedGuid());
 	});
 	
 	$scope.stuChange = function(){
@@ -173,7 +176,6 @@ app.directive("dropdown", function($rootScope,sharedProperties) {
 				sharedProperties.setStudentSelectedGuid(scope.selected['student_guid']);
 				sharedProperties.setStudentSelectedName(scope.selected['name']);
 				scope.$emit('studentChanged',{'name':scope.selected['name'],'student_guid':scope.selected['student_guid']});
-				scope.stuChange();
 			});
 		}
 	}
