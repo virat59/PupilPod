@@ -53,6 +53,10 @@ app.config(function($routeProvider) {
 		templateUrl: 'app/views/others/view_test_details.html',
 		reloadOnSearch: false
 	})
+	.when('/change_student',{
+		templateUrl: 'app/views/others/change_student.html', 
+		reloadOnSearch: false
+	})
 	.otherwise({redirectTo: 'app/views/Home.html' });
 });
 

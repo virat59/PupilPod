@@ -119,7 +119,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	$rootScope.$on('studentChanged',function(event,args){
 		$scope.student_name = args['name'];
 		//myCache.put('main_students_guid', args['student_guid']);
-		$window.location.href = '#/mainLanding';
+		$window.location.href = '#/change_student';
 			return false;
 	});
 	
@@ -377,6 +377,13 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 	fnInit();
 });
 
+app.controller('changeStudent',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache){
+	function fnInit(){
+		$window.location.href = '#/mainLanding';
+		return false;
+    }
+	fnInit();
+});
 
 app.controller('mainController',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache){
 	function fnInit(){
@@ -423,6 +430,9 @@ app.controller('TestDetailsForStudent',function($scope,PPODService,$http,$window
     }
 	fnInit();
 });
+
+
+
 
 app.controller('feesController',function($scope,PPODService,$http,$window,$document,sharedProperties){
 	var ref = "";
