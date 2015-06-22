@@ -114,6 +114,13 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 		},errorHandlerTransaction,nullHandler);
 		return false;
 	};
+	
+	$scope.studentChange = function(stuSelected){
+		alert('Selected Student '+stuSelected.name);
+		alert('Selected student_guid '+stuSelected.student_guid);
+	
+	};
+	
 	initialize();
 });
 
@@ -163,8 +170,8 @@ app.directive("dropdown", function($rootScope,sharedProperties) {
 				scope.display = scope.selected[scope.property];
 				//sharedProperties.setStudentSelectedGuid(scope.selected[scope.student_guid]['student_guid']);
 				//sharedProperties.setStudentSelectedName(scope.selected[scope.property]);
-				alert('SG '+scope.selected[scope.property].student_guid);
-				alert('Name '+scope.selected[scope.property].name);
+				//alert('SG '+scope.selected[scope.property].student_guid);
+				//alert('Name '+scope.selected[scope.property].name);
 			});
 		}
 	}
