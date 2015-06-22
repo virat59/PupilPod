@@ -382,9 +382,10 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 	function fnInit(){
 		var main_students_guid = myCache.get('main_students_guid');
 		var cache = myCache.get('studentName');
+		alert('main_students_guid '+main_students_guid);
 		if(cache){
 			alert('Already Exist');
-			if(main_students_guid != sharedProperties.getStudentSelectedGuid())
+			if(myCache.get('main_students_guid') != sharedProperties.getStudentSelectedGuid())
 			{
 				alert('Exist but for other student');
 				PPODService.getStudentDetails($scope,sharedProperties,myCache);
