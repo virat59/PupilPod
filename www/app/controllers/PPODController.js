@@ -115,12 +115,9 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 		return false;
 	};
 	
-	$scope.studentChange = function(stuSelected){
-		alert('Selected Student '+stuSelected.name);
-		alert('Selected student_guid '+stuSelected.student_guid);
-	
-	};
-	
+	$rootScope.$on('studentChanged',function(event,args){
+		alert('Hi Inside studentChanged');
+	});
 	initialize();
 });
 
@@ -170,8 +167,9 @@ app.directive("dropdown", function($rootScope,sharedProperties) {
 				scope.display = scope.selected[scope.property];
 				//sharedProperties.setStudentSelectedGuid(scope.selected[scope.student_guid]['student_guid']);
 				//sharedProperties.setStudentSelectedName(scope.selected[scope.property]);
-				//alert('SG '+scope.selected[scope.property].student_guid);
-				//alert('Name '+scope.selected[scope.property].name);
+				alert('SG '+scope.selected['student_guid']);
+				alert('Name '+scope.selected['name']);
+				$scope.$emit('studentChanged',{'name':scope.selected['name'],'student_guid':scope.selected['student_guid']});
 			});
 		}
 	}
