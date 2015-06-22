@@ -375,14 +375,7 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 		PPODService.loginFunction($scope,sharedProperties);	  
 	};
 	
-	$scope.onReload = function() {
-      console.warn('reload');
-      var deferred = $q.defer();
-      setTimeout(function() {
-        deferred.resolve(true);
-      }, 1000);
-      return deferred.promise;
-    };
+	
 	
 	fnInit();
 });
@@ -418,6 +411,16 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 		}
 		$scope.$emit('modelOffEvent', true);
     }
+	
+	$scope.onReload = function() {
+      console.warn('reload');
+      var deferred = $q.defer();
+      setTimeout(function() {
+        deferred.resolve(true);
+      }, 1000);
+      return deferred.promise;
+    };
+	
 	fnInit();
 });
 
