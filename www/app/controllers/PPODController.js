@@ -1,23 +1,11 @@
-app.controller('PPODController',function($scope,PPODService,$http,$window,$document,$rootScope,$cordovaPush,$cordovaSQLite,sharedProperties,myCache){    //
+app.controller('PPODController',function($scope,PPODService,$http,$window,$document,$rootScope,$cordovaPush,$cordovaSQLite,sharedProperties,myCache){
 	$scope.contactname = "ThoughtNet Technologies (India) Pvt. Ltd";
 	$scope.loginTrue = sharedProperties.getIsLogin();
-	$scope.student_name = "Virat Joshi";
-	$scope.colours = [
-		{
-			name: "Virat Joshi",
-			hex: "#ViratJoshi"
-		}, {
-			name: "Midhun T. M.",
-			hex: "#1B66F2"
-		}, {
-			name: "Palaxa",
-			hex: "#07BA16"
-		}
-	];
-	$scope.colour = "";
+	$scope.student_name = sharedProperties.getStudentSelectedName();
+	
+	$scope.student = "";
 	function initialize() {
 		$scope.ngViewClass = "modalOff";
-		//alert('Hi In initialize');
 		if(sharedProperties.getIsLogin() == true){
 			$window.location.href = '#/mainLanding';
 			return false;
@@ -69,7 +57,6 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	$rootScope.$on('loginStatus',function(event,args){
 		$scope.loginTrue = args;
 		$scope.students = myCache.get('students');
-		
 	});
 	
 	$rootScope.$on('modelOffEvent',function(event){
@@ -136,7 +123,7 @@ app.run(function($rootScope) {
 	});
 });
 
-app.directive("dropdown", function($rootScope) {
+app.directive("dropdown", function($rootScope,sharedProperties) {
 	return {
 		restrict: "E",
 		templateUrl: "app/directives/templates/dropdown.html",
@@ -164,7 +151,7 @@ app.directive("dropdown", function($rootScope) {
 			};
 
 			$rootScope.$on("documentClicked", function(inner, target) {
-				console.log($(target[0]).is(".dropdown-display.clicked") || $(target[0]).parents(".dropdown-display.clicked").length > 0);
+				//console.log($(target[0]).is(".dropdown-display.clicked") || $(target[0]).parents(".dropdown-display.clicked").length > 0);
 				if (!$(target[0]).is(".dropdown-display.clicked") && !$(target[0]).parents(".dropdown-display.clicked").length > 0)
 					scope.$apply(function() {
 						scope.listVisible = false;
@@ -174,6 +161,9 @@ app.directive("dropdown", function($rootScope) {
 			scope.$watch("selected", function(value) {
 				scope.isPlaceholder = scope.selected[scope.property] === undefined;
 				scope.display = scope.selected[scope.property];
+				sharedProperties.setStudentSelectedGuid(scope.selected[scope.student_guid]);
+				sharedProperties.setStudentSelectedName(scope.selected[scope.name]);
+				
 			});
 		}
 	}
