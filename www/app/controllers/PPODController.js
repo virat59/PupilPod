@@ -3,7 +3,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	$scope.loginTrue = sharedProperties.getIsLogin();
 	$scope.student_name = sharedProperties.getStudentSelectedName();
 	
-	$scope.student = "";
+	//$scope.student_name = "";
 	function initialize() {
 		$scope.ngViewClass = "modalOff";
 		if(sharedProperties.getIsLogin() == true){
@@ -163,8 +163,9 @@ app.directive("dropdown", function($rootScope,sharedProperties) {
 				scope.display = scope.selected[scope.property];
 				sharedProperties.setStudentSelectedGuid(scope.selected[scope.student_guid]);
 				sharedProperties.setStudentSelectedName(scope.selected[scope.property]);
-				scope.student_name = scope.selected[scope.property];
-				alert('Hi Inside Change '+scope.student_name);
+				//scope.student_name = scope.selected[scope.property];
+				alert('Hi Inside Change 111 '+scope.selected[scope.property]);
+				alert('Hi Inside Change 222 '+scope.selected[scope.student_guid]);
 			});
 		}
 	}
