@@ -211,6 +211,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				myCache.put('studentDetails', data.all_other);
 				myCache.put('studentName', data.name);
 				myCache.put('studentImage', data.photo);
+				myCache.put('main_students_guid', sharedProperties.getStudentSelectedGuid());
 			}
 			else{
 				$scope.loading = false;
