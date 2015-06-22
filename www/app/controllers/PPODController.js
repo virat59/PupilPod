@@ -57,11 +57,11 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	$rootScope.$on('loginStatus',function(event,args){
 		$scope.loginTrue = args;
 		$scope.students = myCache.get('students');
+		$scope.student_name = sharedProperties.getStudentSelectedName()
+		
 	});
 	
 	$rootScope.$on('modelOffEvent',function(event){
-		//alert('BroadCast loginStatus '+args);
-		//sharedProperties.setIsLogin(args);
 		$scope.ngViewClass = "modalOff";
 	});
 	
@@ -122,9 +122,6 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 		alert('SG '+sharedProperties.getStudentSelectedGuid());
 	});
 	
-	$scope.stuChange = function(){
-		alert('Hi Inside stuChange');
-	};
 	
 	initialize();
 });
