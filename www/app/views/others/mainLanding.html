@@ -1,9 +1,4 @@
-<div ng-controller="mainController">
-	<div class="content">
-		<ul class="list-group list-group-table" pull-to-refresh="onReload()">
-		  <li class="list-group-item" ng-repeat="state in states" ng-bind="state"></li>
-		</ul>
-	</div>
+<!--<div ng-controller="mainController">
 	<div class="scrollable">
 		<div class="scrollable-content">
 			<br/>
@@ -21,4 +16,9 @@
 			</table>
 		</div>
 	</div>
+</div>-->
+<div class="content" ng-controller="mainController">
+		<ul class="list-group list-group-table" pull-to-refresh="onReload()">
+		  <li class="list-group-item" ng-repeat="state in states" ng-bind="state"></li>
+		</ul>
 </div>
