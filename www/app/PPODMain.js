@@ -21,7 +21,7 @@ app.config(function($routeProvider) {
 		reloadOnSearch: false
 	})
 	.when('/login',{
-		templateUrl: 'app/views/others/login.html', 
+		templateUrl: 'app/views/others/login.html',
 		reloadOnSearch: false
 	})
 	.when('/sidebar',{
@@ -33,7 +33,7 @@ app.config(function($routeProvider) {
 		reloadOnSearch: false
 	})
 	.when('/mainLanding',{
-		templateUrl: 'app/views/others/mainLanding.html', 
+		templateUrl: 'app/views/others/mainLanding.html',
 		reloadOnSearch: false
 	})
 	.when('/exam_details',{

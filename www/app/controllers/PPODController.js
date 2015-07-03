@@ -1,10 +1,11 @@
-app.controller('PPODController',function($scope,PPODService,$http,$window,$document,$rootScope,$cordovaPush,$cordovaSQLite,sharedProperties,myCache){
+app.controller('PPODController',function($scope,PPODService,$http,$window,$document,$rootScope,$cordovaPush,$cordovaSQLite,sharedProperties,myCache,$ionicPlatform){
 	$scope.contactname = "ThoughtNet Technologies (India) Pvt. Ltd";
 	$scope.loginTrue = sharedProperties.getIsLogin();
 	$scope.student_name = sharedProperties.getStudentSelectedName();
 	
 	//$scope.student_name = "";
 	function initialize() {
+		alert('Inside Initialized');
 		$scope.ngViewClass = "modalOff";
 		if(sharedProperties.getIsLogin() == true){
 			$window.location.href = '#/mainLanding';
@@ -21,8 +22,10 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	function bindEvents() {
 		//alert('Hi In BindEvents');
         document.addEventListener('deviceready', onDeviceReady, false);	
+		$ionicPlatform.ready(function(){
+			alert('Hi Device Ready Inside PPODController');
+		});
     };
-	
 	
 	function onDeviceReady() {
 		//alert('Alert onDeviceReady');
